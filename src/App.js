@@ -1,7 +1,7 @@
 import { Link, Route, Switch } from 'react-router-dom';
 import Landing from './components/Landing';
 import PaperStore from './components/PaperStore';
-import ChatRoom from './components/ChatRoom';
+import ChatRoom from './components/ChatRoom/ChatRoom';
 import Favicon from './components/images/dm_favicon.png';
 
 function App() {
