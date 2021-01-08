@@ -2,13 +2,14 @@ import { Link, Route, Switch } from 'react-router-dom';
 import Landing from './components/Landing';
 import PaperStore from './components/PaperStore';
 import ChatRoom from './components/ChatRoom';
+import Favicon from './components/images/dm_favicon.png';
 
 function App() {
   return (
     <div className="App">
         
       <header>
-        <Link to="/">Home</Link>
+        <Link to="/"><img className="SmallLogo" src={Favicon} alt="DM" /></Link>
         <div className="navs">
           <Link to="/paper">Paper</Link>
           <Link to="/chat">Chat</Link>

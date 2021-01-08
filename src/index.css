@@ -14,12 +14,14 @@ code {
 
 footer {
   align-items: center;
+  background-color: lightgray;
   display: flex;
   justify-content: center;
   padding: 30px 0;
 }
 
 header {
+  background-color: #3b5482;
   display: flex;
   justify-content: space-between;
   padding: 20px 40px;
@@ -36,8 +38,18 @@ main {
   width: 100%
 }
 
+.logo {
+  width: 750px;
+}
+
 .navs a {
+  color: white;
+  text-decoration: none;
   margin-left: 16px;
+}
+
+.SmallLogo {
+  width: 30px;
 }
 
 .view {
