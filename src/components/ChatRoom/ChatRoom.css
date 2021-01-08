@@ -1,0 +1,82 @@
+.chatroom-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+    height: 100vh;
+    background: lightgray;
+    border: 5px outset darkgray;
+}
+
+.cr-title {
+    width: 98%;
+    margin: 5px;
+    background: rgb(9,9,121);
+    background: linear-gradient(90deg, rgba(9,9,121,1) 22%, rgba(146,215,250,1) 100%);
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-name {
+    color: white;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.title-x {
+    height: 50%;
+    align-self: center;
+    font-size: large;
+    border: 1px outset darkgray;
+    margin-right: 5px;
+}
+
+.message-board {
+    background: white;
+    border: 3px outset darkgray;
+    flex: 1;
+    width: 92%;
+    overflow: scroll;
+}
+
+.messages { 
+    list-style-type: none; 
+    width: 100%; 
+    margin: 0 auto; 
+    padding: 0; 
+    background: white;
+}
+
+.messages li { 
+    padding: 3px 5px; 
+}
+  
+.cr-form { 
+    width: 100%; 
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cr-form input { 
+    background: white;
+    border: 3px outset darkgray; 
+    margin: 10px;
+    width: 92%; 
+    height: 30px;
+    outline: none;
+}
+
+.cr-form button { 
+    width: 30%; 
+    background: lightgray;
+    border: none; 
+    padding: 10px; 
+    align-self: flex-end;
+    outline: none;
+}
+
+.cr-form button:hover {
+    font-weight: bolder;
+}
