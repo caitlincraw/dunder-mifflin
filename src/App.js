@@ -26,6 +26,7 @@ function App() {
       </main>
 
       <footer>
+        &copy; Copyright 2021 Michael Scott
       </footer>
 
     </div>

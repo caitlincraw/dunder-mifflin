@@ -16,6 +16,7 @@ footer {
   align-items: center;
   background-color: lightgray;
   display: flex;
+  font-size: .75em;
   justify-content: center;
   padding: 30px 0;
 }
