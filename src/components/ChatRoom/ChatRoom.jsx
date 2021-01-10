@@ -3,6 +3,10 @@ import io from "socket.io-client";
 import Chat from "./Chat";
 import Users from "./Users";
 import './ChatRoom.css';
+import { Howl } from 'howler';
+import moo from './audio/moo.mp3';
+import phoneRinging from './audio/phone-ringing.mp3';
+import meow from './audio/meow.mp3'
 
 const ENDPOINT = "http://127.0.0.1:1725";
 
@@ -11,6 +15,7 @@ function ChatRoom() {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [seeUsers, setSeeUsers] = useState(false);
+  const [playSound, setPlaySound] = useState(true);
 
   useEffect(() => {
     const socket = io(ENDPOINT, {});
@@ -29,6 +34,9 @@ function ChatRoom() {
       socket.emit('sendMessage', message);
       setMessage('');
     }
+    if(playSound) {
+      catSound.play();
+    }
   }
 
   const showUsers = () => {
@@ -38,6 +46,19 @@ function ChatRoom() {
   const hideUsers = () => {
     setSeeUsers(false);
   }
+
+  // Setup all of the new Howls
+  const cowSound = new Howl({
+    src: [moo]
+  });
+
+  const phoneSound = new Howl({
+    src: [phoneRinging]
+  });
+
+  const catSound = new Howl({
+    src: [meow]
+  });
 
   return (
     <div className="view">
