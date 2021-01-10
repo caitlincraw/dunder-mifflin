@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
-import Messages from "./Messages";
+import Chat from "./Chat";
+import Users from "./Users";
 import './ChatRoom.css';
 
 const ENDPOINT = "http://127.0.0.1:1725";
@@ -9,6 +10,7 @@ function ChatRoom() {
 
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  const [seeUsers, setSeeUsers] = useState(false);
 
   useEffect(() => {
     const socket = io(ENDPOINT, {});
@@ -29,28 +31,18 @@ function ChatRoom() {
     }
   }
 
+  const showUsers = () => {
+    setSeeUsers(true);
+  }
+
+  const hideUsers = () => {
+    setSeeUsers(false);
+  }
+
   return (
     <div className="view">
-        <div className="chatroom-container">
-            <div className="cr-title">
-              <h4 className="title-name">WE LOVE PAPER CHATROOM</h4>
-              <button className="title-x">X</button>
-            </div>
-            <div className="message-board">
-              <Messages messages={messages} />
-            </div>
-            <form className="cr-form" action="">
-                <input 
-                  id="m" 
-                  autoComplete="off"
-                  value={message} 
-                  onChange={(e) => setMessage(e.target.value)}  
-                />
-                <button onClick={(e) => sendMessage(e)}> 
-                  Send Message
-                </button>
-            </form>
-        </div>
+      <Chat message={message} messages={messages} onChange={(e) => setMessage(e.target.value)} usersOnClick={() => showUsers()} messageOnClick={(e) => sendMessage(e)}  />
+      {seeUsers ? <Users onClick={() => hideUsers()} /> : null}
     </div>
   );
 }
