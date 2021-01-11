@@ -33,9 +33,9 @@ function ChatRoom() {
     if(message) {
       socket.emit('sendMessage', message);
       setMessage('');
-    }
-    if(playSound) {
-      catSound.play();
+      if(playSound) {
+        catSound.play();
+      }
     }
   }
 
