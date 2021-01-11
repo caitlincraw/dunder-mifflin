@@ -1,0 +1,12 @@
+{
+    "products": [
+        { 
+            "_id": "paper1", 
+            "description": "a ream of paper",
+            "image": "/images/item1.jpg",
+            "price": 10,
+            "quantity": 15,
+            "title": "Paper 1" 
+        }
+    ]
+}
