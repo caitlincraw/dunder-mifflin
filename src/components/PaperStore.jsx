@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 
 function PaperStore() {
     return (
@@ -8,4 +9,4 @@ function PaperStore() {
     )
 }
 
-export default PaperStore;
+export default (PaperStore)
