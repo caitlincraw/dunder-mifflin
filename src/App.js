@@ -3,6 +3,7 @@ import Landing from './components/Landing';
 import PaperStore from './components/PaperStore/PaperStore';
 import ChatRoom from './components/ChatRoom/ChatRoom';
 import Cart from './components/Cart';
+import LoginPage from './components/LoginPage';
 import DMicon from './components/images/dm_favicon.png';
 import CartIcon from './components/images/cart.png';
 
