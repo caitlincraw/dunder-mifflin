@@ -8,26 +8,32 @@ main {
     align-items: center; 
 }
 
-.chatroom-container, .users-container {
+.chatroom-container, .users-container, .soundEnabler-container {
     display: flex;
     margin: 5px;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 80vh;
     background: lightgray;
     border: 5px outset darkgray;
 }
 
 .chatroom-container {
     width: 400px;
+    height: 80vh;
 }
 
 .users-container {
     width: 200px;
+    height: 80vh;
 }
 
-.cr-title, .u-title {
+.soundEnabler-container {
+    width: 200px;
+    height: 35vh;
+}
+
+.cr-title, .u-title, .se-title {
     margin: 5px;
     background: rgb(9,9,121);
     background: linear-gradient(90deg, rgba(9,9,121,1) 22%, rgba(146,215,250,1) 100%);
@@ -39,7 +45,7 @@ main {
     width: 390px;
 }
 
-.u-title {
+.u-title, .se-title {
     width: 190px;
 }
 
@@ -58,7 +64,7 @@ main {
     outline: none;
 }
 
-.message-board, .u-board {
+.message-board, .u-board, .se-board {
     background: white;
     border: 3px outset darkgray;
     flex: 1;
@@ -71,12 +77,12 @@ main {
     width: 360px;
 }
 
-.u-board {
+.u-board, .se-board {
     width: 160px;
     margin-bottom: 5px;
 }
 
-.message-board::-webkit-scrollbar, .u-board::-webkit-scrollbar { 
+.message-board::-webkit-scrollbar, .u-board::-webkit-scrollbar, .se-board::-webkit-scrollbar { 
     display: none;  /* No scroll bar in Safari and Chrome */
     width: 0;
     height: 0;
@@ -176,4 +182,22 @@ main {
 
 .cr-form button:hover {
     cursor: pointer;
+}
+
+.soundEnabler {
+    position: absolute;
+    bottom: 0;
+    right: 2rem;
+    border: 5px outset darkgray;
+    outline: none;
+}
+
+.soundEnabler-container {
+    position: absolute;
+    bottom: 3rem;
+    right: 2rem;
+}
+
+.se-board span {
+    text-align: center;
 }
