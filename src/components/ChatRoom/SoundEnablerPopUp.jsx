@@ -11,8 +11,8 @@ const SoundEnablerPopUp = (props) => {
             </div>
             <div className="board se-board">
                 <div>There are awesome sounds in this chatroom. Do you want to keep them enabled or turn them off?</div>
-                <span><button onClick={props.enable}>ENABLE</button></span>
-                <span><button onClick={props.disable}>DISABLE</button></span>
+                <button onClick={props.enable}>Enable Sound</button>
+                <button onClick={props.disable}>Disable Sound</button>
             </div>
         </div>
     )
