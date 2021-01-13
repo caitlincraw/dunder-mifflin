@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 import Chat from "./Chat";
 import Users from "./Users";
+import LeaveChatRoom from "./LeaveChatRoom";
 import SoundEnablerPopUp from "./SoundEnablerPopUp";
 import './ChatRoom.css';
 import { Howl } from 'howler';
@@ -20,6 +21,7 @@ function ChatRoom() {
   const [seeUsers, setSeeUsers] = useState(false);
   const [playSound, setPlaySound] = useState(true);
   const [soundEnabler, setSoundEnabler] = useState(false);
+  const [leaveChat, setLeaveChat] = useState(false);
 
   useEffect(() => {
     const socket = io(ENDPOINT, {});
@@ -71,7 +73,8 @@ function ChatRoom() {
 
   return (
     <div className="view">
-      <Chat message={message} messages={messages} onChange={(e) => setMessage(e.target.value)} usersOnClick={() => setSeeUsers(true)} messageOnClick={(e) => sendMessage(e)}  />
+      <Chat message={message} messages={messages} leaveChat={() => setLeaveChat(true)} onChange={(e) => setMessage(e.target.value)} usersOnClick={() => setSeeUsers(true)} messageOnClick={(e) => sendMessage(e)}  />
+      {leaveChat ? <LeaveChatRoom onClick={() => setLeaveChat(false)} /> : null}
       {seeUsers ? <Users onClick={() => setSeeUsers(false)} /> : null}
       <button className="soundEnabler" onClick={() => setSoundEnabler(true)}><img src={soundIcon} style={{width: "2rem"}}></img></button>
       {soundEnabler ? <SoundEnablerPopUp onClick={() => setSoundEnabler(false)} enable={enable} disable={disable} /> : null}
