@@ -82,9 +82,6 @@ function ChatRoom() {
   }
 
   const selectCat = () => {
-    if(playSound) {
-      catSound.play();
-    }
     setSelectedSound("cat");
     setShowSoundSelector(false);
   }

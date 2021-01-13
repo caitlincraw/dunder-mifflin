@@ -19,27 +19,27 @@ main {
 }
 
 .cr-container {
-    width: 400px;
-    height: 80vh;
+    width: 40rem;
+    height: 46rem;
 }
 
 .u-container {
-    width: 200px;
-    height: 80vh;
+    width: 20rem;
+    height: 46rem;
 }
 
 .se-container {
-    width: 300px;
-    height: 22vh;
+    width: 30rem;
+    height: 15rem;
 }
 .lcr-container {
-    width: 300px;
-    height: 18vh;
+    width: 30rem;
+    height: 13rem;
 }
 
 .so-container {
-    width: 150px;
-    height: 30vh;
+    width: 15rem;
+    height: 22rem;
 }
 
 .title {
@@ -51,24 +51,24 @@ main {
 }
 
 .cr-title {
-    width: 390px;
+    width: 39rem;
 }
 
 .u-title {
-    width: 190px;
+    width: 19rem;
 }
 
 .se-title, .lcr-title {
-    width: 290px;
+    width: 29rem;
 }
 
 .so-title {
-    width: 140px;
+    width: 14rem;
 }
 
 .title-name {
     color: white;
-    font-size: 12px;
+    font-size: 1.2rem;
     margin-left: 5px;
 }
 
@@ -91,20 +91,20 @@ main {
 }
 
 .m-board {
-    width: 360px;
+    width: 36rem;
 }
 .u-board {
-    width: 160px;
+    width: 16rem;
     margin-bottom: 5px;
 }
 
 .se-board, .lcr-board {
-    width: 260px;
+    width: 26rem;
     margin-bottom: 5px;
 }
 
 .so-board {
-    width: 130px;
+    width: 13rem;
     margin-bottom: 5px;
 }
 
@@ -116,7 +116,7 @@ main {
 
 .messages { 
     list-style-type: none; 
-    width: 360px; 
+    width: 36rem; 
     height: 100%;
     margin: 0; 
     padding: 0; 
@@ -136,7 +136,7 @@ main {
 .text-edit-btns, .footer-btns {
     display: flex;
     justify-content: space-between;
-    width: 360px;
+    width: 36rem;
     margin: 0;
     padding: 0;
 }
@@ -147,6 +147,7 @@ main {
     outline: none;
     background: none;
     cursor: pointer;
+    font-size: 1.4rem;
 }
 
 #bold-btn {
@@ -162,15 +163,15 @@ main {
 }
 
 #smaller-btn {
-    font-size: 10px;
+    font-size: 1rem;
 }
 
 #normal-btn {
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 
 #larger-btn {
-    font-size: 18px;
+    font-size: 1.8rem;
 }
 
 #font-color-btn {
@@ -191,13 +192,13 @@ main {
     border: 3px outset darkgray; 
     margin: 0;
     padding: 0;
-    width: 360px; 
-    height: 40px;
+    width: 36rem; 
+    height: 4rem;
     outline: none;
 }
 
 .cr-form button { 
-    width: 200px;
+    width: 20rem;
     text-align: right; 
     background: lightgray;
     border: none; 
@@ -212,7 +213,7 @@ main {
 
 .soundEnabler {
     position: absolute;
-    bottom: 0;
+    bottom: 5rem;
     right: 2rem;
     border: 5px outset darkgray;
     outline: none;
@@ -224,15 +225,9 @@ main {
     right: 2rem;
 }
 
-.lcr-container {
+.lcr-container, .so-container {
     position: absolute;
-    bottom: 50vh;
-}
-
-.so-container {
-    position: absolute;
-    bottom: 25vh;
-    left: 60rem;
+    bottom: auto;
 }
 
 .lcr-board div, .se-board div, .so-board div {
@@ -243,7 +238,7 @@ main {
     color: inherit;
     text-decoration: none;
     margin: 0.5rem;
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 
 .lcr-board button, .se-board button, .so-board input {
@@ -251,7 +246,7 @@ main {
     background: none;
     border: none;
     margin: 0.25rem;
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 
 .lcr-board a:hover, .lcr-board button:hover, .se-board button:hover, .so-board input:hover {
