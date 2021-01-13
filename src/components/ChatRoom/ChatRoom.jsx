@@ -2,20 +2,24 @@ import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 import Chat from "./Chat";
 import Users from "./Users";
+import SoundEnablerPopUp from "./SoundEnablerPopUp";
 import './ChatRoom.css';
 import { Howl } from 'howler';
 import moo from './audio/moo.mp3';
 import phoneRinging from './audio/phone-ringing.mp3';
 import meow from './audio/meow.mp3'
+import soundIcon from '../images/sound.png';
 
 const ENDPOINT = "http://127.0.0.1:1725";
 
 function ChatRoom() {
 
+  // chatroom state variables
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [seeUsers, setSeeUsers] = useState(false);
   const [playSound, setPlaySound] = useState(true);
+  const [soundEnabler, setSoundEnabler] = useState(false);
 
   useEffect(() => {
     const socket = io(ENDPOINT, {});
@@ -29,22 +33,27 @@ function ChatRoom() {
 
   const sendMessage = (e) => {
     e.preventDefault();
+    // declare socket within scope
     const socket = io(ENDPOINT, {});
+    // only send a message if there is a message
     if(message) {
       socket.emit('sendMessage', message);
       setMessage('');
+      //only play sound if sound is enabled. enabled by default.
       if(playSound) {
         catSound.play();
       }
     }
   }
 
-  const showUsers = () => {
-    setSeeUsers(true);
+  const enable = () => {
+    setPlaySound(true);
+    setSoundEnabler(false);
   }
 
-  const hideUsers = () => {
-    setSeeUsers(false);
+  const disable = () => {
+    setPlaySound(false);
+    setSoundEnabler(false);
   }
 
   // Setup all of the new Howls
@@ -62,8 +71,10 @@ function ChatRoom() {
 
   return (
     <div className="view">
-      <Chat message={message} messages={messages} onChange={(e) => setMessage(e.target.value)} usersOnClick={() => showUsers()} messageOnClick={(e) => sendMessage(e)}  />
-      {seeUsers ? <Users onClick={() => hideUsers()} /> : null}
+      <Chat message={message} messages={messages} onChange={(e) => setMessage(e.target.value)} usersOnClick={() => setSeeUsers(true)} messageOnClick={(e) => sendMessage(e)}  />
+      {seeUsers ? <Users onClick={() => setSeeUsers(false)} /> : null}
+      <button className="soundEnabler" onClick={() => setSoundEnabler(true)}><img src={soundIcon} style={{width: "2rem"}}></img></button>
+      {soundEnabler ? <SoundEnablerPopUp onClick={() => setSoundEnabler(false)} enable={enable} disable={disable} /> : null}
     </div>
   );
 }
