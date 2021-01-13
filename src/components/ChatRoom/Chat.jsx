@@ -45,7 +45,7 @@ function Chat(props) {
         <div className="footer-btns">
           <input id="show-users-btn" type="button" value="Who's Online?" onClick={props.usersOnClick}/>
           <button onClick={props.messageOnClick}> 
-          Send Message
+          Send
           </button>
         </div>
     </form>
