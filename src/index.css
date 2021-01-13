@@ -1,4 +1,4 @@
-body {
+body, #root {
   height: 100vh;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -6,6 +6,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body, input, select, textarea {
+  font-size: 1.6rem;
 }
 
 code {
@@ -17,19 +21,27 @@ footer {
   align-items: center;
   background-color: lightgray;
   display: flex;
+  grid-area: footer;
   justify-content: center;
-  padding: 30px 0;
 }
 
 header {
+  align-items: center;
   background-color: #3b5482;
+  color: white;
   display: flex;
+  grid-area: header;
   justify-content: space-between;
-  padding: 20px 40px;
+  padding: 0.5rem;
 }
 
 header a:hover {
   color: orange;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 main {
@@ -37,10 +49,21 @@ main {
   background-color: #3b5482;
   display: flex;
   flex: 1;
+  grid-area: main;
   justify-content: center;
-  min-height: 100vh;
   padding: 45px;
   width: 100%
+}
+
+.App {
+  display: grid;
+  grid-template-areas: 
+  "header"
+  "main"
+  "footer";
+  grid-template-rows: 5rem 1fr 5rem;
+  grid-template-columns: 1fr;
+  height: 100%;
 }
 
 .logo {
@@ -60,4 +83,79 @@ main {
 .view {
   margin: 0 auto;
   max-width: 65%;
+}
+
+/* products */
+
+.button {
+  border: .1rem #c0c0c0 solid;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.button:hover {
+  border: .1rem black solid;
+}
+
+.button_primary {
+  background-color: #ffc000;
+}
+
+.products {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.products li {
+  flex: 1 1 29rem;
+  height: 47rem;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.product img {
+  max-height: 37rem;
+  max-width: 37rem;
+}
+
+.product-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-price div,
+.product-price button {
+  text-align: center;
+  flex: 1;
+}
+
+.product-price div {
+  font-size: 2rem;
+}
+
+.store {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.store__main{
+  flex: 3 60rem;
+}
+
+.store__sidebar{
+  flex: 1 20rem;
 }
