@@ -2,17 +2,16 @@ main {
     padding: 0;
 }
 
-/* it looks like this is happening across the entire site, not just the chatroom... */
-button, input, a, div, h4 {
-    font-family: 'Times New Roman', Times, serif;
-}
-
 .cr-view {
     display: flex;
     justify-content: space-around;
     align-items: center; 
     height: 100%;
     width: 100vw;
+}
+
+.cr-view * {
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .container {
