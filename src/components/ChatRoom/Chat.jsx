@@ -32,7 +32,7 @@ function Chat(props) {
           <div className="extra-btns">
             <input id="link-btn" type="button" value="link" onClick={() => alert("TBD for link feature")} />
             <input id="emoji-btn" type="button" value="😀" onClick={() => alert("TBD for emoji feature")}/>
-            <input id="emoji-btn" type="button" value="🔈" onClick={() => alert("TBD for audio selector feature")}/>
+            <input id="emoji-btn" type="button" value="🔈" onClick={props.selectSound}/>
           </div>
         </div>
         <textarea

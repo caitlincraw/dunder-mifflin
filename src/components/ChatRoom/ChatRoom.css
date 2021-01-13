@@ -33,6 +33,11 @@ main {
     height: 30vh;
 }
 
+.so-container {
+    width: 150px;
+    height: 30vh;
+}
+
 .title {
     margin: 5px;
     background: rgb(9,9,121);
@@ -47,6 +52,10 @@ main {
 
 .u-title, .se-title, .lcr-title {
     width: 290px;
+}
+
+.so-title {
+    width: 140px;
 }
 
 .title-name {
@@ -79,6 +88,11 @@ main {
 
 .u-board, .se-board, .lcr-board {
     width: 260px;
+    margin-bottom: 5px;
+}
+
+.so-board {
+    width: 130px;
     margin-bottom: 5px;
 }
 
@@ -203,7 +217,13 @@ main {
     bottom: 50vh;
 }
 
-.lcr-board div, .se-board div {
+.so-container {
+    position: absolute;
+    bottom: 25vh;
+    left: 60rem;
+}
+
+.lcr-board div, .se-board div, .so-board div {
     margin: 0 0.5rem;
 }
 
@@ -214,7 +234,7 @@ main {
     font-size: 14px;
 }
 
-.lcr-board button, .se-board button {
+.lcr-board button, .se-board button, .so-board input {
     outline: none;
     background: none;
     border: none;
@@ -222,7 +242,7 @@ main {
     font-size: 14px;
 }
 
-.lcr-board a:hover, .lcr-board button:hover, .se-board button:hover {
+.lcr-board a:hover, .lcr-board button:hover, .se-board button:hover, .so-board input:hover {
     color: orange;
     cursor: pointer;
 }
