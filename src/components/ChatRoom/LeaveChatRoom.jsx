@@ -12,7 +12,6 @@ const LeaveChatRoom = (props) => {
             </div>
             <div className="board lcr-board">
                 <div>Are you sure you want to leave the chatroom?</div>
-                <br />
                 <Link to="/">Yes, paper sucks.</Link>
                 <button onClick={props.onClick}>No, I love paper.</button>
             </div>
