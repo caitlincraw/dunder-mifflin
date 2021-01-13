@@ -5,12 +5,12 @@ import './ChatRoom.css';
 function Chat(props) {
 
   return (
-    <div className="chatroom-container">
-    <div className="cr-title">
+    <div className="container cr-container">
+    <div className="title cr-title">
       <h4 className="title-name">WE LOVE PAPER CHATROOM</h4>
-      <button className="title-x" onClick={() => alert("Why are you trying to close the greatest paper chatroom in the world?!?")}>X</button>
+      <button className="title-x" onClick={props.leaveChat}>X</button>
     </div>
-    <div className="message-board">
+    <div className="board m-board">
       <Messages messages={props.messages} />
     </div>
     <form className="cr-form" action="">
@@ -32,7 +32,7 @@ function Chat(props) {
           <div className="extra-btns">
             <input id="link-btn" type="button" value="link" onClick={() => alert("TBD for link feature")} />
             <input id="emoji-btn" type="button" value="😀" onClick={() => alert("TBD for emoji feature")}/>
-            <input id="emoji-btn" type="button" value="🔈" onClick={() => alert("TBD for audio selector feature")}/>
+            <input id="emoji-btn" type="button" value="🔈" onClick={props.selectSound}/>
           </div>
         </div>
         <textarea

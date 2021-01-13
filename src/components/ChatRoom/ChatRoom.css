@@ -8,7 +8,7 @@ main {
     align-items: center; 
 }
 
-.chatroom-container, .users-container, .soundEnabler-container {
+.container {
     display: flex;
     margin: 5px;
     flex-direction: column;
@@ -18,22 +18,27 @@ main {
     border: 5px outset darkgray;
 }
 
-.chatroom-container {
+.cr-container {
     width: 400px;
     height: 80vh;
 }
 
-.users-container {
+.u-container {
     width: 200px;
     height: 80vh;
 }
 
-.soundEnabler-container {
-    width: 200px;
-    height: 35vh;
+.se-container, .lcr-container {
+    width: 300px;
+    height: 30vh;
 }
 
-.cr-title, .u-title, .se-title {
+.so-container {
+    width: 150px;
+    height: 30vh;
+}
+
+.title {
     margin: 5px;
     background: rgb(9,9,121);
     background: linear-gradient(90deg, rgba(9,9,121,1) 22%, rgba(146,215,250,1) 100%);
@@ -45,8 +50,12 @@ main {
     width: 390px;
 }
 
-.u-title, .se-title {
-    width: 190px;
+.u-title, .se-title, .lcr-title {
+    width: 290px;
+}
+
+.so-title {
+    width: 140px;
 }
 
 .title-name {
@@ -64,7 +73,7 @@ main {
     outline: none;
 }
 
-.message-board, .u-board, .se-board {
+.board {
     background: white;
     border: 3px outset darkgray;
     flex: 1;
@@ -73,16 +82,21 @@ main {
     scrollbar-width: none;  /* No Scroll bar in Firefox */
 }
 
-.message-board {
+.m-board {
     width: 360px;
 }
 
-.u-board, .se-board {
-    width: 160px;
+.u-board, .se-board, .lcr-board {
+    width: 260px;
     margin-bottom: 5px;
 }
 
-.message-board::-webkit-scrollbar, .u-board::-webkit-scrollbar, .se-board::-webkit-scrollbar { 
+.so-board {
+    width: 130px;
+    margin-bottom: 5px;
+}
+
+.board::-webkit-scrollbar { 
     display: none;  /* No scroll bar in Safari and Chrome */
     width: 0;
     height: 0;
@@ -192,12 +206,44 @@ main {
     outline: none;
 }
 
-.soundEnabler-container {
+.se-container {
     position: absolute;
     bottom: 3rem;
     right: 2rem;
 }
 
-.se-board span {
-    text-align: center;
+.lcr-container {
+    position: absolute;
+    bottom: 50vh;
 }
+
+.so-container {
+    position: absolute;
+    bottom: 25vh;
+    left: 60rem;
+}
+
+.lcr-board div, .se-board div, .so-board div {
+    margin: 0 0.5rem;
+}
+
+.lcr-board a {
+    color: inherit;
+    text-decoration: none;
+    margin: 0.25rem;
+    font-size: 14px;
+}
+
+.lcr-board button, .se-board button, .so-board input {
+    outline: none;
+    background: none;
+    border: none;
+    margin: 0.25rem;
+    font-size: 14px;
+}
+
+.lcr-board a:hover, .lcr-board button:hover, .se-board button:hover, .so-board input:hover {
+    color: orange;
+    cursor: pointer;
+}
+
