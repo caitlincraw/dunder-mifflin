@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Products from './Products';
 import data from './data.json';
-import './PaperStore.css';
 
 
 class PaperStore extends React.Component {
@@ -10,7 +9,7 @@ class PaperStore extends React.Component {
         super();
         this.state = {
             products: data.products,
-        }
+        };
     }
 
     render() {
