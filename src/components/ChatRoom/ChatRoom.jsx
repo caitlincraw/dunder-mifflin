@@ -48,6 +48,7 @@ function ChatRoom() {
       if(playSound && selectedSound === "phone") {
         phoneSound.play();
       }
+      setSelectedSound("none");
     }
   }
 
