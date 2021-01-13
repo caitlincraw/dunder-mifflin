@@ -6,7 +6,7 @@ const SoundEnablerPopUp = (props) => {
     return (
         <div className="container se-container">
             <div className="title se-title">
-            <h4 className="title-name">🔈 SOUND ENABLER 🔈</h4>
+            <h4 className="title-name">Do you like sounds? 🔈🔈🔈</h4>
             <button className="title-x" onClick={props.onClick}>X</button>
             </div>
             <div className="board se-board">
