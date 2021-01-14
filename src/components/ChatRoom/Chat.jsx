@@ -7,7 +7,7 @@ function Chat(props) {
   return (
     <div className="container cr-container">
     <div className="title cr-title">
-      <h4 className="title-name">WE LOVE PAPER CHATROOM</h4>
+      <h4 className="title-name">We Love Paper Chatroom</h4>
       <button className="title-x" onClick={props.leaveChat}>X</button>
     </div>
     <div className="board m-board">
@@ -45,7 +45,7 @@ function Chat(props) {
         <div className="footer-btns">
           <input id="show-users-btn" type="button" value="Who's Online?" onClick={props.usersOnClick}/>
           <button onClick={props.messageOnClick}> 
-          Send Message
+          Send
           </button>
         </div>
     </form>

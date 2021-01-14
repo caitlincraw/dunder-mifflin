@@ -6,12 +6,22 @@ import { Howl } from 'howler';
 import { moo, meow, phoneRinging } from './audio';
 import soundIcon from '../images/sound.png';
 
-const ENDPOINT = "http://127.0.0.1:1725";
+// set up a client socket that is listening to the port server is running on
+// will need to toggle these variables when deploy or dealing with https
+const port = "1725";
+const host = window.location.hostname;
+const protocol = "http://"
+const ENDPOINT = `${protocol}${host}:${port}`;
+const socket = io(ENDPOINT, {});
 
 function ChatRoom() {
 
   // chatroom state variables... consider using redux for some of this
+  // *****TBD***** consider making a state variable called toggleVisible which is an object that holds all the state variables that involve visibility of components
+  // *****TBD***** include seeUsers, soundEnabler, leaveChat, and showSoundSelector..
   const [message, setMessage] = useState('');
+  const [user, setUser] = useState('');
+  const [totalUsers, setTotalUsers] = useState();
   const [messages, setMessages] = useState([]);
   const [seeUsers, setSeeUsers] = useState(false);
   const [playSound, setPlaySound] = useState(true);
@@ -20,34 +30,70 @@ function ChatRoom() {
   const [showSoundSelector, setShowSoundSelector] = useState(false);
   const [selectedSound, setSelectedSound] = useState("none");
 
+  
+  // connect to socket here so that only connects once at the beginning. like componentDidMount(). all socket events where client receives from server go in here too
   useEffect(() => {
-    const socket = io(ENDPOINT, {});
-    socket.on('message', message => {
-      setMessages(msgs => [ ...msgs, message ]);
+
+    // client sends to server that a user has connected. put in useEffect() because only want once on load of component. note that client only sends to a server by way of socket.emit
+    socket.emit('userConnect')
+
+    // client receives user info back from server
+    // *****TBD***** this is just the socket.id right now...for actual auth and username
+    socket.on('getUser', userId => {
+      setUser(userId);
+    })
+
+    // keeping track of number of users in the room
+    socket.on('numUsers', numUsers => {
+      setTotalUsers(numUsers);
     });
 
-    // CLEAN UP THE EFFECT.. closes the connection when the component unmounts
+    // client talks to server and receives the data (message and username)
+    socket.on('addMessage', data => {
+      setMessages(msgs => [ ...msgs, data ]);
+    });
+
+    // *****TBD***** client needs to talk to server again and receive the sound data
+    // socket.on('addSound', data => {
+    // });
+
+    // clean up the effect. closes the connection when the component unmounts. like componentWillUnmount
     return () => socket.disconnect();
   }, []);
 
+  // *****TBD***** client send sound to server.
+  // const sendSoundEvent = (soundVar) => {
+  //   socket.emit('sendSound', {
+  //     sound: soundVar
+  //   })
+  //   setSelectedSound("none");
+  // }
+
   const sendMessage = (e) => {
     e.preventDefault();
-    // declare socket within scope
-    const socket = io(ENDPOINT, {});
     // only send a message if there is a message
+    // *****TBD***** add logged in auth check here too
     if(message) {
-      socket.emit('sendMessage', message);
+      socket.emit('sendMessage', {
+        user, 
+        message
+      });
       setMessage('');
       //only play sound if sound is enabled. enabled by default.
       if(playSound && selectedSound === "cat") {
         catSound.play();
+        // *****TBD***** call sendSoundEvent(meow)
       }
       if(playSound && selectedSound === "cow") {
         cowSound.play();
+        // *****TBD***** call sendSoundEvent(moo)
       }
       if(playSound && selectedSound === "phone") {
         phoneSound.play();
+        // *****TBD***** call sendSoundEvent(phoneRinging)
       }
+      // *****TBD***** will not need this once calling sendSoundEvent since move to there
+      setSelectedSound("none");
     }
   }
 
@@ -62,6 +108,7 @@ function ChatRoom() {
   }
 
   // Setup all of the new Howls
+  // *****TBD***** look to see if there is a way to consolidate all new howls on howler.js docs? could also use an array of all the sources and then map over
   const cowSound = new Howl({
     src: [moo]
   });
@@ -69,21 +116,19 @@ function ChatRoom() {
   const phoneSound = new Howl({
     src: [phoneRinging]
   });
-
+  
+  // *****BUG***** catSound is not working on phones...
   const catSound = new Howl({
     src: [meow]
   });
 
-
+  // *****TBD***** figure out how to consolidate these functions
   const selectNone = () => {
     setSelectedSound("none");
     setShowSoundSelector(false);
   }
 
   const selectCat = () => {
-    if(playSound) {
-      catSound.play();
-    }
     setSelectedSound("cat");
     setShowSoundSelector(false);
   }
@@ -105,11 +150,11 @@ function ChatRoom() {
   }
 
   return (
-    <div className="view">
+    <div className="view cr-view">
       <Chat message={message} messages={messages} selectSound={() => setShowSoundSelector(true)} leaveChat={() => setLeaveChat(true)} onChange={(e) => setMessage(e.target.value)} usersOnClick={() => setSeeUsers(true)} messageOnClick={(e) => sendMessage(e)}  />
       {leaveChat ? <LeaveChatRoom onClick={() => setLeaveChat(false)} /> : null}
       {showSoundSelector ? <SoundSelector selectNone={selectNone} selectCat={selectCat} selectCow={selectCow} selectPhone={selectPhone} /> : null}
-      {seeUsers ? <Users onClick={() => setSeeUsers(false)} /> : null}
+      {seeUsers ? <Users onClick={() => setSeeUsers(false)} totalUsers={totalUsers}/> : null}
       <button className="soundEnabler" onClick={() => setSoundEnabler(true)}><img src={soundIcon} style={{width: "2rem"}}></img></button>
       {soundEnabler ? <SoundEnablerPopUp onClick={() => setSoundEnabler(false)} enable={enable} disable={disable} /> : null}
     </div>
