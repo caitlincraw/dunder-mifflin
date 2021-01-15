@@ -56,14 +56,14 @@ function ChatRoom() {
     //plays a a door open sound when someone enters the chatroom. user will not here it when they join since the sound is broadcasted to everyone but them
     // socket.on('playDoorOpenSound', () => {
     //   if (playSound) {
-    //     doorOpenSound.play();
+    //     howls[3].play();
     //   };
     // });
 
     //plays a a door close sound when someone leaves the chatroom. user will not here it when they join since the sound is broadcasted to everyone but them
     // socket.on('playDoorCloseSound', () => {
     //   if (playSound) {
-    //     doorCloseSound.play();
+    //     howls[4].play();
     //   };
     // });
 
@@ -95,15 +95,15 @@ function ChatRoom() {
       setMessage('');
       //only play sound if sound is enabled. enabled by default.
       if(playSound && selectedSound === "cat") {
-        catSound.play();
+        howls[1].play();
         // *****TBD***** call sendSoundEvent(meow)
       }
       if(playSound && selectedSound === "cow") {
-        cowSound.play();
+        howls[0].play();
         // *****TBD***** call sendSoundEvent(moo)
       }
       if(playSound && selectedSound === "phone") {
-        phoneSound.play();
+        howls[2].play();
         // *****TBD***** call sendSoundEvent(phoneRinging)
       }
       // *****TBD***** will not need this once calling sendSoundEvent since move to there
@@ -121,54 +121,43 @@ function ChatRoom() {
     setSoundEnabler(false);
   }
 
-  // Setup all of the new Howls
-  // *****TBD***** look to see if there is a way to consolidate all new howls on howler.js docs? could also use an array of all the sources and then map over
-  const cowSound = new Howl({
-    src: [moo]
-  });
+  // Setup all of the new Howls  
+  const sounds = [moo, meow, phoneRinging, doorOpen, doorClose]
 
-  const phoneSound = new Howl({
-    src: [phoneRinging]
-  });
-  
-  // *****BUG***** catSound is not working on phones...
-  const catSound = new Howl({
-    src: [meow]
-  });
+  const howls = sounds.map((sound) => (
+    new Howl({
+      src: [sound]
+    })
+  ))
 
-  const doorOpenSound = new Howl({
-    src: [doorOpen]
-  })
+  const settingSoundState = (name) => {
+      setSelectedSound(name);
+      setShowSoundSelector(false);
+  }
 
-  const doorCloseSound = new Howl({
-    src: [doorClose]
-  })
-
-  // *****TBD***** figure out how to consolidate these functions
   const selectNone = () => {
-    setSelectedSound("none");
-    setShowSoundSelector(false);
+    settingSoundState("none");
   }
 
   const selectCat = () => {
-    setSelectedSound("cat");
-    setShowSoundSelector(false);
+    if(playSound) {
+      howls[1].play();
+    };
+    settingSoundState("cat");
   }
 
   const selectCow = () => {
     if(playSound) {
-      cowSound.play();
-    }
-    setSelectedSound("cow");
-    setShowSoundSelector(false);
+      howls[0].play();
+    };
+    settingSoundState("cow");
   }
 
   const selectPhone = () => {
     if(playSound) {
-      phoneSound.play();
-    }
-    setSelectedSound("phone");
-    setShowSoundSelector(false);
+      howls[2].play();
+    };
+    settingSoundState("phone");
   }
 
   return (
