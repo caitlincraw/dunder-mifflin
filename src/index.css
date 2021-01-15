@@ -165,3 +165,17 @@ main {
 .store__sidebar{
   flex: 1 20rem;
 }
+
+/* filter */
+
+.filter {
+  border-bottom: 0.1rem lightgray solid;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.filter dev {
+  flex: 1;
+}
