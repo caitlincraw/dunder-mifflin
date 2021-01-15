@@ -11,11 +11,10 @@ const SoundSelector = (props) => {
             </div>
             <div className="board so-board">
                 <div>Pick from the list below:</div>
-                <br />
                 <input type="button" value="No sound, please" onClick={props.selectNone}/>
-                <input type="button" value="Cat meowing" onClick={props.selectCat}/>
-                <input type="button" value="Cow mooing" onClick={props.selectCow}/>
-                <input type="button" value="Phone ringing" onClick={props.selectPhone}/>
+                <input type="button" value="Cat meowing" onClick={props.selectCat}/><button className="preview-btn" onClick={props.previewCat}>▶️</button>
+                <input type="button" value="Cow mooing" onClick={props.selectCow}/><button className="preview-btn" onClick={props.previewCow}>▶️</button>
+                <input type="button" value="Phone ringing" onClick={props.selectPhone}/><button className="preview-btn" onClick={props.previewPhone}>▶️</button>
             </div>
         </div>
     )

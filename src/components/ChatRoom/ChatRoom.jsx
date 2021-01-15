@@ -30,7 +30,15 @@ function ChatRoom() {
   const [showSoundSelector, setShowSoundSelector] = useState(false);
   const [selectedSound, setSelectedSound] = useState("none");
 
-  
+  // Setup all of the new Howls  
+  const sounds = [moo, meow, phoneRinging, doorOpen, doorClose]
+
+  const howls = sounds.map((sound) => (
+    new Howl({
+      src: [sound]
+    })
+  ))
+
   // connect to socket here so that only connects once at the beginning. like componentDidMount(). all socket events where client receives from server go in here too
   useEffect(() => {
 
@@ -67,21 +75,28 @@ function ChatRoom() {
     //   };
     // });
 
-    // *****TBD***** client needs to talk to server again and receive the sound data
-    // socket.on('addSound', data => {
-    // });
+    // client needs to talk to server again and receive the src for the sound. after get the src, then all clients connected will play that associated sound. 
+    socket.on('addSound', srcOfSound => {
+      if (srcOfSound === moo) {
+        howls[0].play()
+      }
+      if (srcOfSound === meow) {
+        howls[1].play()
+      }
+      if (srcOfSound === phoneRinging) {
+        howls[2].play()
+      }
+    });
 
     // clean up the effect. closes the connection when the component unmounts. like componentWillUnmount
     return () => socket.disconnect();
   }, []);
 
   // *****TBD***** client send sound to server.
-  // const sendSoundEvent = (soundVar) => {
-  //   socket.emit('sendSound', {
-  //     sound: soundVar
-  //   })
-  //   setSelectedSound("none");
-  // }
+  const sendSound = (srcOfSound) => {
+    socket.emit('sendSound', srcOfSound)
+    setSelectedSound("none");
+  }
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -95,19 +110,14 @@ function ChatRoom() {
       setMessage('');
       //only play sound if sound is enabled. enabled by default.
       if(playSound && selectedSound === "cat") {
-        howls[1].play();
-        // *****TBD***** call sendSoundEvent(meow)
+        sendSound(meow);
       }
       if(playSound && selectedSound === "cow") {
-        howls[0].play();
-        // *****TBD***** call sendSoundEvent(moo)
+        sendSound(moo)
       }
       if(playSound && selectedSound === "phone") {
-        howls[2].play();
-        // *****TBD***** call sendSoundEvent(phoneRinging)
+        sendSound(phoneRinging)
       }
-      // *****TBD***** will not need this once calling sendSoundEvent since move to there
-      setSelectedSound("none");
     }
   }
 
@@ -121,50 +131,38 @@ function ChatRoom() {
     setSoundEnabler(false);
   }
 
-  // Setup all of the new Howls  
-  const sounds = [moo, meow, phoneRinging, doorOpen, doorClose]
-
-  const howls = sounds.map((sound) => (
-    new Howl({
-      src: [sound]
-    })
-  ))
-
   const settingSoundState = (name) => {
       setSelectedSound(name);
       setShowSoundSelector(false);
   }
 
-  const selectNone = () => {
-    settingSoundState("none");
-  }
+  // const selectNone = () => {
+  //   settingSoundState("none");
+  // }
 
-  const selectCat = () => {
+  const previewCat = () => {
     if(playSound) {
       howls[1].play();
     };
-    settingSoundState("cat");
   }
 
-  const selectCow = () => {
+  const previewCow = () => {
     if(playSound) {
       howls[0].play();
     };
-    settingSoundState("cow");
   }
 
-  const selectPhone = () => {
+  const previewPhone = () => {
     if(playSound) {
       howls[2].play();
     };
-    settingSoundState("phone");
   }
 
   return (
     <div className="view cr-view">
       <Chat message={message} messages={messages} selectSound={() => setShowSoundSelector(true)} leaveChat={() => setLeaveChat(true)} onChange={(e) => setMessage(e.target.value)} usersOnClick={() => setSeeUsers(true)} messageOnClick={(e) => sendMessage(e)}  />
       {leaveChat ? <LeaveChatRoom onClick={() => setLeaveChat(false)} /> : null}
-      {showSoundSelector ? <SoundSelector onClick={() => setShowSoundSelector(false)} selectNone={selectNone} selectCat={selectCat} selectCow={selectCow} selectPhone={selectPhone} /> : null}
+      {showSoundSelector ? <SoundSelector onClick={() => setShowSoundSelector(false)} selectNone={() => settingSoundState("none")} selectCat={() => settingSoundState("cat")} selectCow={() => settingSoundState("cow")} selectPhone={() => settingSoundState("phone")} previewCat={previewCat} previewCow={previewCow} previewPhone={previewPhone} /> : null}
       {seeUsers ? <Users onClick={() => setSeeUsers(false)} totalUsers={totalUsers}/> : null}
       <button className="soundEnabler" onClick={() => setSoundEnabler(true)}><img src={soundIcon} style={{width: "2rem"}}></img></button>
       {soundEnabler ? <SoundEnablerPopUp onClick={() => setSoundEnabler(false)} enable={enable} disable={disable} /> : null}
