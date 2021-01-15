@@ -1,4 +1,5 @@
-import DMLogo from './images/dm_logo.png';
+import DMLogo from '../images/dm_logo.png';
+import './Landing.css';
 
 function Landing() {
     return (

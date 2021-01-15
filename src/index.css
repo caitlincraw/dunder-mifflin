@@ -40,9 +40,13 @@ header {
   padding: 0.5rem;
 }
 
-header a:hover {
-  color: orange;
+footer a {
+  color: black;
 }
+
+header a:hover, footer a:hover {
+  color: orange;
+} 
 
 html {
   font-size: 62.5%;
@@ -69,16 +73,6 @@ main {
   grid-template-rows: 5rem 1fr 5rem;
   grid-template-columns: 1fr;
   height: 100%;
-}
-
-.logo {
-  width: 100%;
-}
-
-.logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .navs a {
