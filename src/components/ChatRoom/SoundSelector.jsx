@@ -6,7 +6,8 @@ const SoundSelector = (props) => {
     return (
         <div className="container so-container">
             <div className="title so-title">
-            <h4 className="title-name">Send a sound?</h4>
+                <h4 className="title-name">Send a sound?</h4>
+                <button className="title-x" onClick={props.onClick}>X</button>
             </div>
             <div className="board so-board">
                 <div>Pick from the list below:</div>

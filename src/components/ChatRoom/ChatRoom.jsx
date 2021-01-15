@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import { Chat, Users, LeaveChatRoom, SoundEnablerPopUp, SoundSelector } from "./";
 import './ChatRoom.css';
 import { Howl } from 'howler';
-import { moo, meow, phoneRinging } from './audio';
+import { moo, meow, phoneRinging, doorOpen, doorClose } from './audio';
 import soundIcon from '../images/sound.png';
 
 // set up a client socket that is listening to the port server is running on
@@ -25,7 +25,7 @@ function ChatRoom() {
   const [messages, setMessages] = useState([]);
   const [seeUsers, setSeeUsers] = useState(false);
   const [playSound, setPlaySound] = useState(true);
-  const [soundEnabler, setSoundEnabler] = useState(false);
+  const [soundEnabler, setSoundEnabler] = useState(true);
   const [leaveChat, setLeaveChat] = useState(false);
   const [showSoundSelector, setShowSoundSelector] = useState(false);
   const [selectedSound, setSelectedSound] = useState("none");
@@ -52,6 +52,20 @@ function ChatRoom() {
     socket.on('addMessage', data => {
       setMessages(msgs => [ ...msgs, data ]);
     });
+
+    //plays a a door open sound when someone enters the chatroom. user will not here it when they join since the sound is broadcasted to everyone but them
+    // socket.on('playDoorOpenSound', () => {
+    //   if (playSound) {
+    //     doorOpenSound.play();
+    //   };
+    // });
+
+    //plays a a door close sound when someone leaves the chatroom. user will not here it when they join since the sound is broadcasted to everyone but them
+    // socket.on('playDoorCloseSound', () => {
+    //   if (playSound) {
+    //     doorCloseSound.play();
+    //   };
+    // });
 
     // *****TBD***** client needs to talk to server again and receive the sound data
     // socket.on('addSound', data => {
@@ -122,6 +136,14 @@ function ChatRoom() {
     src: [meow]
   });
 
+  const doorOpenSound = new Howl({
+    src: [doorOpen]
+  })
+
+  const doorCloseSound = new Howl({
+    src: [doorClose]
+  })
+
   // *****TBD***** figure out how to consolidate these functions
   const selectNone = () => {
     setSelectedSound("none");
@@ -153,7 +175,7 @@ function ChatRoom() {
     <div className="view cr-view">
       <Chat message={message} messages={messages} selectSound={() => setShowSoundSelector(true)} leaveChat={() => setLeaveChat(true)} onChange={(e) => setMessage(e.target.value)} usersOnClick={() => setSeeUsers(true)} messageOnClick={(e) => sendMessage(e)}  />
       {leaveChat ? <LeaveChatRoom onClick={() => setLeaveChat(false)} /> : null}
-      {showSoundSelector ? <SoundSelector selectNone={selectNone} selectCat={selectCat} selectCow={selectCow} selectPhone={selectPhone} /> : null}
+      {showSoundSelector ? <SoundSelector onClick={() => setShowSoundSelector(false)} selectNone={selectNone} selectCat={selectCat} selectCow={selectCow} selectPhone={selectPhone} /> : null}
       {seeUsers ? <Users onClick={() => setSeeUsers(false)} totalUsers={totalUsers}/> : null}
       <button className="soundEnabler" onClick={() => setSoundEnabler(true)}><img src={soundIcon} style={{width: "2rem"}}></img></button>
       {soundEnabler ? <SoundEnablerPopUp onClick={() => setSoundEnabler(false)} enable={enable} disable={disable} /> : null}

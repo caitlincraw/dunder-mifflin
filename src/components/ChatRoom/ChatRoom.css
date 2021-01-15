@@ -226,8 +226,7 @@ main {
 
 .se-container {
     position: absolute;
-    bottom: 3rem;
-    right: 2rem;
+    bottom: auto;
 }
 
 .lcr-container, .so-container {
