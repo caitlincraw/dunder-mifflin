@@ -120,7 +120,7 @@ main {
     height: 0;
 }
 
-.messages { 
+.messages, .online-users { 
     list-style-type: none; 
     width: 41vw; 
     height: 100%;
@@ -129,7 +129,7 @@ main {
     background: white;
 }
 
-.messages li { 
+.messages li, .online-users li { 
     padding: 3px 5px; 
 }
   

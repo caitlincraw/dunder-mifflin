@@ -21,6 +21,7 @@ function ChatRoom() {
   // *****TBD***** include seeUsers, soundEnabler, leaveChat, and showSoundSelector..
   const [message, setMessage] = useState('');
   const [user, setUser] = useState('');
+  const [onlineUsers, setOnlineUsers] = useState([]);
   const [totalUsers, setTotalUsers] = useState();
   const [messages, setMessages] = useState([]);
   const [seeUsers, setSeeUsers] = useState(false);
@@ -49,6 +50,7 @@ function ChatRoom() {
     // *****TBD***** this is just the socket.id right now...for actual auth and username
     socket.on('getUser', userId => {
       setUser(userId);
+      setOnlineUsers(users => [ ...users, userId])
     })
 
     // keeping track of number of users in the room
@@ -136,10 +138,6 @@ function ChatRoom() {
       setShowSoundSelector(false);
   }
 
-  // const selectNone = () => {
-  //   settingSoundState("none");
-  // }
-
   const previewCat = () => {
     if(playSound) {
       howls[1].play();
@@ -163,7 +161,7 @@ function ChatRoom() {
       <Chat message={message} messages={messages} selectSound={() => setShowSoundSelector(true)} leaveChat={() => setLeaveChat(true)} onChange={(e) => setMessage(e.target.value)} usersOnClick={() => setSeeUsers(true)} messageOnClick={(e) => sendMessage(e)}  />
       {leaveChat ? <LeaveChatRoom onClick={() => setLeaveChat(false)} /> : null}
       {showSoundSelector ? <SoundSelector onClick={() => setShowSoundSelector(false)} selectNone={() => settingSoundState("none")} selectCat={() => settingSoundState("cat")} selectCow={() => settingSoundState("cow")} selectPhone={() => settingSoundState("phone")} previewCat={previewCat} previewCow={previewCow} previewPhone={previewPhone} /> : null}
-      {seeUsers ? <Users onClick={() => setSeeUsers(false)} totalUsers={totalUsers}/> : null}
+      {seeUsers ? <Users onClick={() => setSeeUsers(false)} totalUsers={totalUsers} onlineUsers={onlineUsers}/> : null}
       <button className="soundEnabler" onClick={() => setSoundEnabler(true)}><img src={soundIcon} style={{width: "2rem"}}></img></button>
       {soundEnabler ? <SoundEnablerPopUp onClick={() => setSoundEnabler(false)} enable={enable} disable={disable} /> : null}
     </div>

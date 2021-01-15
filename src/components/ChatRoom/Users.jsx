@@ -10,6 +10,9 @@ function Users(props) {
         <button className="title-x" onClick={props.onClick}>X</button>
         </div>
         <div className="board u-board">
+          <ul className="online-users">
+            {props.onlineUsers.map((user, index) => <li key={index}>{user}</li>)}
+          </ul>
         </div>
     </div>
   );
