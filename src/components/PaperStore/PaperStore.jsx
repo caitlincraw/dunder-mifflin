@@ -26,7 +26,7 @@ class PaperStore extends React.Component {
             }).then((res) => { 
                 this.setState({
                     products: res.data,
-                    cartItems: [],
+                    cartItems: localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")): [],
                     sort: ""
                 })
                 console.log(res.data);
@@ -38,10 +38,10 @@ class PaperStore extends React.Component {
 
     removeFromCart = (product) => {
         const cartItems = this.state.cartItems.slice();
-        this.setState({ cartItems: cartItems.filter((x) => x._id !== product._id)
+        this.setState({ cartItems: cartItems.filter((x) => x._id !== product.id)
         });
 
-        localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((x) => x._id !== product._id)));
+        localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((x) => x._id !== product.id)));
     }
 
     addToCart = (product) => {
@@ -49,7 +49,7 @@ class PaperStore extends React.Component {
         let alreadyInCart = false;
 
         cartItems.forEach(item => {
-            if(item._id === product._id){
+            if(item._id === product.id){
                 item.count++;
                 alreadyInCart = true;
             }
