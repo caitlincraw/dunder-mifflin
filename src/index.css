@@ -40,9 +40,13 @@ header {
   padding: 0.5rem;
 }
 
-header a:hover {
-  color: orange;
+footer a {
+  color: black;
 }
+
+header a:hover, footer a:hover {
+  color: orange;
+} 
 
 html {
   font-size: 62.5%;
@@ -71,10 +75,6 @@ main {
   height: 100%;
 }
 
-.logo {
-  width: 750px;
-}
-
 .navs a {
   color: white;
   text-decoration: none;
@@ -88,6 +88,7 @@ main {
 .view {
   margin: 0 auto;
   max-width: 65%;
+  height: 100%;
 }
 
 /* products */

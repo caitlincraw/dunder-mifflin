@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import { Chat, Users, LeaveChatRoom, SoundEnablerPopUp, SoundSelector } from "./";
 import './ChatRoom.css';
 import { Howl } from 'howler';
-import { moo, meow, phoneRinging } from './audio';
+import { moo, meow, phoneRinging, doorOpen, doorClose } from './audio';
 import soundIcon from '../images/sound.png';
 
 // set up a client socket that is listening to the port server is running on
@@ -21,16 +21,25 @@ function ChatRoom() {
   // *****TBD***** include seeUsers, soundEnabler, leaveChat, and showSoundSelector..
   const [message, setMessage] = useState('');
   const [user, setUser] = useState('');
+  const [onlineUsers, setOnlineUsers] = useState([]);
   const [totalUsers, setTotalUsers] = useState();
   const [messages, setMessages] = useState([]);
   const [seeUsers, setSeeUsers] = useState(false);
   const [playSound, setPlaySound] = useState(true);
-  const [soundEnabler, setSoundEnabler] = useState(false);
+  const [soundEnabler, setSoundEnabler] = useState(true);
   const [leaveChat, setLeaveChat] = useState(false);
   const [showSoundSelector, setShowSoundSelector] = useState(false);
   const [selectedSound, setSelectedSound] = useState("none");
 
-  
+  // Setup all of the new Howls  
+  const sounds = [moo, meow, phoneRinging, doorOpen, doorClose]
+
+  const howls = sounds.map((sound) => (
+    new Howl({
+      src: [sound]
+    })
+  ))
+
   // connect to socket here so that only connects once at the beginning. like componentDidMount(). all socket events where client receives from server go in here too
   useEffect(() => {
 
@@ -41,6 +50,7 @@ function ChatRoom() {
     // *****TBD***** this is just the socket.id right now...for actual auth and username
     socket.on('getUser', userId => {
       setUser(userId);
+      setOnlineUsers(users => [ ...users, userId])
     })
 
     // keeping track of number of users in the room
@@ -53,21 +63,42 @@ function ChatRoom() {
       setMessages(msgs => [ ...msgs, data ]);
     });
 
-    // *****TBD***** client needs to talk to server again and receive the sound data
-    // socket.on('addSound', data => {
+    //plays a a door open sound when someone enters the chatroom. user will not here it when they join since the sound is broadcasted to everyone but them
+    // socket.on('playDoorOpenSound', () => {
+    //   if (playSound) {
+    //     howls[3].play();
+    //   };
     // });
+
+    //plays a a door close sound when someone leaves the chatroom. user will not here it when they join since the sound is broadcasted to everyone but them
+    // socket.on('playDoorCloseSound', () => {
+    //   if (playSound) {
+    //     howls[4].play();
+    //   };
+    // });
+
+    // client needs to talk to server again and receive the src for the sound. after get the src, then all clients connected will play that associated sound. 
+    socket.on('addSound', srcOfSound => {
+      if (srcOfSound === moo) {
+        howls[0].play()
+      }
+      if (srcOfSound === meow) {
+        howls[1].play()
+      }
+      if (srcOfSound === phoneRinging) {
+        howls[2].play()
+      }
+    });
 
     // clean up the effect. closes the connection when the component unmounts. like componentWillUnmount
     return () => socket.disconnect();
   }, []);
 
   // *****TBD***** client send sound to server.
-  // const sendSoundEvent = (soundVar) => {
-  //   socket.emit('sendSound', {
-  //     sound: soundVar
-  //   })
-  //   setSelectedSound("none");
-  // }
+  const sendSound = (srcOfSound) => {
+    socket.emit('sendSound', srcOfSound)
+    setSelectedSound("none");
+  }
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -81,19 +112,14 @@ function ChatRoom() {
       setMessage('');
       //only play sound if sound is enabled. enabled by default.
       if(playSound && selectedSound === "cat") {
-        catSound.play();
-        // *****TBD***** call sendSoundEvent(meow)
+        sendSound(meow);
       }
       if(playSound && selectedSound === "cow") {
-        cowSound.play();
-        // *****TBD***** call sendSoundEvent(moo)
+        sendSound(moo)
       }
       if(playSound && selectedSound === "phone") {
-        phoneSound.play();
-        // *****TBD***** call sendSoundEvent(phoneRinging)
+        sendSound(phoneRinging)
       }
-      // *****TBD***** will not need this once calling sendSoundEvent since move to there
-      setSelectedSound("none");
     }
   }
 
@@ -107,54 +133,35 @@ function ChatRoom() {
     setSoundEnabler(false);
   }
 
-  // Setup all of the new Howls
-  // *****TBD***** look to see if there is a way to consolidate all new howls on howler.js docs? could also use an array of all the sources and then map over
-  const cowSound = new Howl({
-    src: [moo]
-  });
-
-  const phoneSound = new Howl({
-    src: [phoneRinging]
-  });
-  
-  // *****BUG***** catSound is not working on phones...
-  const catSound = new Howl({
-    src: [meow]
-  });
-
-  // *****TBD***** figure out how to consolidate these functions
-  const selectNone = () => {
-    setSelectedSound("none");
-    setShowSoundSelector(false);
+  const settingSoundState = (name) => {
+      setSelectedSound(name);
+      setShowSoundSelector(false);
   }
 
-  const selectCat = () => {
-    setSelectedSound("cat");
-    setShowSoundSelector(false);
-  }
-
-  const selectCow = () => {
+  const previewCat = () => {
     if(playSound) {
-      cowSound.play();
-    }
-    setSelectedSound("cow");
-    setShowSoundSelector(false);
+      howls[1].play();
+    };
   }
 
-  const selectPhone = () => {
+  const previewCow = () => {
     if(playSound) {
-      phoneSound.play();
-    }
-    setSelectedSound("phone");
-    setShowSoundSelector(false);
+      howls[0].play();
+    };
+  }
+
+  const previewPhone = () => {
+    if(playSound) {
+      howls[2].play();
+    };
   }
 
   return (
     <div className="view cr-view">
       <Chat message={message} messages={messages} selectSound={() => setShowSoundSelector(true)} leaveChat={() => setLeaveChat(true)} onChange={(e) => setMessage(e.target.value)} usersOnClick={() => setSeeUsers(true)} messageOnClick={(e) => sendMessage(e)}  />
       {leaveChat ? <LeaveChatRoom onClick={() => setLeaveChat(false)} /> : null}
-      {showSoundSelector ? <SoundSelector selectNone={selectNone} selectCat={selectCat} selectCow={selectCow} selectPhone={selectPhone} /> : null}
-      {seeUsers ? <Users onClick={() => setSeeUsers(false)} totalUsers={totalUsers}/> : null}
+      {showSoundSelector ? <SoundSelector onClick={() => setShowSoundSelector(false)} selectNone={() => settingSoundState("none")} selectCat={() => settingSoundState("cat")} selectCow={() => settingSoundState("cow")} selectPhone={() => settingSoundState("phone")} previewCat={previewCat} previewCow={previewCow} previewPhone={previewPhone} /> : null}
+      {seeUsers ? <Users onClick={() => setSeeUsers(false)} totalUsers={totalUsers} onlineUsers={onlineUsers}/> : null}
       <button className="soundEnabler" onClick={() => setSoundEnabler(true)}><img src={soundIcon} style={{width: "2rem"}}></img></button>
       {soundEnabler ? <SoundEnablerPopUp onClick={() => setSoundEnabler(false)} enable={enable} disable={disable} /> : null}
     </div>

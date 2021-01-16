@@ -120,7 +120,7 @@ main {
     height: 0;
 }
 
-.messages { 
+.messages, .online-users { 
     list-style-type: none; 
     width: 41vw; 
     height: 100%;
@@ -129,7 +129,7 @@ main {
     background: white;
 }
 
-.messages li { 
+.messages li, .online-users li { 
     padding: 3px 5px; 
 }
   
@@ -226,8 +226,7 @@ main {
 
 .se-container {
     position: absolute;
-    bottom: 3rem;
-    right: 2rem;
+    bottom: auto;
 }
 
 .lcr-container, .so-container {
@@ -246,7 +245,7 @@ main {
     font-size: 1.4rem;
 }
 
-.lcr-board button, .se-board button, .so-board input {
+.lcr-board button, .se-board button, .so-board input, .so-board button {
     outline: none;
     background: none;
     border: none;
@@ -254,7 +253,7 @@ main {
     font-size: 1.4rem;
 }
 
-.lcr-board a:hover, .lcr-board button:hover, .se-board button:hover, .so-board input:hover {
+.lcr-board a:hover, .lcr-board button:hover, .se-board button:hover, .so-board input:hover, .so-board button:hover {
     color: orange;
     cursor: pointer;
 }
