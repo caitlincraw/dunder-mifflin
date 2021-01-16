@@ -28,7 +28,7 @@ export default class Cart extends Component {
                             {cartItems.map(item =>(
                                 <li key={item._id}>
                                     <div>
-                                        <img src={item.image} alt={item.title}></img>
+                                        <img src={`http://localhost:3000/images/${item.image}`} alt={item.title}></img>
                                     </div>
                                     <div>
                                         <div>{item.title}</div>

@@ -1,27 +1,47 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Filter from './Filter';
 import Products from './Products';
+import axios from 'axios';
 import Cart from './Cart';
 import data from './data.json';
-
 
 class PaperStore extends React.Component {
 
     constructor(){
         super();
         this.state = {
-            products: data.products,
+            products: [],
             cartItems: localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")): [],
             sort: ""
         };
     }
 
+    componentDidMount() {
+        // TBD want to add isLoaded to state and make sure do conditional rendering whether or not the items are loaded yet
+        const getPaper = () => {
+            axios({
+                method: 'GET',
+                withCredentials: true,
+                url: "http://localhost:1725/products/all",
+            }).then((res) => { 
+                this.setState({
+                    products: res.data,
+                    cartItems: localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")): [],
+                    sort: ""
+                })
+                console.log(res.data);
+            });
+        };
+
+        getPaper();
+    }
+
     removeFromCart = (product) => {
         const cartItems = this.state.cartItems.slice();
-        this.setState({ cartItems: cartItems.filter((x) => x._id !== product._id)
+        this.setState({ cartItems: cartItems.filter((x) => x._id !== product.id)
         });
 
-        localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((x) => x._id !== product._id)));
+        localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((x) => x._id !== product.id)));
     }
 
     addToCart = (product) => {
@@ -29,7 +49,7 @@ class PaperStore extends React.Component {
         let alreadyInCart = false;
 
         cartItems.forEach(item => {
-            if(item._id === product._id){
+            if(item._id === product.id){
                 item.count++;
                 alreadyInCart = true;
             }
