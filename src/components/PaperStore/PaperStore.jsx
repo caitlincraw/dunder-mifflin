@@ -1,18 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Filter from './Filter';
 import Products from './Products';
-import data from './data.json';
-
+import axios from 'axios';
 
 class PaperStore extends React.Component {
 
     constructor(){
         super();
         this.state = {
-            products: data.products,
+            products: [],
             cartItems: [],
             sort: ""
         };
+    }
+
+    componentDidMount() {
+        // TBD want to add isLoaded to state and make sure do conditional rendering whether or not the items are loaded yet
+        const getPaper = () => {
+            axios({
+                method: 'GET',
+                withCredentials: true,
+                url: "http://localhost:1725/products/all",
+            }).then((res) => { 
+                this.setState({
+                    products: res.data,
+                    cartItems: [],
+                    sort: ""
+                })
+                console.log(res.data);
+            });
+        };
+
+        getPaper();
     }
 
     addToCart = (product) => {

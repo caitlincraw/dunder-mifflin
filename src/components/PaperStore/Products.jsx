@@ -9,10 +9,11 @@ export default class Products extends Component {
             <div>
                 <ul className="products">
                     {this.props.products.map(product => (
-                        <li key={product._id}>
+                        <li key={product.id}>
                             <div className="product">
-                                <a href={"#" + product._id}>
-                                    <img src={product.image} alt={product.title}></img>
+                                <a href={"#" + product.id}>
+                                    {/* this is hardcoded right now.. will definitely break when we deploy. need relative path */}
+                                    <img src={`http://localhost:3000/images/${product.image}`} alt={product.title}></img>
                                     <p>{product.title}</p>
                                 </a>
                                 <div className="product-price">
