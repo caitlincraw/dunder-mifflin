@@ -36,12 +36,16 @@ class PaperStore extends React.Component {
         getPaper();
     }
 
+    createOrder = (order) => {
+        alert("Need to save order for " + order.name);
+    }
+
     removeFromCart = (product) => {
         const cartItems = this.state.cartItems.slice();
-        this.setState({ cartItems: cartItems.filter((x) => x._id !== product.id)
+        this.setState({ cartItems: cartItems.filter((x) => x.id !== product.id)
         });
 
-        localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((x) => x._id !== product.id)));
+        localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((x) => x.id !== product.id)));
     }
 
     addToCart = (product) => {
@@ -98,6 +102,7 @@ class PaperStore extends React.Component {
                     <Cart 
                         cartItems={this.state.cartItems}
                         removeFromCart={this.removeFromCart}
+                        createOrder={this.createOrder}
                      />
                 </div>
 
