@@ -8,8 +8,8 @@ function AboutUs() {
     return (
         <div className="view au-view">
             <div className="myspace-card">
-                <h3>Ali Kasper</h3>
-                <p>"Motto goes here"</p>
+                <h3 className="name">Ali Kasper</h3>
+                <p className="motto">"Motto goes here"</p>
                 <div className="myspace-header">
                     <img className="headshot" src={Ali} alt="Ali"></img>
                     <ul>
@@ -61,8 +61,8 @@ function AboutUs() {
                 </div>
             </div>
             <div className="myspace-card">
-                <h3>Rudy Saavedra</h3>
-                <p>"Motto goes here"</p>
+                <h3 className="name">Rudy Saavedra</h3>
+                <p className="motto">"Motto goes here"</p>
                 <div className="myspace-header">
                     <img className="headshot" src={Rudy} alt="Rudy"></img>
                     <ul>
@@ -114,8 +114,8 @@ function AboutUs() {
                 </div>
             </div>
             <div className="myspace-card">
-                <h3>Caitlin Crawford</h3>
-                <p>"Motto goes here"</p>
+                <h3 className="name">Caitlin Crawford</h3>
+                <p className="motto">"Motto goes here"</p>
                 <div className="myspace-header">
                     <img className="headshot" src={Caitlin} alt="Caitlin"></img>
                     <ul>

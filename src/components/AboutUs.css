@@ -15,7 +15,11 @@
     background: lightgray;
     border: 5px outset darkgray;
     justify-content: space-between;
-    height: 90%;
+    height: 95%;
+}
+
+.name, .motto {
+    margin: 5px;
 }
 
 .myspace-header {
