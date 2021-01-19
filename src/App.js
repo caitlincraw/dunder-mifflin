@@ -2,7 +2,7 @@ import { Route, Switch } from 'react-router-dom';
 import Landing from './components/Landing/Landing';
 import PaperStore from './components/PaperStore/PaperStore';
 import ChatRoom from './components/ChatRoom/ChatRoom';
-import LoginPage from './components/LoginPage';
+import LoginPage from './components/Login/LoginPage';
 import AboutUs from './components/AboutUs';
 import Sources from './components/Sources';
 import { NavBar, Footer } from './components/Navigation';
