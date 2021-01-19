@@ -56,12 +56,12 @@ function LoginPage() {
             <div className="container l-container">
                 <h1>Login</h1>
                 <form>
-                    <input placeholder='enter your username' onChange={e => setLoginUsername(e.target.value)} />
-                    <input placeholder='enter your password' onChange={e => setLoginPassword(e.target.value)} />
+                    <input placeholder="enter your username" onChange={e => setLoginUsername(e.target.value)} />
+                    <input placeholder="enter your password" onChange={e => setLoginPassword(e.target.value)} />
                     <button type="submit" onClick={login}>Submit</button>
                     {data ? <h1>Welcome Back, {data}</h1> : null}
                 </form>
-                <h6>Don't have an account yet? <button onClick={()=>setShowRegister(true)}>Register Here!</button></h6>
+                <div>Don't have an account yet? <button className="register-btn" onClick={()=>setShowRegister(true)}>Register Here!</button></div>
                 <button onClick={logout}>Logout</button>
             </div>
                 {showRegister ? <Register onClick={() => setShowRegister(false)} register={register} username={registerUsername} password={registerPassword} userOnChange={e => setRegisterUsername(e.target.value)} passOnChange={e => setRegisterPassword(e.target.value)}/> : null}

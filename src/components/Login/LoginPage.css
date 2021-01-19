@@ -58,3 +58,14 @@
 .r-title {
     width: 44vw;
 }
+
+.register-btn {
+    outline: none;
+    background: none;
+    border: none;
+}
+
+.register-btn:hover {
+    cursor: pointer;
+    color: orange;
+}
