@@ -13,7 +13,7 @@ function AboutUs() {
                 <div className="myspace-header">
                     <img className="headshot" src={Ali} alt="Ali"></img>
                     <ul>
-                        <li>she/her</li>
+                        <li>Female (she/her)</li>
                         <li>PORTLAND, OR</li>
                         <li>United States</li>
                         <li><img src="https://www.myspacegens.com/images/online_now/131.gif" alt="myspace online now gif"></img></li>
@@ -66,7 +66,7 @@ function AboutUs() {
                 <div className="myspace-header">
                     <img className="headshot" src={Rudy} alt="Rudy"></img>
                     <ul>
-                        <li>he/him</li>
+                        <li>Male (he/him)</li>
                         <li>SAVANNAH, GA</li>
                         <li>United States</li>
                         <li><img src="https://www.myspacegens.com/images/online_now/131.gif" alt="myspace online now gif"></img></li>
@@ -119,7 +119,7 @@ function AboutUs() {
                 <div className="myspace-header">
                     <img className="headshot" src={Caitlin} alt="Caitlin"></img>
                     <ul>
-                        <li>she/her</li>
+                        <li>Female (she/her)</li>
                         <li>CHATTANOOGA, TN</li>
                         <li>United States</li>
                         <li><img src="https://www.myspacegens.com/images/online_now/131.gif" alt="myspace online now gif"></img></li>
