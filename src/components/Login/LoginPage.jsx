@@ -8,7 +8,7 @@ function LoginPage() {
     const [showRegister, setShowRegister] = useState(false);
     const [registerUsername, setRegisterUsername] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
-    const [data, setData] = useState("");
+    const [loginRes, setLoginRes] = useState("");
     
     const register = (e) => {
         e.preventDefault();
@@ -34,7 +34,7 @@ function LoginPage() {
             url: "http://localhost:1725/login",
         }).then((res) => {
             console.log(res);
-            setData(loginUsername);
+            setLoginRes(res.data);
         });
 
         setLoginUsername("");
@@ -48,6 +48,7 @@ function LoginPage() {
             url: "http://localhost:1725/logout",
         }).then((res) => {
             console.log(res);
+            setLoginRes(res.data);
         });
     };
 
@@ -59,7 +60,7 @@ function LoginPage() {
                     <input placeholder="enter your username" onChange={e => setLoginUsername(e.target.value)} />
                     <input placeholder="enter your password" onChange={e => setLoginPassword(e.target.value)} />
                     <button type="submit" onClick={login}>Submit</button>
-                    {data ? <h1>Welcome Back, {data}</h1> : null}
+                    {loginRes ? <div>{loginRes}</div> : null}
                 </form>
                 <div>Don't have an account yet? <button className="register-btn" onClick={()=>setShowRegister(true)}>Register Here!</button></div>
                 <button onClick={logout}>Logout</button>
