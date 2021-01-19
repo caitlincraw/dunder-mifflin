@@ -9,11 +9,12 @@
 .myspace-card, .sources-container {
     display: flex;
     margin: 5px;
-    padding: 0 5px;
+    padding: 2px 5px;
     flex-direction: column;
     align-items: left;
     background: lightgray;
     border: 5px outset darkgray;
+    justify-content: space-between;
     height: 90%;
 }
 
