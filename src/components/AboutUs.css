@@ -1,0 +1,89 @@
+.au-view, .s-view {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+    height: 100%;
+    width: 100vw;
+}
+
+.myspace-card, .sources-container {
+    display: flex;
+    margin: 5px;
+    padding: 2px 5px;
+    flex-direction: column;
+    align-items: left;
+    background: lightgray;
+    border: 5px outset darkgray;
+    justify-content: space-between;
+    height: 95%;
+}
+
+.name, .motto {
+    margin: 5px;
+}
+
+.myspace-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.headshot {
+    width: 15rem;
+    object-fit: cover;
+}
+
+.myspace-card li {
+    list-style-type: none;
+}
+
+.myspace-details {
+    background-color:white;
+    border: 1px solid darkgray;
+    font-size: 0.8rem;
+}
+
+.table-header {
+    border: 1px solid darkgray;
+    background-color: #5ca4db;
+    margin: 0;
+    font-weight: bolder;
+    color: white;
+}
+
+.details-table {
+    margin: 5px 1px;
+    border: 1px solid darkgray;
+}
+  
+.row {
+    display: flex;
+}
+
+.title-column {
+    background-color: #78bbf5;
+    flex: 40%;
+    color: #1951c2;
+    border: 1.5px solid white;
+    font-weight: bolder;
+}
+
+.answer-column {
+    background-color: #a6d0f5;
+    flex: 60%;
+    border: 1.5px solid white;
+}
+
+.sources-board {
+    background: white;
+    border: 3px outset darkgray;
+    flex: 1;
+    margin: 5px;
+}
+
+.sources-board ul {
+    padding-left: 5px;
+}
+.sources-board li {
+    list-style-type: none;
+    margin: 3px 0;
+}

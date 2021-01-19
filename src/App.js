@@ -2,9 +2,9 @@ import { Route, Switch } from 'react-router-dom';
 import Landing from './components/Landing/Landing';
 import PaperStore from './components/PaperStore/PaperStore';
 import ChatRoom from './components/ChatRoom/ChatRoom';
-import Cart from './components/PaperStore/Cart';
 import LoginPage from './components/LoginPage';
 import AboutUs from './components/AboutUs';
+import Sources from './components/Sources';
 import { NavBar, Footer } from './components/Navigation';
 
 
@@ -20,8 +20,8 @@ function App() {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/paper" component={PaperStore} />
           <Route exact path="/chat" component={ChatRoom} />
-          <Route exact path="/cart" component={Cart} />
           <Route exact path="/aboutus" component={AboutUs} />
+          <Route exact path="/sources" component={Sources} />
         </Switch>
 
       </main>
