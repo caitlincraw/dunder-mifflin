@@ -10,7 +10,7 @@ import soundIcon from '../images/sound.png';
 // this is making the socket start up on load of app..not just on chatroom component
 const { REACT_APP_PROTOCOL, REACT_APP_HOST, REACT_APP_PORT } = process.env;
 // const host = REACT_APP_HOST || window.location.hostname;
-const ENDPOINT = `${REACT_APP_PROTOCOL}${REACT_APP_HOST}:${REACT_APP_PORT}`;
+const ENDPOINT = `${REACT_APP_PROTOCOL}://${REACT_APP_HOST}:${REACT_APP_PORT}`;
 const socket = io(ENDPOINT, {});
 
 function ChatRoom() {
