@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import Landing from './components/Landing/Landing';
+import PaperStore from './components/PaperStore/PaperStore';
+import ChatRoom from './components/ChatRoom/ChatRoom';
+import LoginPage from './components/Login/LoginPage';
+import AboutUs from './components/AboutUs';
+import Sources from './components/Sources';
+import { NavBar, Footer } from './components/Navigation';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+      <NavBar />
+
+      <main>
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/paper" component={PaperStore} />
+          <Route exact path="/chat" component={ChatRoom} />
+          <Route exact path="/aboutus" component={AboutUs} />
+          <Route exact path="/sources" component={Sources} />
+        </Switch>
+
+      </main>
+
+      <Footer />
+
+    </div >
   );
 }
 

@@ -1,0 +1,28 @@
+{
+    "products": [
+        { 
+            "_id": "paper1", 
+            "description": "a ream of paper",
+            "image": "/images/item1.jpg",
+            "price": 5,
+            "quantity": 15,
+            "title": "Paper 1" 
+        },
+        { 
+            "_id": "paper2", 
+            "description": "a ream of paper",
+            "image": "/images/item1.jpg",
+            "price": 10,
+            "quantity": 15,
+            "title": "Paper 2" 
+        },
+        { 
+            "_id": "paper3", 
+            "description": "a ream of paper",
+            "image": "/images/item1.jpg",
+            "price": 15,
+            "quantity": 15,
+            "title": "Paper 3" 
+        }
+    ]
+}

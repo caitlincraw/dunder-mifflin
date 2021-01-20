@@ -1,0 +1,260 @@
+main {
+    padding: 0;
+}
+
+.cr-view {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+    height: 100%;
+    width: 100vw;
+}
+
+.cr-view * {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container {
+    display: flex;
+    margin: 5px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: lightgray;
+    border: 5px outset darkgray;
+}
+
+.cr-container {
+    width: 45vw;
+    height: 90%;
+}
+
+.u-container {
+    width: 30vw;
+    height: 90%;
+}
+
+.se-container {
+    width: 30rem;
+    height: 15rem;
+}
+.lcr-container {
+    width: 30rem;
+    height: 13rem;
+}
+
+.so-container {
+    width: 15rem;
+    height: 22rem;
+}
+
+.title {
+    margin: 5px;
+    background: rgb(9,9,121);
+    background: linear-gradient(90deg, rgba(9,9,121,1) 22%, rgba(146,215,250,1) 100%);
+    display: flex;
+    justify-content: space-between;
+}
+
+.cr-title {
+    width: 44vw;
+}
+
+.u-title {
+    width: 29vw;
+}
+
+.se-title, .lcr-title {
+    width: 29rem;
+}
+
+.so-title {
+    width: 14rem;
+}
+
+.title-name {
+    color: white;
+    font-size: 1.2rem;
+    margin-left: 5px;
+}
+
+.title-x {
+    height: 50%;
+    align-self: center;
+    font-size: large;
+    border: 1px outset darkgray;
+    margin-right: 5px;
+    outline: none;
+}
+
+.board {
+    background: white;
+    border: 3px outset darkgray;
+    flex: 1;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* No scrollbar in Internet Explorer 10+ */
+    scrollbar-width: none;  /* No Scroll bar in Firefox */
+}
+
+.m-board {
+    width: 41vw;
+}
+.u-board {
+    width: 26vw;
+    margin-bottom: 5px;
+}
+
+.se-board, .lcr-board {
+    width: 26rem;
+    margin-bottom: 5px;
+}
+
+.so-board {
+    width: 13rem;
+    margin-bottom: 5px;
+}
+
+.board::-webkit-scrollbar { 
+    display: none;  /* No scroll bar in Safari and Chrome */
+    width: 0;
+    height: 0;
+}
+
+.messages, .online-users { 
+    list-style-type: none; 
+    width: 41vw; 
+    height: 100%;
+    margin: 0; 
+    padding: 0; 
+    background: white;
+}
+
+.messages li, .online-users li { 
+    padding: 3px 5px; 
+}
+  
+.cr-form { 
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-edit-btns, .footer-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 41vw;
+    margin: 0;
+    padding: 0;
+}
+
+.text-edit-btns input, .footer-btns input {
+    padding: 0 5px;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+#bold-btn {
+    font-weight: bolder;
+}
+
+#italics-btn {
+    font-style: italic;
+}
+
+#underline-btn {
+    text-decoration: underline;
+}
+
+#smaller-btn {
+    font-size: 1rem;
+}
+
+#normal-btn {
+    font-size: 1.4rem;
+}
+
+#larger-btn {
+    font-size: 1.8rem;
+}
+
+#font-color-btn {
+    color: blue;
+}
+
+#background-color-btn {
+    background: blue;
+}
+
+#link-btn {
+    text-decoration: underline;
+    color: blue;
+}
+
+.cr-form #message { 
+    background: white;
+    border: 3px outset darkgray; 
+    margin: 0;
+    padding: 0;
+    width: 41vw; 
+    height: 4rem;
+    outline: none;
+}
+
+.cr-form button { 
+    text-align: right; 
+    background: none;
+    border: none; 
+    padding: 10px; 
+    align-self: flex-end;
+    outline: none;
+}
+
+.cr-form button:hover {
+    cursor: pointer;
+}
+
+.soundEnabler {
+    position: absolute;
+    bottom: 5rem;
+    right: 2rem;
+    border: 5px outset darkgray;
+    outline: none;
+}
+
+.se-container {
+    position: absolute;
+    bottom: auto;
+}
+
+.lcr-container, .so-container {
+    position: absolute;
+    bottom: auto;
+}
+
+.lcr-board div, .se-board div, .so-board div {
+    margin: 0 0.5rem;
+}
+
+.lcr-board a {
+    color: inherit;
+    text-decoration: none;
+    margin: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.lcr-board button, .se-board button, .so-board input, .so-board button {
+    outline: none;
+    background: none;
+    border: none;
+    margin: 0.25rem;
+    font-size: 1.4rem;
+}
+
+.lcr-board a:hover, .lcr-board button:hover, .se-board button:hover, .so-board input:hover, .so-board button:hover {
+    color: orange;
+    cursor: pointer;
+}
+
