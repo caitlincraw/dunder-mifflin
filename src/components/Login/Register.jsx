@@ -15,7 +15,8 @@ const Register = (props) => {
                     <input type="text" placeholder='Enter a username' autoComplete="off" value={props.username} onChange={props.userOnChange} />
                     <input type="text" placeholder='Enter a password' autoComplete="off" value={props.password} onChange={props.passOnChange} />
                     <button type="submit" onClick={props.register}>Submit</button>
-                </form>
+                </form> 
+                {props.registerMsg ? <p>{props.registerMsg}</p> : null}              
             </div>
         </div>
     )

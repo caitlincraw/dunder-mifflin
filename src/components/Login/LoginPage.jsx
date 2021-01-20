@@ -1,56 +1,35 @@
 import React, { useState } from "react";
-import axios from 'axios';
 import Register from './Register';
+import { register as apiRegister} from "../../api";
+import { logIn } from '../../redux/actions/authActions'
+import { connect } from "react-redux";
 
-function LoginPage() {
+function LoginPage(props) {
     const [loginUsername, setLoginUsername] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
     const [showRegister, setShowRegister] = useState(false);
+    const [registerMsg, setRegisterMsg] = useState("");
     const [registerUsername, setRegisterUsername] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
-    const [loginRes, setLoginRes] = useState("");
-    
+
     const register = (e) => {
         e.preventDefault();
-        axios({
-            method: 'POST',
-            data: {
-                username: registerUsername,
-                password: registerPassword
-            },
-            withCredentials: true,
-            url: "http://localhost:1725/register",
-        }).then((res) => console.log(res));
+        apiRegister(registerUsername, registerPassword).then((res) => {
+            console.log("this is res.data:", res.data);
+            return setRegisterMsg(res.data);
+        });
     };
+    
     const login = (e) => {
         e.preventDefault();
-        axios({
-            method: 'POST',
-            data: {
-                username: loginUsername,
-                password: loginPassword
-            },
-            withCredentials: true,
-            url: "http://localhost:1725/login",
-        }).then((res) => {
-            console.log(res);
-            setLoginRes(res.data);
-        });
-
-        setLoginUsername("");
-        setLoginPassword("");
+        props.attemptLogin(loginUsername, loginPassword);
     };
 
-    const logout = () => {
-        axios({
-            method: 'GET',
-            withCredentials: true,
-            url: "http://localhost:1725/logout",
-        }).then((res) => {
-            console.log(res);
-            setLoginRes(res.data);
-        });
-    };
+    // null propogation operator
+    const showAuthFailure = () => {
+        return props.auth?.failedAuth;
+    }
+
 
     return (
         <div className="view l-view">
@@ -60,16 +39,26 @@ function LoginPage() {
                     <input placeholder="enter your username" onChange={e => setLoginUsername(e.target.value)} />
                     <input placeholder="enter your password" onChange={e => setLoginPassword(e.target.value)} />
                     <button type="submit" onClick={login}>Submit</button>
-                    {loginRes ? <div>{loginRes}</div> : null}
                 </form>
+                {showAuthFailure() && <p>User does not exist.</p>}
+
                 <div>Don't have an account yet? <button className="register-btn" onClick={()=>setShowRegister(true)}>Register Here!</button></div>
-                <button onClick={logout}>Logout</button>
             </div>
-                {showRegister ? <Register onClick={() => setShowRegister(false)} register={register} username={registerUsername} password={registerPassword} userOnChange={e => setRegisterUsername(e.target.value)} passOnChange={e => setRegisterPassword(e.target.value)}/> : null}
+                {showRegister ? <Register onClick={() => setShowRegister(false)} register={register} registerMsg={registerMsg} username={registerUsername} password={registerPassword} userOnChange={e => setRegisterUsername(e.target.value)} passOnChange={e => setRegisterPassword(e.target.value)}/> : null}
         </div>
-
-
     )
 }
 
-export default LoginPage;
+const mapStateToProps = (state) => {
+    return {
+      auth: state.auth
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        attemptLogin: (username, password) => dispatch(logIn(username, password)),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
