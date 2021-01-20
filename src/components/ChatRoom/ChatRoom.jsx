@@ -7,11 +7,10 @@ import { moo, meow, phoneRinging, doorOpen, doorClose } from './audio';
 import soundIcon from '../images/sound.png';
 
 // set up a client socket that is listening to the port server is running on
-// will need to toggle these variables when deploy or dealing with https
-const port = "1725";
-const host = window.location.hostname;
-const protocol = "http://"
-const ENDPOINT = `${protocol}${host}:${port}`;
+// this is making the socket start up on load of app..not just on chatroom component
+const { REACT_APP_PROTOCOL, REACT_APP_HOST, REACT_APP_PORT } = process.env;
+// const host = REACT_APP_HOST || window.location.hostname;
+const ENDPOINT = `${REACT_APP_PROTOCOL}${REACT_APP_HOST}:${REACT_APP_PORT}`;
 const socket = io(ENDPOINT, {});
 
 function ChatRoom() {
