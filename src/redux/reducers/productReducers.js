@@ -8,5 +8,4 @@ export const productsReducer = (state = {}, action) => {
         default:
             return state;
     }
-
-}
+};
