@@ -90,7 +90,7 @@ class PaperStore extends React.Component {
                     <Filter 
                         count={this.state.products.length}
                         sort={this.state.sort}
-                        sortProducts={this.sortProducts}
+                        // sortProducts={this.sortProducts}
                     />
                     <Products 
                         products={this.state.products}
