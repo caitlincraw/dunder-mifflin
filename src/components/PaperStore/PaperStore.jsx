@@ -3,7 +3,7 @@ import Filter from './Filter';
 import Products from './Products';
 import axios from 'axios';
 import Cart from './Cart';
-import data from './data.json';
+import { getBackendUrl } from '../../api';
 
 class PaperStore extends React.Component {
 
@@ -22,7 +22,7 @@ class PaperStore extends React.Component {
             axios({
                 method: 'GET',
                 withCredentials: true,
-                url: "http://localhost:1725/products/all",
+                url: `${getBackendUrl()}/products/all`,
             }).then((res) => { 
                 this.setState({
                     products: res.data,
