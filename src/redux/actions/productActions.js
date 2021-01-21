@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS } from "../types";
+import { FETCH_PRODUCTS, ORDER_PRODUCTS_BY_PRICE } from "../types";
 
 export const fetchProducts = () => async(dispatch) => {
 
@@ -8,4 +8,4 @@ export const fetchProducts = () => async(dispatch) => {
         type: FETCH_PRODUCTS,
         payload: data
     });
-};
+}

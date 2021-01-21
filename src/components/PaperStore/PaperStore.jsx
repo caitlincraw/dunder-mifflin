@@ -1,9 +1,9 @@
 import React from 'react';
 import Filter from './Filter';
 import Products from './Products';
-// import axios from 'axios';
+import axios from 'axios';
 import Cart from './Cart';
-// import { getBackendUrl } from '../../api';
+import { getBackendUrl } from '../../api';
 
 class PaperStore extends React.Component {
 
@@ -16,25 +16,25 @@ class PaperStore extends React.Component {
         };
     }
 
-    // componentDidMount() {
-    //     // TBD want to add isLoaded to state and make sure do conditional rendering whether or not the items are loaded yet
-    //     const getPaper = () => {
-    //         axios({
-    //             method: 'GET',
-    //             withCredentials: true,
-    //             url: `${getBackendUrl()}/products/all`,
-    //         }).then((res) => { 
-    //             this.setState({
-    //                 products: res.data,
-    //                 cartItems: localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")): [],
-    //                 sort: ""
-    //             })
-    //             console.log(res.data);
-    //         });
-    //     };
+    componentDidMount() {
+        // TBD want to add isLoaded to state and make sure do conditional rendering whether or not the items are loaded yet
+        const getPaper = () => {
+            axios({
+                method: 'GET',
+                withCredentials: true,
+                url: `${getBackendUrl()}/products/all`,
+            }).then((res) => { 
+                this.setState({
+                    products: res.data,
+                    cartItems: localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")): [],
+                    sort: ""
+                })
+                console.log(res.data);
+            });
+        };
 
-    //     getPaper();
-    // }
+        getPaper();
+    }
 
     createOrder = (order) => {
         alert("Need to save order for " + order.name);
