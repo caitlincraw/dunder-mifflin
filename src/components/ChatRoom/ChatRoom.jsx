@@ -16,9 +16,7 @@ const socket = io(ENDPOINT, {});
 
 function ChatRoom() {
 
-  // chatroom state variables... consider using redux for some of this
-  // *****TBD***** consider making a state variable called toggleVisible which is an object that holds all the state variables that involve visibility of components
-  // *****TBD***** include seeUsers, soundEnabler, leaveChat, and showSoundSelector..
+  // chatroom state variables.
   const [message, setMessage] = useState('');
   const [user, setUser] = useState('');
   const [onlineUsers, setOnlineUsers] = useState([]);
@@ -162,7 +160,7 @@ function ChatRoom() {
       {leaveChat ? <LeaveChatRoom onClick={() => setLeaveChat(false)} /> : null}
       {showSoundSelector ? <SoundSelector onClick={() => setShowSoundSelector(false)} selectNone={() => settingSoundState("none")} selectCat={() => settingSoundState("cat")} selectCow={() => settingSoundState("cow")} selectPhone={() => settingSoundState("phone")} previewCat={previewCat} previewCow={previewCow} previewPhone={previewPhone} /> : null}
       {seeUsers ? <Users onClick={() => setSeeUsers(false)} totalUsers={totalUsers} onlineUsers={onlineUsers}/> : null}
-      <button className="soundEnabler" onClick={() => setSoundEnabler(true)}><img src={soundIcon} style={{width: "2rem"}}></img></button>
+      <button className="soundEnabler" onClick={() => setSoundEnabler(true)}><img src={soundIcon} alt="sound icon" style={{width: "2rem"}}></img></button>
       {soundEnabler ? <SoundEnablerPopUp onClick={() => setSoundEnabler(false)} enable={enable} disable={disable} /> : null}
     </div>
   );

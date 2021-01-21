@@ -5,10 +5,15 @@ import ChatRoom from './components/ChatRoom/ChatRoom';
 import LoginPage from './components/Login/LoginPage';
 import AboutUs from './components/AboutUs';
 import Sources from './components/Sources';
+import ProtectedRoute from './components/ProtectedRoute';
 import { NavBar, Footer } from './components/Navigation';
+import { connect } from "react-redux";
 
 
-function App() {
+function App(props) {
+
+  const user = props.auth.isLoggedIn;
+
   return (
     <div className="App">
 
@@ -19,7 +24,7 @@ function App() {
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/paper" component={PaperStore} />
-          <Route exact path="/chat" component={ChatRoom} />
+          <ProtectedRoute exact path="/chat" component={ChatRoom} user={user} />
           <Route exact path="/aboutus" component={AboutUs} />
           <Route exact path="/sources" component={Sources} />
         </Switch>
@@ -32,4 +37,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  };
+};
+
+export default connect(mapStateToProps)(App);

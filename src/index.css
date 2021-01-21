@@ -50,8 +50,9 @@ footer a, .copyright {
   font-size: 0.6rem;
 }
 
-header a:hover, footer a:hover {
+header a:hover, .logout-btn:hover, footer a:hover {
   color: orange;
+  cursor: pointer;
 } 
 
 html {
@@ -81,10 +82,15 @@ main {
   height: 100%;
 }
 
-.navs a {
+.navs a, .logout-btn {
   color: white;
   text-decoration: none;
   margin-left: 16px;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
 }
 
 .SmallLogo {

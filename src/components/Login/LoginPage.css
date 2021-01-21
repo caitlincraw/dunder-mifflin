@@ -69,3 +69,11 @@
     cursor: pointer;
     color: orange;
 }
+
+.auth-failure-msg {
+    color: darkred;
+}
+
+.auth-success-msg {
+    color: darkgreen;
+}
