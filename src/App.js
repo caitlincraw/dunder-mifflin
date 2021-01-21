@@ -6,6 +6,7 @@ import LoginPage from './components/Login/LoginPage';
 import AboutUs from './components/AboutUs';
 import Sources from './components/Sources';
 import { NavBar, Footer } from './components/Navigation';
+import Dwight from './components/ChatBot/ChatBot';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <NavBar />
 
       <main>
+      <Dwight />
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={LoginPage} />
