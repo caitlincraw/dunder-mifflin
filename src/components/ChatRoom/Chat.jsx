@@ -2,16 +2,16 @@ import React from "react";
 import Messages from "./Messages";
 import './ChatRoom.css';
 
-function Chat(props) {
+function Chat({ leaveChat, messages, selectSound, message, onChange, usersOnClick, messageOnClick }) {
 
   return (
     <div className="container cr-container">
     <div className="title cr-title">
       <h4 className="title-name">We Love Paper Chatroom</h4>
-      <button className="title-x" onClick={props.leaveChat}>X</button>
+      <button className="title-x" onClick={leaveChat}>X</button>
     </div>
     <div className="board m-board">
-      <Messages messages={props.messages} />
+      <Messages messages={messages} />
     </div>
     <form className="cr-form" action="">
         <div className="text-edit-btns">
@@ -32,19 +32,19 @@ function Chat(props) {
           <div className="extra-btns">
             <input id="link-btn" type="button" value="link" onClick={() => alert("TBD for link feature")} />
             <input id="emoji-btn" type="button" value="😀" onClick={() => alert("TBD for emoji feature")}/>
-            <input id="emoji-btn" type="button" value="🔈" onClick={props.selectSound}/>
+            <input id="emoji-btn" type="button" value="🔈" onClick={selectSound}/>
           </div>
         </div>
         <textarea
           id="message"
           name="message" 
           autoComplete="off"
-          value={props.message} 
-          onChange={props.onChange}  
+          value={message} 
+          onChange={onChange}  
         ></textarea>
         <div className="footer-btns">
-          <input id="show-users-btn" type="button" value="Who's Online?" onClick={props.usersOnClick}/>
-          <button onClick={props.messageOnClick}> 
+          <input id="show-users-btn" type="button" value="Who's Online?" onClick={usersOnClick}/>
+          <button onClick={messageOnClick}> 
           Send
           </button>
         </div>

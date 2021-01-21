@@ -1,17 +1,17 @@
 import React from "react";
 import './ChatRoom.css';
 
-function Users(props) {
+function Users({ totalUsers, onClick, onlineUsers }) {
 
   return (
     <div className="container u-container">
         <div className="title u-title">
-        <h4 className="title-name">Online Paper Lovers ({props.totalUsers})</h4>
-        <button className="title-x" onClick={props.onClick}>X</button>
+        <h4 className="title-name">Online Paper Lovers ({totalUsers})</h4>
+        <button className="title-x" onClick={onClick}>X</button>
         </div>
         <div className="board u-board">
           <ul className="online-users">
-            {props.onlineUsers.map((user, index) => <li key={index}>{user}</li>)}
+            {onlineUsers.map((user, index) => <li key={index}>{user}</li>)}
           </ul>
         </div>
     </div>
