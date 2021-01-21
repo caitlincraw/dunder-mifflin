@@ -1,4 +1,4 @@
-import { AUTH_LOGIN_SUCCESS, AUTH_LOGOUT_SUCCESS, AUTH_LOGIN_FAILURE } from "../types";
+import { AUTH_LOGIN_SUCCESS, AUTH_LOGOUT_SUCCESS, AUTH_LOGIN_FAILURE, AUTH_RESET } from "../types";
 import { logIn as apiLogIn, logOut as apiLogOut } from "../../api";
 
 export const logIn = (username, password) => async(dispatch) => {
@@ -22,5 +22,11 @@ export const logOut = () => async(dispatch) => {
     dispatch({
         type: AUTH_LOGOUT_SUCCESS,
         payload: res.data
+    })
+}
+
+export const resetAfterRedirect = () => async (dispatch) => {
+    dispatch({
+        type: AUTH_RESET
     })
 }

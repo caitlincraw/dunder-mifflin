@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import DMicon from '../images/dm_favicon.png';
 import { connect } from "react-redux";
-import { logOut } from '../../redux/actions/authActions'
-
+import { logOut, resetAfterRedirect } from '../../redux/actions/authActions'
 
 const NavBar = (props) => {
 
     useEffect(() => {
-        isLoggedIn();
-    }, [])
+        if (props.auth?.logoutSuccess) {
+            props.reset();
+        }
+    });
     
     // null propogation operator
     const isLoggedIn = () => {
@@ -22,12 +23,13 @@ const NavBar = (props) => {
 
     return(
             <header>
+                {props.auth?.logoutSuccess && <Redirect to='/' push={true}/>}
                 <Link to="/"><img className="SmallLogo" src={DMicon} alt="DM" /></Link>
                 <div className="navs">
-                    {isLoggedIn() ? <span><span>Hi, {props.auth.username}</span><button onClick={logout}>Logout</button></span> : <Link to="/login">Login</Link>}
-                    {/* <Link to="/login">Login</Link> */}
-                    <Link to="/paper">Paper</Link>
-                    <Link to="/chat">Chat</Link>
+                    {isLoggedIn() ? <span><span>Hi, {props.auth.username}</span><button className="logout-btn" onClick={logout}>Logout</button></span> : <Link to="/login">Login</Link>}
+                    {isLoggedIn() ? <Link to="/chat">Chat</Link> : <Link to="/login" onClick={() => alert("You must be logged in to use the chatroom.")}>Chat</Link>}
+                    <Link to="/paper">Paper</Link> 
+                    {/* <Link to="/chat">Chat</Link>  */}
                 </div>
             </header>  
     )
@@ -41,7 +43,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        attemptLogout: () => dispatch(logOut())
+        attemptLogout: () => dispatch(logOut()),
+        reset: () => dispatch(resetAfterRedirect())
     };
 };
 
