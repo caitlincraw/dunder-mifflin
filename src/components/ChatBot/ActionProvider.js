@@ -10,6 +10,15 @@ class ActionProvider {
       this.addMessageToState(message);
     }
 
+    blank = () => {
+      const message = this.createChatBotMessage(`I can help you if you don't anything, IDIOT!.`);
+      this.addMessageToState(message);
+    }
+
+    who = () => {
+      
+    }
+
     addMessageToState = (message) => {
       this.setState(prevState => ({
         ...prevState,

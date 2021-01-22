@@ -11,6 +11,19 @@ class MessageParser {
       if (lowercase.includes("hello")) {
         this.actionProvider.greet();
       }
+
+      if (lowercase.includes("michael")) {
+        this.actionProvider.theboss();
+      }
+
+      if (lowercase.includes("who")) {
+        this.actionProvider.myCreators();
+      }
+
+      if (message.includes("")) {
+        this.actionProvider.blank();
+      }
+      
     }
   }
   
