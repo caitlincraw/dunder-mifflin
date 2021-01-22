@@ -26,7 +26,7 @@ const NavBar = (props) => {
                 {props.auth?.logoutSuccess && <Redirect to='/' push={true}/>}
                 <Link to="/"><img className="SmallLogo" src={DMicon} alt="DM" /></Link>
                 <div className="navs">
-                    {isLoggedIn() ? <span><span>Hi, {props.auth.username}</span><button className="logout-btn" onClick={logout}>Logout</button></span> : <Link to="/login">Login</Link>}
+                    {isLoggedIn() ? <span><span><i>Hi, {props.auth.username}</i></span><button className="logout-btn" onClick={logout}>Logout</button></span> : <Link to="/login">Login</Link>}
                     {isLoggedIn() ? <Link to="/chat">Chat</Link> : <Link to="/login" onClick={() => alert("You must be logged in to use the chatroom.")}>Chat</Link>}
                     <Link to="/paper">Paper</Link> 
                     {/* <Link to="/chat">Chat</Link>  */}
