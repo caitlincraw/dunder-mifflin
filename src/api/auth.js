@@ -32,3 +32,11 @@ export async function register(username, password) {
         url: `${getBackendUrl()}/register`,
     })
 }
+
+export async function getUser() {
+    return axios({
+        method: 'GET',
+        withCredentials: true,
+        url: `${getBackendUrl()}/user`,
+    });
+}

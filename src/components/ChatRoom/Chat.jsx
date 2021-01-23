@@ -35,15 +35,21 @@ function Chat({ leaveChat, messages, selectSound, message, onChange, usersOnClic
             <input id="emoji-btn" type="button" value="🔈" onClick={selectSound}/>
           </div>
         </div>
-        <textarea
+        <input 
+          type="text" 
           id="message"
           name="message" 
           autoComplete="off"
           value={message} 
           onChange={onChange}  
-        ></textarea>
+        />
         <div className="footer-btns">
-          <input id="show-users-btn" type="button" value="Who's Online?" onClick={usersOnClick}/>
+          <input 
+            id="show-users-btn" 
+            type="button" 
+            value="Who's Online?" 
+            onClick={usersOnClick}
+          />
           <button onClick={messageOnClick}> 
           Send
           </button>
