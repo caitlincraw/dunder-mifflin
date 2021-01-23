@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
  const Footer = () => {
     return(
             <footer>
-                <Link to="/sources">Sources</Link>
-                <Link to="/aboutus">About The Developers</Link>
+                <div className="footer__navs">
+                    <Link className="sources" to="/sources">Sources</Link>
+                    <Link to="/aboutus">Developers</Link>
+                </div>
                 <div className="copyright">
                     Copyright &copy; {new Date().getFullYear()} Dunder Mifflin
                 </div>
