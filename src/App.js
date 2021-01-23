@@ -10,7 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { NavBar, Footer } from './components/Navigation';
 import { connect } from "react-redux";
 import React, { useState, useEffect } from "react";
-import { getBackendUrl, getUser, logOut } from "./api"
+import { getUser } from "./api"
 
 
 function App(props) {
@@ -21,7 +21,14 @@ function App(props) {
     getUser()
       .then(res => {
         if(res.data==="user not logged") { console.log('user is not logged on') }
-        else {console.log('user is logged on')}
+        else {
+          console.log('user is logged on')
+          //set redux username to res.data.username
+
+
+          //set redux isloggedin to true
+
+        }
         console.log(res);
         setLoading(false);
       })
