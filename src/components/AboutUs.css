@@ -6,7 +6,7 @@
     width: 100vw;
 }
 
-.myspace-card, .sources-container {
+.myspace-card {
     display: flex;
     margin: 5px;
     padding: 2px 5px;
@@ -73,12 +73,24 @@
     flex: 60%;
     border: 1.5px solid white;
 }
+.sources-container {
+    width: 50vw;
+    height: 90%;
+    display: flex;
+    margin: 5px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: lightgray;
+    border: 5px outset darkgray;
+}
 
 .sources-board {
     background: white;
     border: 3px outset darkgray;
     flex: 1;
-    margin: 5px;
+    width: 46vw;
+    margin-bottom: 5px;
 }
 
 .sources-board ul {
@@ -87,4 +99,19 @@
 .sources-board li {
     list-style-type: none;
     margin: 3px 0;
+}
+
+.sources-title {
+    margin: 5px;
+    background: rgb(9,9,121);
+    background: linear-gradient(90deg, rgba(9,9,121,1) 22%, rgba(146,215,250,1) 100%);
+    display: flex;
+    justify-content: space-between;
+    width: 49vw;
+}
+
+.title-name {
+    color: white;
+    font-size: 1.2rem;
+    margin-left: 5px;
 }

@@ -4,7 +4,9 @@ function Sources() {
     return (
         <div className="view s-view">
             <div className="sources-container">
-                <h3>Sources</h3>
+                <div className="sources-title">
+                    <h4 className="title-name">Sources</h4>
+                </div>
                 <div className="sources-board">
                     <ul>
                         <li>The original Dundler Mifflin Infinity website was pitched in episodes 3 and 4 of the fourth season of the Office.</li>
