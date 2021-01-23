@@ -6,13 +6,11 @@ import { Howl } from 'howler';
 import { moo, meow, phoneRinging, doorOpen, doorClose } from './audio';
 import soundIcon from '../images/sound.png';
 
-// set up a client socket that is listening to the port server is running on
-// this is making the socket start up on load of app..not just on chatroom component
 // const { REACT_APP_PROTOCOL, REACT_APP_SERVER_HOST } = process.env;
 // const ENDPOINT = `${REACT_APP_PROTOCOL}://${REACT_APP_SERVER_HOST}`;
 const host = window.location.hostname;
 const ENDPOINT = `http://${host}:1725`;
-const socket = io(ENDPOINT, {});
+let socket;
 
 function ChatRoom() {
 
@@ -38,17 +36,17 @@ function ChatRoom() {
     })
   ))
 
-  // connect to socket here so that only connects once at the beginning. like componentDidMount(). all socket events where client receives from server go in here too
+  // connect to socket here so that only connects once at the beginning. like componentDidMount().
   useEffect(() => {
 
-    // client sends to server that a user has connected. put in useEffect() because only want once on load of component. note that client only sends to a server by way of socket.emit
+    socket = io(ENDPOINT);
+    // client sends to server that a user has connected. put in useEffect() because only want once on load of component. 
     socket.emit('userConnect')
 
     // client receives user info back from server
-    // *****TBD***** this is just the socket.id right now...for actual auth and username
-    socket.on('getUser', userId => {
-      setUser(userId);
-      setOnlineUsers(users => [ ...users, userId])
+    socket.on('getUser', username => {
+      setUser(username);
+      setOnlineUsers(users => [ ...users, username])
     })
 
     // keeping track of number of users in the room
@@ -62,18 +60,18 @@ function ChatRoom() {
     });
 
     //plays a a door open sound when someone enters the chatroom. user will not here it when they join since the sound is broadcasted to everyone but them
-    // socket.on('playDoorOpenSound', () => {
-    //   if (playSound) {
-    //     howls[3].play();
-    //   };
-    // });
+    socket.on('playDoorOpenSound', () => {
+      if (playSound) {
+        howls[3].play();
+      };
+    });
 
     //plays a a door close sound when someone leaves the chatroom. user will not here it when they join since the sound is broadcasted to everyone but them
-    // socket.on('playDoorCloseSound', () => {
-    //   if (playSound) {
-    //     howls[4].play();
-    //   };
-    // });
+    socket.on('playDoorCloseSound', () => {
+      if (playSound) {
+        howls[4].play();
+      };
+    });
 
     // client needs to talk to server again and receive the src for the sound. after get the src, then all clients connected will play that associated sound. 
     socket.on('addSound', srcOfSound => {
@@ -92,7 +90,6 @@ function ChatRoom() {
     return () => socket.disconnect();
   }, []);
 
-  // *****TBD***** client send sound to server.
   const sendSound = (srcOfSound) => {
     socket.emit('sendSound', srcOfSound)
     setSelectedSound("none");
@@ -100,8 +97,6 @@ function ChatRoom() {
 
   const sendMessage = (e) => {
     e.preventDefault();
-    // only send a message if there is a message
-    // *****TBD***** add logged in auth check here too
     if(message) {
       socket.emit('sendMessage', {
         user, 
