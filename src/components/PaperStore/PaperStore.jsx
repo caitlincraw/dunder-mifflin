@@ -3,6 +3,7 @@ import Filter from './Filter';
 import Products from './Products';
 import axios from 'axios';
 import Cart from './Cart';
+import './PaperStore.css';
 import { getBackendUrl } from '../../api';
 
 class PaperStore extends React.Component {

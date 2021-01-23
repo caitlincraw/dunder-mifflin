@@ -9,7 +9,7 @@ function AboutUs() {
         <div className="view au-view">
             <div className="myspace-card">
                 <h3 className="name">Ali Kasper</h3>
-                <p className="motto">"Motto goes here"</p>
+                <p className="motto">"Whenever I'm about to do something, I think 'Would an idiot do that?'"</p>
                 <div className="myspace-header">
                     <img className="headshot" src={Ali} alt="Ali"></img>
                     <ul>
@@ -53,7 +53,7 @@ function AboutUs() {
                                 Office Character
                             </div>
                             <div className="answer-column">
-                                TBD
+                                Dwight Schrute
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@ function AboutUs() {
             </div>
             <div className="myspace-card">
                 <h3 className="name">Rudy Saavedra</h3>
-                <p className="motto">"Motto goes here"</p>
+                <p className="motto">"Would I rather be feared or loved? Easy. Both. I want people to be afraid of how much they love me."</p>
                 <div className="myspace-header">
                     <img className="headshot" src={Rudy} alt="Rudy"></img>
                     <ul>
@@ -106,7 +106,7 @@ function AboutUs() {
                                 Office Character
                             </div>
                             <div className="answer-column">
-                                TBD
+                                Michael Scott
                             </div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@ function AboutUs() {
             </div>
             <div className="myspace-card">
                 <h3 className="name">Caitlin Crawford</h3>
-                <p className="motto">"Motto goes here"</p>
+                <p className="motto">"I don't care what they say about me. I just want to eat."</p>
                 <div className="myspace-header">
                     <img className="headshot" src={Caitlin} alt="Caitlin"></img>
                     <ul>
@@ -160,7 +160,7 @@ function AboutUs() {
                                 Office Character
                             </div>
                             <div className="answer-column">
-                                TBD
+                                Pam Halpert
                             </div>
                         </div>
                     </div>
