@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
+import { connect } from "react-redux";
 import { Chat, Users, LeaveChatRoom, SoundEnablerPopUp, SoundSelector } from "./";
 import './ChatRoom.css';
 import { Howl } from 'howler';
 import { moo, meow, phoneRinging, doorOpen, doorClose } from './audio';
 import soundIcon from '../images/sound.png';
+import { getBackendUrl } from "../../api";
 
-// const { REACT_APP_PROTOCOL, REACT_APP_SERVER_HOST } = process.env;
-// const ENDPOINT = `${REACT_APP_PROTOCOL}://${REACT_APP_SERVER_HOST}`;
-const host = window.location.hostname;
-const ENDPOINT = `http://${host}:1725`;
+const ENDPOINT = getBackendUrl();
 let socket;
 
-function ChatRoom() {
+function ChatRoom(props) {
 
   // chatroom state variables.
   const [message, setMessage] = useState('');
@@ -45,6 +44,7 @@ function ChatRoom() {
 
     // client receives user info back from server
     socket.on('getUser', username => {
+      username = props.auth.username;
       setUser(username);
       setOnlineUsers(users => [ ...users, username])
     })
@@ -161,4 +161,11 @@ function ChatRoom() {
   );
 }
 
-export default ChatRoom;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  };
+};
+
+//export default ChatRoom;
+export default connect(mapStateToProps)(ChatRoom);
