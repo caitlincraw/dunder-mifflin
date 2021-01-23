@@ -27,6 +27,7 @@ footer {
   flex-direction: column;
   grid-area: footer;
   justify-content: center;
+  padding-top: 1rem;
 }
 
 header {
@@ -41,9 +42,20 @@ header {
   text-shadow: 0 0 2px rgba(0,0,0,.3);
 }
 
+footer .sources {
+  border-right:solid 1px #fff;
+  padding-right: 1rem;
+}
+
+footer a {
+  font-weight: bold;
+  text-shadow: 0 0 2px rgba(0,0,0,.3);
+}
+
 footer a, .copyright {
   color: white;
   text-align: center;
+  margin: .5rem 1rem 1rem .25rem;
 }
 
 .copyright {
