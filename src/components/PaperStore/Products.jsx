@@ -3,6 +3,7 @@ import formatCurrency from './util';
 import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
 import Modal from 'react-modal';
+const { REACT_APP_ORIGIN } = process.env;
 
 export default class Products extends Component {
 
@@ -33,8 +34,7 @@ export default class Products extends Component {
                             <li key={product.id}>
                                 <div className="product">
                                     <a href={"#" + product.id} onClick={() => this.openModal(product)}>
-                                        {/* this is hardcoded right now.. will definitely break when we deploy. need relative path */}
-                                    <img     src={`http://localhost:3000/images/${product.image}`} alt={product.title}></img>
+                                    <img src={`${REACT_APP_ORIGIN}/images/${product.image}`} alt={product.title}></img>
                                     <p>{product.title}</p>
                                     </a>
                                     <div className="product-price">

@@ -2,12 +2,12 @@ import React from "react";
 import Messages from "./Messages";
 import './ChatRoom.css';
 
-function Chat({ leaveChat, messages, selectSound, message, onChange, usersOnClick, messageOnClick }) {
+function Chat({ leaveChat, messages, totalUsers, selectSound, message, onChange, messageOnClick }) {
 
   return (
     <div className="container cr-container">
     <div className="title cr-title">
-      <h4 className="title-name">We Love Paper Chatroom</h4>
+      <h4 className="title-name">We Love Paper Chatroom ({totalUsers} online)</h4>
       <button className="title-x" onClick={leaveChat}>X</button>
     </div>
     <div className="board m-board">
@@ -16,23 +16,22 @@ function Chat({ leaveChat, messages, selectSound, message, onChange, usersOnClic
     <form className="cr-form" action="">
         <div className="text-edit-btns">
           <div className="size-btns">
-            <input id="smaller-btn" type="button" value="A" onClick={() => alert("TBD for smaller font size feature")}/>
-            <input id="normal-btn" type="button" value="A" onClick={() => alert("TBD for normal font size feature")}/>
-            <input id="larger-btn" type="button" value="A" onClick={() => alert("TBD for larger font size feature")}/>
+            <span id="smaller-btn">A</span>
+            <span id="normal-btn">A</span>
+            <span id="larger-btn">A</span>
           </div>
           <div className="style-btns">
-            <input id="bold-btn" type="button" value="B" onClick={() => alert("TBD for bold font feature")}/>
-            <input id="italics-btn" type="button" value="I" onClick={() => alert("TBD for italics font feature")}/>
-            <input id="underline-btn" type="button" value="U" onClick={() => alert("TBD for underlined font feature")}/>
+            <span id="bold-btn">B</span>
+            <span id="italics-btn">I</span>
+            <span id="underline-btn">U</span>
           </div>
           <div className="color-btns">
-            <input id="font-color-btn" type="button" value="A" onClick={() => alert("TBD for font color feature")}/>
-            <input id="background-color-btn" type="button" value="A" onClick={() => alert("TBD for background color feature")}/>
+            <span id="font-color-btn">A</span>
+            <span id="background-color-btn">A</span>
           </div>
           <div className="extra-btns">
-            <input id="link-btn" type="button" value="link" onClick={() => alert("TBD for link feature")} />
+            <span id="link-btn">link</span>
             <input id="emoji-btn" type="button" value="😀" onClick={() => alert("TBD for emoji feature")}/>
-            <input id="emoji-btn" type="button" value="🔈" onClick={selectSound}/>
           </div>
         </div>
         <input 
@@ -45,10 +44,10 @@ function Chat({ leaveChat, messages, selectSound, message, onChange, usersOnClic
         />
         <div className="footer-btns">
           <input 
-            id="show-users-btn" 
+            id="sound-btn" 
             type="button" 
-            value="Who's Online?" 
-            onClick={usersOnClick}
+            value="aDd A sOuNd 🔈" 
+            onClick={selectSound}
           />
           <button onClick={messageOnClick}> 
           Send
