@@ -16,10 +16,8 @@ function ChatRoom(props) {
   // chatroom state variables.
   const [message, setMessage] = useState('');
   const [user, setUser] = useState('');
-  const [onlineUsers, setOnlineUsers] = useState([]);
   const [totalUsers, setTotalUsers] = useState();
   const [messages, setMessages] = useState([]);
-  const [seeUsers, setSeeUsers] = useState(false);
   const [playSound, setPlaySound] = useState(true);
   const [soundEnabler, setSoundEnabler] = useState(true);
   const [leaveChat, setLeaveChat] = useState(false);
@@ -40,18 +38,29 @@ function ChatRoom(props) {
 
     socket = io(ENDPOINT);
     // client sends to server that a user has connected. put in useEffect() because only want once on load of component. 
-    socket.emit('userConnect')
+    socket.emit('userConnect', {
+      username: props.auth.username
+    });
 
     // client receives user info back from server
     socket.on('getUser', username => {
-      username = props.auth.username;
+      username = props.auth.username || "userBypassedLogin@CHEATER";
       setUser(username);
-      setOnlineUsers(users => [ ...users, username])
     })
 
     // keeping track of number of users in the room
     socket.on('numUsers', numUsers => {
       setTotalUsers(numUsers);
+    });
+
+    // show message when user joins 
+    socket.on('userJoin', data => {
+      setMessages(msgs => [ ...msgs, data])
+    });
+
+    // show message when user leaves
+    socket.on('userLeft', data => {
+      setMessages(msgs => [ ...msgs, data])
     });
 
     // client talks to server and receives the data (message and username)
@@ -66,7 +75,7 @@ function ChatRoom(props) {
       };
     });
 
-    //plays a a door close sound when someone leaves the chatroom. user will not here it when they join since the sound is broadcasted to everyone but them
+    //plays a a door close sound when someone leaves the chatroom to all connected clients but user.
     socket.on('playDoorCloseSound', () => {
       if (playSound) {
         howls[4].play();
@@ -151,10 +160,9 @@ function ChatRoom(props) {
 
   return (
     <div className="view cr-view">
-      <Chat message={message} messages={messages} selectSound={() => setShowSoundSelector(true)} leaveChat={() => setLeaveChat(true)} onChange={(e) => setMessage(e.target.value)} usersOnClick={() => setSeeUsers(true)} messageOnClick={(e) => sendMessage(e)}  />
+      <Chat message={message} messages={messages} totalUsers={totalUsers} selectSound={() => setShowSoundSelector(true)} leaveChat={() => setLeaveChat(true)} onChange={(e) => setMessage(e.target.value)} messageOnClick={(e) => sendMessage(e)}  />
       {leaveChat ? <LeaveChatRoom onClick={() => setLeaveChat(false)} /> : null}
       {showSoundSelector ? <SoundSelector onClick={() => setShowSoundSelector(false)} selectNone={() => settingSoundState("none")} selectCat={() => settingSoundState("cat")} selectCow={() => settingSoundState("cow")} selectPhone={() => settingSoundState("phone")} previewCat={previewCat} previewCow={previewCow} previewPhone={previewPhone} /> : null}
-      {seeUsers ? <Users onClick={() => setSeeUsers(false)} totalUsers={totalUsers} onlineUsers={onlineUsers}/> : null}
       <button className="soundEnabler" onClick={() => setSoundEnabler(true)}><img src={soundIcon} alt="sound icon" style={{width: "2rem"}}></img></button>
       {soundEnabler ? <SoundEnablerPopUp onClick={() => setSoundEnabler(false)} enable={enable} disable={disable} /> : null}
     </div>
@@ -167,5 +175,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-//export default ChatRoom;
 export default connect(mapStateToProps)(ChatRoom);

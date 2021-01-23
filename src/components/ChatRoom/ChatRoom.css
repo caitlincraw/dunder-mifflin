@@ -25,12 +25,7 @@ main {
 }
 
 .cr-container {
-    width: 45vw;
-    height: 90%;
-}
-
-.u-container {
-    width: 30vw;
+    width: 50vw;
     height: 90%;
 }
 
@@ -57,11 +52,7 @@ main {
 }
 
 .cr-title {
-    width: 44vw;
-}
-
-.u-title {
-    width: 29vw;
+    width: 49vw;
 }
 
 .se-title, .lcr-title {
@@ -96,12 +87,14 @@ main {
     scrollbar-width: none;  /* No Scroll bar in Firefox */
 }
 
-.m-board {
-    width: 41vw;
+.board::-webkit-scrollbar { 
+    display: none;  /* No scroll bar in Safari and Chrome */
+    width: 0;
+    height: 0;
 }
-.u-board {
-    width: 26vw;
-    margin-bottom: 5px;
+
+.m-board {
+    width: 46vw;
 }
 
 .se-board, .lcr-board {
@@ -122,22 +115,16 @@ hr {
     margin: 4px 0;
 }
 
-.board::-webkit-scrollbar { 
-    display: none;  /* No scroll bar in Safari and Chrome */
-    width: 0;
-    height: 0;
-}
-
-.messages, .online-users { 
+.messages { 
     list-style-type: none; 
-    width: 41vw; 
+    width: 46vw; 
     height: 100%;
     margin: 0; 
     padding: 0; 
     background: white;
 }
 
-.messages li, .online-users li { 
+.messages li { 
     padding: 3px 5px; 
 }
   
@@ -151,9 +138,14 @@ hr {
 .text-edit-btns, .footer-btns {
     display: flex;
     justify-content: space-between;
-    width: 41vw;
+    width: 46vw;
     margin: 0;
     padding: 0;
+}
+
+.text-edit-btns span {
+    padding: 0 5px;
+    font-size: 1.4rem;
 }
 
 .text-edit-btns input, .footer-btns input {
@@ -207,7 +199,7 @@ hr {
     border: 3px outset darkgray; 
     margin: 0;
     padding: 0;
-    width: 41vw; 
+    width: 46vw; 
     height: 4rem;
     outline: none;
 }

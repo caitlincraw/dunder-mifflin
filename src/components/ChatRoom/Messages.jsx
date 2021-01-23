@@ -3,7 +3,7 @@ import './ChatRoom.css';
 
 const Messages = ({ messages }) => (
     <ul className="messages">
-        {messages.map((msg, index) => <li key={index}>{msg.user}: {msg.message}</li>)}
+        {messages.map((msg, index) => <li key={index}><b>{msg.user}:</b> {msg.message}</li>)}
     </ul>
 );
 
