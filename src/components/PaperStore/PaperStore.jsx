@@ -61,30 +61,26 @@ class PaperStore extends React.Component {
         this.props.removeProduct(product)
     }
 
-    sortProducts = (event) => {
-        const sort = event.target.value;
-        this.setState((state) => ({
-            sort: sort,
-            products: this.props.products.slice().sort((a, b) => (
-                sort === "lowest"?
-                ((a.price > b.price)? 1:-1):
-                sort === "highest"?
-                ((a.price < b.price)? 1:-1):
-                ((a._id > b._id)? 1:-1)
-            ))
-        }))
-    }
+    // sortProducts = (event) => {
+    //     const sort = event.target.value;
+    //     this.setState((state) => ({
+    //         sort: sort,
+    //         products: this.props.products.slice().sort((a, b) => (
+    //             sort === "lowest"?
+    //             ((a.price > b.price)? 1:-1):
+    //             sort === "highest"?
+    //             ((a.price < b.price)? 1:-1):
+    //             ((a._id > b._id)? 1:-1)
+    //         ))
+    //     }))
+    // }
 
     render() {
     return (
             <div className="store">
 
                 <div className="store__main">
-                    <Filter 
-                        count={this.props.products.length}
-                        sort={this.state.sort}
-                        sortProducts={this.sortProducts}
-                    />
+                    <Filter/>
                     {this.props.products && this.props.products.length > 0 && (
                         <Products
                             productos={this.props.products}
