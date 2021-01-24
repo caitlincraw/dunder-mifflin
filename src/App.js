@@ -18,9 +18,7 @@ function App(props) {
   const [Loading, setLoading] = useState(false);
 
   useEffect(() => {
-      props.persistLogin().then(res => {
-        console.log(res);
-      })
+      props.persistLogin()
   },[]);
 
   // if loading is true show loading page

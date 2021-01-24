@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 import { connect } from "react-redux";
-import { Chat, Users, LeaveChatRoom, SoundEnablerPopUp, SoundSelector } from "./";
+import { Chat, LeaveChatRoom, SoundEnablerPopUp, SoundSelector } from "./";
 import './ChatRoom.css';
 import { Howl } from 'howler';
 import { moo, meow, phoneRinging, doorOpen, doorClose } from './audio';
