@@ -43,15 +43,10 @@ function ChatRoom(props) {
     });
 
     // client receives user info back from server
-    socket.on('getUser', username => {
-      username = props.auth.username || "userBypassedLogin@CHEATER";
-      setUser(username);
+    socket.on('user', (data) => {
+      setUser(data.username);
+      setTotalUsers(data.numUsers);
     })
-
-    // keeping track of number of users in the room
-    socket.on('numUsers', numUsers => {
-      setTotalUsers(numUsers);
-    });
 
     // show message when user joins 
     socket.on('userJoin', data => {
