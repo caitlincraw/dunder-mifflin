@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { Route, Switch } from 'react-router-dom';
 import Landing from './components/Landing/Landing';
 import PaperStore from './components/PaperStore/PaperStore';
@@ -9,42 +10,18 @@ import LoadingPage from './components/loadingPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { NavBar, Footer } from './components/Navigation';
 import { connect } from "react-redux";
-import React, { useState, useEffect } from "react";
-import { getUser } from "./api"
+import { persistLogin } from './redux/actions/authActions'
 
 
 function App(props) {
 
-  const [Loading, setLoading] = useState(true);
+  const [Loading, setLoading] = useState(false);
 
   useEffect(() => {
-    getUser()
-      .then(res => {
-        if(res.data==="user not logged") { console.log('user is not logged on') }
-        else {
-          console.log('user is logged on')
-          //set redux username to res.data.username
-
-
-          //set redux isloggedin to true
-
-        }
+      props.persistLogin().then(res => {
         console.log(res);
-        setLoading(false);
       })
-      .catch(err => (err));
-
-    // .catch(err=>(err));
-    // console.log(getUser().then(res=>(console.log(res))));
-    // console.log(req.user)
-    // make call to /user from server to verify login
-
-    // if user exists, redux state set to loggedin
-    // if user does not exist, redirect to login page
-    // set state to false
-  },
-    []);
-
+  },[]);
 
   // if loading is true show loading page
 
@@ -81,15 +58,16 @@ function App(props) {
   );
 }
 
-// const authCheck = () => {
-//   axios.get('http://localhost:1725/user')
-//     .catch(function (err) { console.log(err) }
-// }
-
 const mapStateToProps = (state) => {
   return {
     auth: state.auth
   }
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    persistLogin: () => dispatch(persistLogin())
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
