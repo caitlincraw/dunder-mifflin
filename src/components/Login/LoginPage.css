@@ -10,20 +10,35 @@
     display: flex;
     margin: 5px;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     background: lightgray;
     border: 5px outset darkgray;
 }
 
 .l-container {
-    width: 80vw;
+    width: 50vw;
     height: 90%;
+}
+
+.login-title {
+    margin: 5px;
+    background: rgb(9,9,121);
+    background: linear-gradient(90deg, rgba(9,9,121,1) 22%, rgba(146,215,250,1) 100%);
+    display: flex;
+    justify-content: space-between;
+    width: 49vw;
+}
+
+.title-name {
+    color: white;
+    font-size: 1.2rem;
+    margin-left: 5px;
 }
 
 .r-container {
     width: 45vw;
-    height: 65%;
+    height: 50%;
     position: absolute;
     bottom: auto;
 }
