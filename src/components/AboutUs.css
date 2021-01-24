@@ -4,6 +4,7 @@
     align-items: center; 
     height: 100%;
     width: 100vw;
+    flex-wrap: wrap;
 }
 
 .myspace-card {
@@ -15,11 +16,16 @@
     background: lightgray;
     border: 5px outset darkgray;
     justify-content: space-between;
-    height: 95%;
+    height: auto;
+    width: 45%;
 }
 
 .name, .motto {
     margin: 5px;
+}
+
+.motto {
+    font-size: 1.4rem;
 }
 
 .myspace-header {
@@ -29,7 +35,8 @@
 }
 
 .headshot {
-    width: 15rem;
+    width: 40%;
+    height: 40%;
     object-fit: cover;
 }
 
