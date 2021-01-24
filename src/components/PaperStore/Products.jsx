@@ -25,12 +25,14 @@ export default class Products extends Component {
     render() {
         
         const { product } = this.state;
+        const { productos } = this.props;
+        console.log("Y", productos);
 
         return(
             <div>
                 <Fade bottom cascade={true}>
                     <ul className="products">
-                        {this.props.products.map(product => (
+                        {productos.map(product => (
                             <li key={product.id}>
                                 <div className="product">
                                     <a href={"#" + product.id} onClick={() => this.openModal(product)}>
@@ -64,7 +66,7 @@ export default class Products extends Component {
                                 <div className="product-price">
                                     <div>{formatCurrency(product.price)}</div>
                                     <button className="button-primary" onClick={() => {
-                                        this.props.addToCart(product);
+                                        this.props.addToCart(product.id);
                                         this.closeModal();
                                     }}>
                                         Add To Cart

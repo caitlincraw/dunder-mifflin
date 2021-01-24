@@ -1,79 +1,71 @@
 import React from 'react';
 import Filter from './Filter';
 import Products from './Products';
-import axios from 'axios';
 import Cart from './Cart';
 import './PaperStore.css';
-import { getBackendUrl } from '../../api';
+import { fetchProducts, addProduct, removeProduct } from '../../redux/actions/productActions';
+import { connect } from "react-redux";
 
 class PaperStore extends React.Component {
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            products: [],
             cartItems: localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")): [],
-            sort: ""
+            sort: "",
         };
+        this.addProductToCart = this.addProductToCart.bind(this);
+        this.removeProductFromCart = this.removeProductFromCart.bind(this);
     }
 
     componentDidMount() {
-        // TBD want to add isLoaded to state and make sure do conditional rendering whether or not the items are loaded yet
-        const getPaper = () => {
-            axios({
-                method: 'GET',
-                withCredentials: true,
-                url: `${getBackendUrl()}/products/all`,
-            }).then((res) => { 
-                this.setState({
-                    products: res.data,
-                    cartItems: localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")): [],
-                    sort: ""
-                })
-                console.log(res.data);
-            });
-        };
-
-        getPaper();
+        this.props.fetchProducts();
     }
 
     createOrder = (order) => {
         alert("Need to save order for " + order.name);
     }
 
-    removeFromCart = (product) => {
-        const cartItems = this.state.cartItems.slice();
-        this.setState({ cartItems: cartItems.filter((x) => x.id !== product.id)
-        });
+    // removeFromCart = (product) => {
+    //     const cartItems = this.state.cartItems.slice();
+    //     this.setState({ cartItems: cartItems.filter((x) => x.id !== product.id)
+    //     });
 
-        localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((x) => x.id !== product.id)));
+    //     localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((x) => x.id !== product.id)));
+    // }
+
+    // addToCart = (product) => {
+    //     const cartItems = this.state.cartItems.slice();
+    //     let alreadyInCart = false;
+
+    //     cartItems.forEach(item => {
+    //         if(item._id === product.id){
+    //             item.count++;
+    //             alreadyInCart = true;
+    //         }
+    //     });
+
+    //     if(!alreadyInCart){
+    //         cartItems.push({...product, count: 1});
+    //     }
+    //     this.setState({cartItems});
+
+    //     localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    // };
+
+    addProductToCart = product => {
+        this.props.addProduct(product)
     }
 
-    addToCart = (product) => {
-        const cartItems = this.state.cartItems.slice();
-        let alreadyInCart = false;
-
-        cartItems.forEach(item => {
-            if(item._id === product.id){
-                item.count++;
-                alreadyInCart = true;
-            }
-        });
-
-        if(!alreadyInCart){
-            cartItems.push({...product, count: 1});
-        }
-        this.setState({cartItems});
-
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    };
+    removeProductFromCart = product => {
+        this.props.removeProduct(product)
+    }
 
     sortProducts = (event) => {
         const sort = event.target.value;
-        console.log(event.target.value);
         this.setState((state) => ({
             sort: sort,
-            products: this.state.products.slice().sort((a, b) => (
+            products: this.props.products.slice().sort((a, b) => (
                 sort === "lowest"?
                 ((a.price > b.price)? 1:-1):
                 sort === "highest"?
@@ -89,22 +81,25 @@ class PaperStore extends React.Component {
 
                 <div className="store__main">
                     <Filter 
-                        count={this.state.products.length}
+                        count={this.props.products.length}
                         sort={this.state.sort}
                         sortProducts={this.sortProducts}
                     />
-                    <Products 
-                        products={this.state.products}
-                        addToCart={this.addToCart}>
-                    </Products>
+                    {this.props.products && this.props.products.length > 0 && (
+                        <Products
+                            productos={this.props.products}
+                            addToCart={this.addProductToCart}
+                        />
+                    )}
                 </div>
 
                 <div className="store__sidebar">
-                    <Cart 
-                        cartItems={this.state.cartItems}
-                        removeFromCart={this.removeFromCart}
-                        createOrder={this.createOrder}
-                     />
+                    {this.props.cartItems && this.props.cartItems.length > 0 && (
+                        <Cart 
+                            removeFromCart={this.props.removeProductFromCart}
+                            createOrder={this.createOrder}
+                        />
+                    )}
                 </div>
 
             </div>
@@ -113,4 +108,19 @@ class PaperStore extends React.Component {
     }
 }
 
-export default (PaperStore)
+const mapStateToProps = (state) => {
+    return {
+        products: state.products,
+        cartItems: state.cart
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchProducts: () => dispatch(fetchProducts()),
+        addProduct: (product) => dispatch(addProduct(product)),
+        removeProduct: (product) => dispatch(removeProduct(product)),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PaperStore);

@@ -2,13 +2,13 @@
 
 Dunder Mifflin Infinity is a website [inspired](https://en.wikipedia.org/wiki/Dunder_Mifflin_Infinity) by comedy television series, *The Office.* 
 
-##Demo
+## Demo
 
-##Built With
+## Built With
 https://www.officeapi.dev/
 
-##Developers
+## Developers
 
-##License
+## License
 
 
