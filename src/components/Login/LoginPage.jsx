@@ -38,11 +38,11 @@ function LoginPage(props) {
         <div className="view l-view">
             <div className="container l-container">
                 <div className="login-title">
-                    <h4 className="title-name">Sources</h4>
+                    <h4 className="title-name">Login</h4>
                 </div>
                 <form>
-                    <input placeholder="enter your username" onChange={e => setLoginUsername(e.target.value)} />
-                    <input placeholder="enter your password" onChange={e => setLoginPassword(e.target.value)} />
+                    {props.auth.isLoggedIn ? <input placeholder="you are already logged in" disabled={true} />: <input placeholder="enter your username" onChange={e => setLoginUsername(e.target.value)} /> }
+                    {props.auth.isLoggedIn ? <input placeholder="you are already logged in" disabled={true} />: <input placeholder="enter your password" onChange={e => setLoginPassword(e.target.value)} /> }
                     <button type="submit" onClick={login}>Submit</button>
                 </form>
                 {showAuthFailure() && <p className="auth-failure-msg">User does not exist.</p>}

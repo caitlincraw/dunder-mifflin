@@ -38,5 +38,5 @@ export async function getUser() {
         method: 'GET',
         withCredentials: true,
         url: `${getBackendUrl()}/user`,
-    });
+    })
 }

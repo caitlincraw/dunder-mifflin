@@ -1,4 +1,4 @@
-import { AUTH_LOGIN_SUCCESS, AUTH_LOGIN_FAILURE, AUTH_LOGOUT_SUCCESS, AUTH_RESET } from '../types';
+import { AUTH_LOGIN_SUCCESS, AUTH_LOGIN_FAILURE, AUTH_LOGOUT_SUCCESS, AUTH_RESET, AUTH_PERSIST } from '../types';
 
 const initialState = {
     username: "",
@@ -30,6 +30,12 @@ export const authReducer = (state = initialState, action) => {
         case AUTH_RESET:
             return {
                 ...initialState
+            }
+        case AUTH_PERSIST:
+            return {
+                ...state,
+                username: action.payload.username,
+                isLoggedIn: true
             }
         default:
             return state;
