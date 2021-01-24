@@ -38,7 +38,7 @@ function LoginPage(props) {
         <div className="view l-view">
             <div className="container l-container">
                 <div className="login-title">
-                    <h4 className="title-name">Sources</h4>
+                    <h4 className="title-name">Login</h4>
                 </div>
                 <form>
                     <input placeholder="enter your username" onChange={e => setLoginUsername(e.target.value)} />
