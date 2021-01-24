@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from 'react-router-dom';
 import Landing from './components/Landing/Landing';
 import PaperStore from './components/PaperStore/PaperStore';
@@ -6,32 +6,26 @@ import ChatRoom from './components/ChatRoom/ChatRoom';
 import LoginPage from './components/Login/LoginPage';
 import AboutUs from './components/AboutUs';
 import Sources from './components/Sources';
-import LoadingPage from './components/loadingPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { NavBar, Footer } from './components/Navigation';
 import { connect } from "react-redux";
 import { persistLogin } from './redux/actions/authActions'
-
+import { getUser } from './api';
 
 function App(props) {
-
-  const [Loading, setLoading] = useState(false);
 
   useEffect(() => {
       props.persistLogin()
   },[]);
 
-  // if loading is true show loading page
 
-  if (Loading) {
-    return (
-      <div>
-        <LoadingPage />
-      </div>
-    )
-  }
-
-  const user = props.auth.isLoggedIn;
+  const user = getUser().then(res => {
+    if (res.data === "user not logged"){
+      return false;
+    } else {
+      return true   
+    }
+  })
 
   return (
     <div className="App">
@@ -56,16 +50,10 @@ function App(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    auth: state.auth
-  }
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
     persistLogin: () => dispatch(persistLogin())
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
