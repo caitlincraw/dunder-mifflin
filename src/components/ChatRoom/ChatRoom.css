@@ -10,10 +10,6 @@ main {
     width: 100vw;
 }
 
-.cr-view * {
-    font-family: 'Times New Roman', Times, serif;
-}
-
 .container {
     display: flex;
     margin: 5px;
