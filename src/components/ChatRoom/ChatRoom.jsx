@@ -108,6 +108,9 @@ function ChatRoom(props) {
 
   const sendMessage = (e) => {
     e.preventDefault();
+    if(!props.auth.username) {
+      return alert("Oh no, something happened. You aren't actually logged in... Please log in to send and receive messages!");
+    }
     if(message) {
       socket.emit('sendMessage', {
         user, 
