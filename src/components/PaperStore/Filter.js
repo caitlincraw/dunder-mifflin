@@ -5,7 +5,7 @@ export default class Filter extends Component {
         return(
             <div className="filter">
                 <div className="filter-result">
-                    {this.props.count} Products
+                    <b>Dunder Mifflin Store |  {this.props.count} Products</b>
                 </div>
                 <div className="filter-sort">
                     Order{" "}

@@ -15,7 +15,6 @@ function LoginPage(props) {
     const register = (e) => {
         e.preventDefault();
         apiRegister(registerUsername, registerPassword).then((res) => {
-            console.log("this is res.data:", res.data);
             return setRegisterMsg(res.data);
         });
     };
@@ -25,22 +24,30 @@ function LoginPage(props) {
         props.attemptLogin(loginUsername, loginPassword);
     };
 
-    // null propogation operator
+    // using ?. is a null propogation operator
     const showAuthFailure = () => {
         return props.auth?.failedAuth;
+    }
+
+    const showLoginSuccess = () => {
+        return props.auth?.isLoggedIn;
     }
 
 
     return (
         <div className="view l-view">
             <div className="container l-container">
-                <h1>Login</h1>
+                <div className="login-title">
+                    <h4 className="title-name">Login</h4>
+                </div>
                 <form>
-                    <input placeholder="enter your username" onChange={e => setLoginUsername(e.target.value)} />
-                    <input placeholder="enter your password" onChange={e => setLoginPassword(e.target.value)} />
+                    {props.auth.isLoggedIn ? <input placeholder="you are already logged in" disabled={true} />: <input placeholder="enter your username" onChange={e => setLoginUsername(e.target.value)} /> }
+                    {props.auth.isLoggedIn ? <input placeholder="you are already logged in" disabled={true} />: <input placeholder="enter your password" onChange={e => setLoginPassword(e.target.value)} /> }
                     <button type="submit" onClick={login}>Submit</button>
                 </form>
-                {showAuthFailure() && <p>User does not exist.</p>}
+                {showAuthFailure() && <p className="auth-failure-msg">User does not exist.</p>}
+                {showLoginSuccess() && <p className="auth-success-msg">User successfully authenticated.</p>}
+
 
                 <div>Don't have an account yet? <button className="register-btn" onClick={()=>setShowRegister(true)}>Register Here!</button></div>
             </div>

@@ -13,9 +13,7 @@ html > body > #root {
 
 body, #root {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body, button, input, select, textarea {
@@ -29,6 +27,7 @@ footer {
   flex-direction: column;
   grid-area: footer;
   justify-content: center;
+  padding-top: 1rem;
 }
 
 header {
@@ -36,22 +35,36 @@ header {
   background-color: #3b5482;
   color: white;
   display: flex;
+  font-weight: bold;
   grid-area: header;
   justify-content: space-between;
-  padding: 0.5rem;
+  padding: 2rem;
+  text-shadow: 0 0 2px rgba(0,0,0,.3);
+}
+
+footer .sources {
+  border-right:solid 1px #fff;
+  padding-right: 1rem;
+}
+
+footer a {
+  font-weight: bold;
+  text-shadow: 0 0 2px rgba(0,0,0,.3);
 }
 
 footer a, .copyright {
   color: white;
   text-align: center;
+  margin: .5rem 1rem 1rem .25rem;
 }
 
 .copyright {
   font-size: 0.6rem;
 }
 
-header a:hover, footer a:hover {
+header a:hover, .logout-btn:hover, footer a:hover {
   color: orange;
+  cursor: pointer;
 } 
 
 html {
@@ -81,213 +94,25 @@ main {
   height: 100%;
 }
 
-.navs a {
+.navs a, .logout-btn {
   color: white;
   text-decoration: none;
   margin-left: 16px;
 }
 
+.logout-btn {
+  background: none;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+}
+
 .SmallLogo {
-  width: 30px;
+  width: 35px;
 }
 
 .view {
   margin: 0 auto;
   max-width: 65%;
   height: 100%;
-}
-
-/* products */
-
-.button {
-  border: .1rem #c0c0c0 solid;
-  background-color: #f0f0f0;
-  cursor: pointer;
-  padding: 1rem;
-}
-
-.button:hover {
-  border: .1rem black solid;
-}
-
-.button-primary {
-  background-color: #ffc000;
-}
-
-.products {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.products li {
-  flex: 0 1 29rem;
-  height: 47rem;
-  padding: 1rem;
-}
-
-.product {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-between;
-}
-
-.product img {
-  max-height: 25rem;
-  max-width: 25rem;
-}
-
-.product-price {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.product-price div,
-.product-price button {
-  text-align: center;
-  flex: 1;
-}
-
-.product-price div {
-  font-size: 2rem;
-}
-
-.store {
-  background-color: white;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 2rem;
-}
-
-.store__main{
-  flex: 3 60rem;
-}
-
-.store__sidebar{
-  flex: 1 20rem;
-}
-
-/* filter */
-
-.filter {
-  border-bottom: 0.1rem lightgray solid;
-  display: flex;
-  justify-content: space-between;
-  margin: 1rem;
-  padding: 1rem;
-}
-
-.filter dev {
-  flex: 1;
-}
-
-/* Cart */
-
-.cart {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 1rem;
-  padding: 1rem;
-}
-
-.cart-header {
-  border-bottom: 0.1rem lightgray solid;
-}
-
-.cart-items {
-  list-style-type: none;
-  padding: 0;
-  width: 100%;
-}
-
-.cart-items img {
-  width: 5rem;
-}
-
-.cart-items li {
-  display: flex;
-}
-
-.cart-items li div {
-  padding: .5rem;
-}
-
-.cart-items li div:last-child {
-  flex: 1;
-}
-
-.right {
-  text-align: right;
-}
-
-.total {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.total > div {
-  font-size: 2rem;
-}
-
-.total > div,
-.total > button {
-  flex: 1;
-}
-
-/* Checkout form */
-
-form {
-  width: 100%;
-}
-
-input {
-  border: .1rem lightgray solid;
-  padding: 1rem;
-}
-
-.form-container {
-  padding: 0;
-  list-style-type: none;
-  width: 100%
-}
-
-.form-container li {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-}
-
-/* Product details */
-
-.product-details {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  max-height: 96vh;
-}
-
-.product-details img {
-  margin: 0 auto;
-  max-height: 100vh;
-  max-width: 46rem;
-}
-
-.products-details-description {
-  flex: 1 1;
-  margin: 1rem;
-}
-
-.close-modal {
-  position: absolute;
-  right: 1rem;
-  top: 2.5rem;
-  z-index: 1000;
 }

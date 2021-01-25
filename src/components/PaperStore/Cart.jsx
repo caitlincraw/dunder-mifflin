@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import formatCurrency from './util';
 import Fade from 'react-reveal/Fade';
+import { connect } from "react-redux";
 
-export default class Cart extends Component {
+
+class Cart extends Component {
     constructor(props){
         super(props);
         this.state = { 
@@ -34,10 +36,8 @@ export default class Cart extends Component {
 
         return (
             <div>
-
-                {cartItems.length === 0? (
-                    <div className="cart cart-header">Cart is empty</div>
-                ) : (
+                
+                {cartItems && (
                     <div className="cart cart-header">
                         You have {cartItems.length} in the cart{" "}
                     </div>
@@ -48,7 +48,7 @@ export default class Cart extends Component {
                         <Fade left cascade>
                             <ul className="cart-items">
                                 {cartItems.map(item =>(
-                                    <li key={item._id}>
+                                    <li key={item.id}>
                                         <div>
                                             <img src={`http://localhost:3000/images/${item.image}`} alt={item.title}></img>
                                         </div>
@@ -56,7 +56,7 @@ export default class Cart extends Component {
                                             <div>{item.title}</div>
                                             <div className="right">
                                                 {formatCurrency(item.price)} x {item.count}{" "}
-                                                <button className="button" onClick={() => this.props.removeFromCart(item)}>
+                                                <button className="button" onClick={() => this.props.removeFromCart(item.id)}>
                                                     Remove
                                                 </button> 
                                             </div>
@@ -135,3 +135,12 @@ export default class Cart extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        products: state.products,
+        cartItems: state.cart
+    };
+};
+
+export default connect(mapStateToProps, null)(Cart);

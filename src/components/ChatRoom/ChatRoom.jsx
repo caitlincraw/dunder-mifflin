@@ -1,30 +1,23 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
-import { Chat, Users, LeaveChatRoom, SoundEnablerPopUp, SoundSelector } from "./";
+import { connect } from "react-redux";
+import { Chat, LeaveChatRoom, SoundEnablerPopUp, SoundSelector } from "./";
 import './ChatRoom.css';
 import { Howl } from 'howler';
 import { moo, meow, phoneRinging, doorOpen, doorClose } from './audio';
 import soundIcon from '../images/sound.png';
+import { getBackendUrl } from "../../api";
 
-// set up a client socket that is listening to the port server is running on
-// this is making the socket start up on load of app..not just on chatroom component
-// const { REACT_APP_PROTOCOL, REACT_APP_SERVER_HOST } = process.env;
-// const ENDPOINT = `${REACT_APP_PROTOCOL}://${REACT_APP_SERVER_HOST}`;
-const host = window.location.hostname;
-const ENDPOINT = `http://${host}:1725`;
-const socket = io(ENDPOINT, {});
+const ENDPOINT = getBackendUrl();
+let socket;
 
-function ChatRoom() {
+function ChatRoom(props) {
 
-  // chatroom state variables... consider using redux for some of this
-  // *****TBD***** consider making a state variable called toggleVisible which is an object that holds all the state variables that involve visibility of components
-  // *****TBD***** include seeUsers, soundEnabler, leaveChat, and showSoundSelector..
+  // chatroom state variables.
   const [message, setMessage] = useState('');
   const [user, setUser] = useState('');
-  const [onlineUsers, setOnlineUsers] = useState([]);
   const [totalUsers, setTotalUsers] = useState();
   const [messages, setMessages] = useState([]);
-  const [seeUsers, setSeeUsers] = useState(false);
   const [playSound, setPlaySound] = useState(true);
   const [soundEnabler, setSoundEnabler] = useState(true);
   const [leaveChat, setLeaveChat] = useState(false);
@@ -40,22 +33,29 @@ function ChatRoom() {
     })
   ))
 
-  // connect to socket here so that only connects once at the beginning. like componentDidMount(). all socket events where client receives from server go in here too
+  // connect to socket here so that only connects once at the beginning. like componentDidMount().
   useEffect(() => {
 
-    // client sends to server that a user has connected. put in useEffect() because only want once on load of component. note that client only sends to a server by way of socket.emit
-    socket.emit('userConnect')
+    socket = io(ENDPOINT);
+    // client sends to server that a user has connected. put in useEffect() because only want once on load of component. 
+    socket.emit('userConnect', {
+      username: props.auth.username
+    });
 
     // client receives user info back from server
-    // *****TBD***** this is just the socket.id right now...for actual auth and username
-    socket.on('getUser', userId => {
-      setUser(userId);
-      setOnlineUsers(users => [ ...users, userId])
+    socket.on('user', (data) => {
+      setUser(data.username);
+      setTotalUsers(data.numUsers);
     })
 
-    // keeping track of number of users in the room
-    socket.on('numUsers', numUsers => {
-      setTotalUsers(numUsers);
+    // show message when user joins 
+    socket.on('userJoin', data => {
+      setMessages(msgs => [ ...msgs, data])
+    });
+
+    // show message when user leaves
+    socket.on('userLeft', data => {
+      setMessages(msgs => [ ...msgs, data])
     });
 
     // client talks to server and receives the data (message and username)
@@ -64,18 +64,18 @@ function ChatRoom() {
     });
 
     //plays a a door open sound when someone enters the chatroom. user will not here it when they join since the sound is broadcasted to everyone but them
-    // socket.on('playDoorOpenSound', () => {
-    //   if (playSound) {
-    //     howls[3].play();
-    //   };
-    // });
+    socket.on('playDoorOpenSound', () => {
+      if (playSound) {
+        howls[3].play();
+      };
+    });
 
-    //plays a a door close sound when someone leaves the chatroom. user will not here it when they join since the sound is broadcasted to everyone but them
-    // socket.on('playDoorCloseSound', () => {
-    //   if (playSound) {
-    //     howls[4].play();
-    //   };
-    // });
+    //plays a a door close sound when someone leaves the chatroom to all connected clients but user.
+    socket.on('playDoorCloseSound', () => {
+      if (playSound) {
+        howls[4].play();
+      };
+    });
 
     // client needs to talk to server again and receive the src for the sound. after get the src, then all clients connected will play that associated sound. 
     socket.on('addSound', srcOfSound => {
@@ -94,7 +94,6 @@ function ChatRoom() {
     return () => socket.disconnect();
   }, []);
 
-  // *****TBD***** client send sound to server.
   const sendSound = (srcOfSound) => {
     socket.emit('sendSound', srcOfSound)
     setSelectedSound("none");
@@ -102,8 +101,6 @@ function ChatRoom() {
 
   const sendMessage = (e) => {
     e.preventDefault();
-    // only send a message if there is a message
-    // *****TBD***** add logged in auth check here too
     if(message) {
       socket.emit('sendMessage', {
         user, 
@@ -158,14 +155,19 @@ function ChatRoom() {
 
   return (
     <div className="view cr-view">
-      <Chat message={message} messages={messages} selectSound={() => setShowSoundSelector(true)} leaveChat={() => setLeaveChat(true)} onChange={(e) => setMessage(e.target.value)} usersOnClick={() => setSeeUsers(true)} messageOnClick={(e) => sendMessage(e)}  />
+      <Chat message={message} messages={messages} totalUsers={totalUsers} selectSound={() => setShowSoundSelector(true)} leaveChat={() => setLeaveChat(true)} onChange={(e) => setMessage(e.target.value)} messageOnClick={(e) => sendMessage(e)}  />
       {leaveChat ? <LeaveChatRoom onClick={() => setLeaveChat(false)} /> : null}
       {showSoundSelector ? <SoundSelector onClick={() => setShowSoundSelector(false)} selectNone={() => settingSoundState("none")} selectCat={() => settingSoundState("cat")} selectCow={() => settingSoundState("cow")} selectPhone={() => settingSoundState("phone")} previewCat={previewCat} previewCow={previewCow} previewPhone={previewPhone} /> : null}
-      {seeUsers ? <Users onClick={() => setSeeUsers(false)} totalUsers={totalUsers} onlineUsers={onlineUsers}/> : null}
-      <button className="soundEnabler" onClick={() => setSoundEnabler(true)}><img src={soundIcon} style={{width: "2rem"}}></img></button>
+      <button className="soundEnabler" onClick={() => setSoundEnabler(true)}><img src={soundIcon} alt="sound icon" style={{width: "2rem"}}></img></button>
       {soundEnabler ? <SoundEnablerPopUp onClick={() => setSoundEnabler(false)} enable={enable} disable={disable} /> : null}
     </div>
   );
 }
 
-export default ChatRoom;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  };
+};
+
+export default connect(mapStateToProps)(ChatRoom);
