@@ -11,10 +11,24 @@ class ActionProvider {
     }
 
     blank = () => {
-      const message = this.createChatBotMessage(`I can help you if you don't anything, IDIOT!.`);
+      const message = this.createChatBotMessage(`I can't help you if you don't say anything, DOES ANYONE HAVE HALF A BRAIN AROUND HERE???.`);
       this.addMessageToState(message);
     }
 
+    theboss = () => {
+      const message = this.createChatBotMessage(
+        "In word's of the worlds best boss: ",
+        {
+          widget: "theBoss",
+          loading:true,
+          terminateLoading: true,
+          withAvatar: true,
+        }
+      );
+      this.addMessageToState(message);
+    };
+
+//theboss, pam, paper
     who = () => {
       
     }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Switch } from 'react-router-dom';
 import Landing from './components/Landing/Landing';
 import PaperStore from './components/PaperStore/PaperStore';
@@ -8,23 +8,29 @@ import AboutUs from './components/AboutUs';
 import Sources from './components/Sources';
 import ProtectedRoute from './components/ProtectedRoute';
 import { NavBar, Footer } from './components/Navigation';
+import { ConditionallyRender } from 'react-util-kit';
 import Dwight from './components/ChatBot/ChatBot';
+import { ReactComponent as ButtonIcon } from './components/ChatBot/icons/dwight.svg'
 import { connect } from "react-redux";
 import { persistLogin } from './redux/actions/authActions'
 import { getUser } from './api';
 
+import './App.css'
+
 function App(props) {
+  const [showDwight, toggleDwight] = useState(true);
+
 
   useEffect(() => {
-      props.persistLogin()
-  },[]);
+    props.persistLogin()
+  }, []);
 
 
   const user = getUser().then(res => {
-    if (res.data === "user not logged"){
+    if (res.data === "user not logged") {
       return false;
     } else {
-      return true   
+      return true
     }
   })
 
@@ -34,7 +40,21 @@ function App(props) {
       <NavBar />
 
       <main>
-      <Dwight />
+        <div className="app-chatbot-container">
+          <ConditionallyRender
+            ifTrue={showDwight}
+            show={
+              <Dwight
+              />
+            }
+          />
+          <button
+            className="app-chatbot-button"
+            onClick={() => toggleDwight((prev) => !prev)}
+          >
+            <ButtonIcon className="app-chatbot-button-icon" />
+          </button>
+        </div>
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={LoginPage} />

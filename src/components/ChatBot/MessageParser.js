@@ -8,7 +8,11 @@ class MessageParser {
       console.log(message)
       const lowercase = message.toLowerCase()
 
-      if (lowercase.includes("hello")) {
+      if (message.length === 0) {
+        this.actionProvider.blank();
+      }
+
+      if (lowercase.includes("hello") || lowercase.includes("hi")) {
         this.actionProvider.greet();
       }
 
@@ -16,12 +20,16 @@ class MessageParser {
         this.actionProvider.theboss();
       }
 
-      if (lowercase.includes("who")) {
-        this.actionProvider.myCreators();
+      if (lowercase.includes("paper")) {
+        this.actionProvider.paper();
       }
 
-      if (message.includes("")) {
-        this.actionProvider.blank();
+      if (lowercase.includes("pam")) {
+        this.actionProvider.pam();
+      }
+
+      if (lowercase.includes("who")) {
+        this.actionProvider.myCreators();
       }
       
     }
