@@ -17,7 +17,7 @@ class MessageParser {
       }
 
       if (lowercase.includes("michael")) {
-        this.actionProvider.theboss();
+        this.actionProvider.theboss2();
       }
 
       if (lowercase.includes("paper")) {
