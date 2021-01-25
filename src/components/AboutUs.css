@@ -19,6 +19,15 @@
     width: 40%;
 }
 
+.myspace-card a {
+    color: #3b5482;
+}
+
+.myspace-card a:hover {
+    color: orange;
+    cursor: pointer;
+}
+
 .name, .motto {
     margin: 5px;
 }
@@ -43,14 +52,23 @@
     list-style-type: none;
 }
 
+.myspace-social {
+    font-size: 1.4rem;
+}
+
+.myspace-portfolio {
+    border: 2px solid darkgrey;
+    font-size: 1.4rem;
+}
+
 .myspace-details, .myspace-interests {
     background-color:white;
-    border: 1px solid darkgray;
+    border: 2px solid darkgray;
     font-size: 0.8rem;
 }
 
 .table-header {
-    border: 1px solid darkgray;
+    border: 2px solid darkgray;
     background-color: #5ca4db;
     margin: 0;
     font-weight: bolder;
@@ -59,7 +77,7 @@
 
 .details-table, .interests-table {
     margin: 5px 1px;
-    border: 1px solid darkgray;
+    border: 2px solid darkgray;
 }
   
 .row {

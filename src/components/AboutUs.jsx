@@ -25,6 +25,10 @@ function AboutUs() {
                     |
                     <a href="https://www.linkedin.com/in/ali-kasper/" target="_blank" rel="noreferrer">LinkedIn</a>
                 </div>
+                <div className="myspace-portfolio">
+                    <div><b>Portfolio URL:</b></div>
+                    <a href="https://www.alikasperdesign.com/" target="_blank" rel="noreferrer">alikasperdesign.com</a>
+                </div>
                 <div className="myspace-interests">
                     <h5 className="table-header">Caitlin's Interests</h5>
                     <div className="interests-table">
@@ -127,6 +131,10 @@ function AboutUs() {
                     |
                     <a href="https://www.linkedin.com/in/rudysa2/" target="_blank" rel="noreferrer">LinkedIn</a>
                 </div>
+                <div className="myspace-portfolio">
+                    <div><b>Portfolio URL:</b></div>
+                    <a href="https://rudycruisin.github.io/RudyPortfolio/" target="_blank" rel="noreferrer">rudycruisin.com</a>
+                </div>
                 <div className="myspace-interests">
                     <h5 className="table-header">Caitlin's Interests</h5>
                     <div className="interests-table">
@@ -228,6 +236,10 @@ function AboutUs() {
                     <a href="https://github.com/caitlincraw" target="_blank" rel="noreferrer">Github</a> 
                     |
                     <a href="https://www.linkedin.com/in/caitlin-crawford-aicp-6716778a/" target="_blank" rel="noreferrer">LinkedIn</a>
+                </div>
+                <div className="myspace-portfolio">
+                    <div><b>Portfolio URL:</b></div>
+                    <a href="https://caitlin-crawford.com" target="_blank" rel="noreferrer">caitlin-crawford.com</a>
                 </div>
                 <div className="myspace-interests">
                     <h5 className="table-header">Caitlin's Interests</h5>
