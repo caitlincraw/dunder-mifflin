@@ -2,7 +2,7 @@ import React from "react";
 import Messages from "./Messages";
 import './ChatRoom.css';
 
-function Chat({ leaveChat, messages, totalUsers, selectSound, message, onChange, messageOnClick }) {
+function Chat({ leaveChat, messages, totalUsers, selectSound, selectEmoji, message, onChange, messageOnClick }) {
 
   return (
     <div className="container cr-container">
@@ -31,7 +31,12 @@ function Chat({ leaveChat, messages, totalUsers, selectSound, message, onChange,
           </div>
           <div className="extra-btns">
             <span id="link-btn">link</span>
-            <input id="emoji-btn" type="button" value="😀" onClick={() => alert("TBD for emoji feature")}/>
+            <input 
+              id="emoji-btn" 
+              type="button" 
+              value="😀" 
+              onClick={selectEmoji}
+            />
           </div>
         </div>
         <input 

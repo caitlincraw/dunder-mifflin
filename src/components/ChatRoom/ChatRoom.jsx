@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 import { connect } from "react-redux";
-import { Chat, LeaveChatRoom, SoundEnablerPopUp, SoundSelector } from "./";
+import { Chat, LeaveChatRoom, SoundEnablerPopUp, EmojiSelector, SoundSelector } from "./";
 import './ChatRoom.css';
 import { Howl } from 'howler';
 import { moo, meow, phoneRinging, doorOpen, doorClose } from './audio';
@@ -23,6 +23,7 @@ function ChatRoom(props) {
   const [leaveChat, setLeaveChat] = useState(false);
   const [showSoundSelector, setShowSoundSelector] = useState(false);
   const [selectedSound, setSelectedSound] = useState("none");
+  const [showEmoji, setShowEmoji] = useState(false);
 
   // Setup all of the new Howls  
   const sounds = [moo, meow, phoneRinging, doorOpen, doorClose]
@@ -153,10 +154,15 @@ function ChatRoom(props) {
     };
   }
 
+  const addEmoji = (emoji) => {
+    setMessage(message.concat(` ${emoji} `));
+  }
+
   return (
     <div className="view cr-view">
-      <Chat message={message} messages={messages} totalUsers={totalUsers} selectSound={() => setShowSoundSelector(true)} leaveChat={() => setLeaveChat(true)} onChange={(e) => setMessage(e.target.value)} messageOnClick={(e) => sendMessage(e)}  />
+      <Chat message={message} messages={messages} totalUsers={totalUsers} selectEmoji={() => setShowEmoji(true)} selectSound={() => setShowSoundSelector(true)} leaveChat={() => setLeaveChat(true)} onChange={(e) => setMessage(e.target.value)} messageOnClick={(e) => sendMessage(e)}  />
       {leaveChat ? <LeaveChatRoom onClick={() => setLeaveChat(false)} /> : null}
+      {showEmoji ? <EmojiSelector addEmoji={(e) => addEmoji(e.target.value)} onClick={() => setShowEmoji(false)} /> : null}
       {showSoundSelector ? <SoundSelector onClick={() => setShowSoundSelector(false)} selectNone={() => settingSoundState("none")} selectCat={() => settingSoundState("cat")} selectCow={() => settingSoundState("cow")} selectPhone={() => settingSoundState("phone")} previewCat={previewCat} previewCow={previewCow} previewPhone={previewPhone} /> : null}
       <button className="soundEnabler" onClick={() => setSoundEnabler(true)}><img src={soundIcon} alt="sound icon" style={{width: "2rem"}}></img></button>
       {soundEnabler ? <SoundEnablerPopUp onClick={() => setSoundEnabler(false)} enable={enable} disable={disable} /> : null}
