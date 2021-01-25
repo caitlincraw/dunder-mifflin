@@ -3,7 +3,18 @@ import formatCurrency from './util';
 import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
 import Modal from 'react-modal';
+
 const { REACT_APP_ORIGIN } = process.env;
+const customStyles = {
+    content : {
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)'
+    }
+  };
 
 export default class Products extends Component {
 
@@ -40,9 +51,7 @@ export default class Products extends Component {
                                     <p>{product.title}</p>
                                     </a>
                                     <div className="product-price">
-                                        <div>
-                                            {formatCurrency(product.price)}
-                                        </div>
+                                        {product && product.price && (<div>{formatCurrency(product.price)}</div>)}
                                         <button onClick={() => this.props.addToCart(product)} className="button-primary">
                                             Add To Cart
                                         </button>
@@ -53,7 +62,11 @@ export default class Products extends Component {
                     </ul>  
                 </Fade>
 
-                {product && <Modal isOpen={true} onRequestClose={this.closeModal}>
+                {product && <Modal 
+                    isOpen={true} 
+                    onRequestClose={this.closeModal}
+                    style={customStyles}
+                >
                     <Zoom>
                         <button onClick={this.closeModal} className="close-modal">
                             x
@@ -64,9 +77,9 @@ export default class Products extends Component {
                                 <p><strong>{product.title}</strong></p>
                                 <p>{product.description}</p>
                                 <div className="product-price">
-                                    <div>{formatCurrency(product.price)}</div>
+                                    {product && product.price && (<div>{formatCurrency(product.price)}</div>)}
                                     <button className="button-primary" onClick={() => {
-                                        this.props.addToCart(product.id);
+                                        this.props.addToCart(product);
                                         this.closeModal();
                                     }}>
                                         Add To Cart
