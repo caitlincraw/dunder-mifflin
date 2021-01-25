@@ -3,27 +3,36 @@ import Filter from './Filter';
 import Products from './Products';
 import Cart from './Cart';
 import './PaperStore.css';
-import { fetchProducts, addProduct, removeProduct } from '../../redux/actions/productActions';
+import { fetchProducts, addProduct, removeProduct, sortProducts } from '../../redux/actions/productActions';
 import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
 
 class PaperStore extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
+            loggedIn: true,
             cartItems: localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")): [],
             sort: "",
         };
         this.addProductToCart = this.addProductToCart.bind(this);
         this.removeProductFromCart = this.removeProductFromCart.bind(this);
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.sortItemsInStore = this.sortItemsInStore.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchProducts();
     }
 
-    createOrder = (order) => {
-        alert("Need to save order for " + order.name);
+    handleOpenModal () {
+        this.setState({ showModal: true });
+    }
+      
+    handleCloseModal () {
+        this.setState({ showModal: false });
     }
 
     // removeFromCart = (product) => {
@@ -39,13 +48,13 @@ class PaperStore extends React.Component {
     //     let alreadyInCart = false;
 
     //     cartItems.forEach(item => {
-    //         if(item._id === product.id){
+    //         if(item.id === product.id){
     //             item.count++;
     //             alreadyInCart = true;
     //         }
     //     });
 
-    //     if(!alreadyInCart){
+    // //     if(!alreadyInCart){
     //         cartItems.push({...product, count: 1});
     //     }
     //     this.setState({cartItems});
@@ -54,28 +63,31 @@ class PaperStore extends React.Component {
     // };
 
     addProductToCart = product => {
-        this.props.addProduct(product)
+        if (this.props.auth.isLoggedIn) {
+            this.setState((state) => ({
+                loggedIn: true,
+            }))
+
+            this.props.addProduct(product)
+            
+        } else {
+            // alert("You are not logged in.");
+            this.setState((state) => ({
+                loggedIn: false,
+            }))
+        }
     }
 
     removeProductFromCart = product => {
         this.props.removeProduct(product)
     }
 
-    sortProducts = (event) => {
-        const sort = event.target.value;
-        this.setState((state) => ({
-            sort: sort,
-            products: this.props.products.slice().sort((a, b) => (
-                sort === "lowest"?
-                ((a.price > b.price)? 1:-1):
-                sort === "highest"?
-                ((a.price < b.price)? 1:-1):
-                ((a._id > b._id)? 1:-1)
-            ))
-        }))
+    sortItemsInStore = (e) => {
+        this.props.sortProducts(e.target.value)
     }
 
     render() {
+
     return (
             <div className="store">
 
@@ -83,7 +95,7 @@ class PaperStore extends React.Component {
                     <Filter 
                         count={this.props.products.length}
                         sort={this.state.sort}
-                        sortProducts={this.sortProducts}
+                        sortProducts={this.sortItemsInStore}
                     />
                     {this.props.products && this.props.products.length > 0 && (
                         <Products
@@ -94,12 +106,14 @@ class PaperStore extends React.Component {
                 </div>
 
                 <div className="store__sidebar">
-                    {this.props.cartItems && this.props.cartItems.length > 0 && (
+                    {this.props.cartItems && this.props.cartItems.length > 0 && this.state.loggedIn && (
                         <Cart 
-                            removeFromCart={this.props.removeProductFromCart}
-                            createOrder={this.createOrder}
+                            removeFromCart={this.removeProductFromCart}
+                            // handleOpenModal={this.props.handleOpenModal}
+                            // handleCloseModal={this.props.handleCloseModal}
                         />
                     )}
+                    {!this.state.loggedIn && <Redirect to="/login" push={true} />}
                 </div>
 
             </div>
@@ -110,6 +124,7 @@ class PaperStore extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
+        auth: state.auth,
         products: state.products,
         cartItems: state.cart
     };
@@ -120,6 +135,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchProducts: () => dispatch(fetchProducts()),
         addProduct: (product) => dispatch(addProduct(product)),
         removeProduct: (product) => dispatch(removeProduct(product)),
+        sortProducts: (sortOrder) => dispatch(sortProducts(sortOrder))
     };
 };
 
