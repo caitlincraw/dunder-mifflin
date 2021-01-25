@@ -1,6 +1,6 @@
 .au-view, .s-view {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center; 
     height: 100%;
     width: 100vw;
@@ -8,18 +8,32 @@
 
 .myspace-card {
     display: flex;
-    margin: 5px;
-    padding: 2px 5px;
+    margin: 3px;
+    padding: 2px 3px;
     flex-direction: column;
     align-items: left;
     background: lightgray;
     border: 5px outset darkgray;
     justify-content: space-between;
-    height: 95%;
+    height: 90%;
+    width: 40%;
+}
+
+.myspace-card a {
+    color: #3b5482;
+}
+
+.myspace-card a:hover {
+    color: orange;
+    cursor: pointer;
 }
 
 .name, .motto {
     margin: 5px;
+}
+
+.motto {
+    font-size: 1.4rem;
 }
 
 .myspace-header {
@@ -30,6 +44,7 @@
 
 .headshot {
     width: 15rem;
+    height: 15rem;
     object-fit: cover;
 }
 
@@ -37,23 +52,32 @@
     list-style-type: none;
 }
 
-.myspace-details {
+.myspace-social {
+    font-size: 1.4rem;
+}
+
+.myspace-portfolio {
+    border: 2px solid darkgrey;
+    font-size: 1.4rem;
+}
+
+.myspace-details, .myspace-interests {
     background-color:white;
-    border: 1px solid darkgray;
+    border: 2px solid darkgray;
     font-size: 0.8rem;
 }
 
 .table-header {
-    border: 1px solid darkgray;
+    border: 2px solid darkgray;
     background-color: #5ca4db;
     margin: 0;
     font-weight: bolder;
     color: white;
 }
 
-.details-table {
+.details-table, .interests-table {
     margin: 5px 1px;
-    border: 1px solid darkgray;
+    border: 2px solid darkgray;
 }
   
 .row {
@@ -75,7 +99,7 @@
 }
 .sources-container {
     width: 50vw;
-    height: 90%;
+    height: 80vh;
     display: flex;
     margin: 5px;
     flex-direction: column;
@@ -91,6 +115,15 @@
     flex: 1;
     width: 46vw;
     margin-bottom: 5px;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* No scrollbar in Internet Explorer 10+ */
+    scrollbar-width: none;  /* No Scroll bar in Firefox */
+}
+
+.sources-board::-webkit-scrollbar { 
+    display: none;  /* No scroll bar in Safari and Chrome */
+    width: 0;
+    height: 0;
 }
 
 .sources-board ul {
@@ -107,7 +140,7 @@
     background: linear-gradient(90deg, rgba(9,9,121,1) 22%, rgba(146,215,250,1) 100%);
     display: flex;
     justify-content: space-between;
-    width: 49vw;
+    width: 50vw;
 }
 
 .title-name {

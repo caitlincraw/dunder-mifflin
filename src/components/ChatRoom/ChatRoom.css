@@ -10,10 +10,6 @@ main {
     width: 100vw;
 }
 
-.cr-view * {
-    font-family: 'Times New Roman', Times, serif;
-}
-
 .container {
     display: flex;
     margin: 5px;
@@ -25,8 +21,9 @@ main {
 }
 
 .cr-container {
-    width: 50vw;
-    height: 90%;
+    width: 60vw;
+    min-height: 80vh;
+    max-height: 85vh;
 }
 
 .se-container {
@@ -40,7 +37,7 @@ main {
 
 .so-container {
     width: 20rem;
-    height: 24rem;
+    height: 25rem;
 }
 
 .title {
@@ -49,18 +46,19 @@ main {
     background: linear-gradient(90deg, rgba(9,9,121,1) 22%, rgba(146,215,250,1) 100%);
     display: flex;
     justify-content: space-between;
+    text-align: left;
 }
 
 .cr-title {
-    width: 49vw;
+    width: 60vw;
 }
 
 .se-title, .lcr-title {
-    width: 29rem;
+    width: 30rem;
 }
 
 .so-title {
-    width: 19rem;
+    width: 20rem;
 }
 
 .title-name {
@@ -94,12 +92,15 @@ main {
 }
 
 .m-board {
-    width: 46vw;
+    width: 56vw;
 }
 
 .se-board, .lcr-board {
     width: 26rem;
     margin-bottom: 5px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
 }
 
 .so-board {
@@ -117,8 +118,7 @@ hr {
 
 .messages { 
     list-style-type: none; 
-    width: 46vw; 
-    height: 100%;
+    width: 56vw; 
     margin: 0; 
     padding: 0; 
     background: white;
@@ -126,6 +126,7 @@ hr {
 
 .messages li { 
     padding: 3px 5px; 
+    text-align: left;
 }
   
 .cr-form { 
@@ -138,9 +139,7 @@ hr {
 .text-edit-btns, .footer-btns {
     display: flex;
     justify-content: space-between;
-    width: 46vw;
-    margin: 0;
-    padding: 0;
+    width: 56vw;
 }
 
 .text-edit-btns span {
@@ -199,7 +198,7 @@ hr {
     border: 3px outset darkgray; 
     margin: 0;
     padding: 0;
-    width: 46vw; 
+    width: 56vw; 
     height: 4rem;
     outline: none;
 }

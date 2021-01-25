@@ -16,18 +16,71 @@ function AboutUs() {
                         <li>Female (she/her)</li>
                         <li>PORTLAND, OR</li>
                         <li>United States</li>
-                        <li><img src="https://www.myspacegens.com/images/online_now/131.gif" alt="myspace online now gif"></img></li>
+                        <li><img src="https://www.myspacegens.com/images/online_now/onlinenow.gif" alt="myspace online now gif"></img></li>
                     </ul> 
                 </div>
                 <div className="myspace-social">
-                    View My:
+                    <b>View My:</b>
                     <a href="https://github.com/alikasper" target="_blank" rel="noreferrer">Github</a> 
                     |
                     <a href="https://www.linkedin.com/in/ali-kasper/" target="_blank" rel="noreferrer">LinkedIn</a>
                 </div>
-                <div className="myspace-song">
-                    <h5>My Song of the Week</h5>
-
+                <div className="myspace-portfolio">
+                    <div><b>Portfolio URL:</b></div>
+                    <a href="https://www.alikasperdesign.com/" target="_blank" rel="noreferrer">alikasperdesign.com</a>
+                </div>
+                <div className="myspace-interests">
+                    <h5 className="table-header">Caitlin's Interests</h5>
+                    <div className="interests-table">
+                        <div className="row">
+                            <div className="title-column">
+                                General
+                            </div>
+                            <div className="answer-column">
+                                TBD
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="title-column">
+                                Music
+                            </div>
+                            <div className="answer-column">
+                                TBD
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="title-column">
+                                Movies
+                            </div>
+                            <div className="answer-column">
+                                TBD
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="title-column">
+                                Television
+                            </div>
+                            <div className="answer-column">
+                                TBD
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="title-column">
+                                Books
+                            </div>
+                            <div className="answer-column">
+                                TBD
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="title-column">
+                                Heroes
+                            </div>
+                            <div className="answer-column">
+                                My manager, Michael Scott
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="myspace-details">
                 <h5 className="table-header">Ali's Details</h5>
@@ -69,18 +122,71 @@ function AboutUs() {
                         <li>Male (he/him)</li>
                         <li>SAVANNAH, GA</li>
                         <li>United States</li>
-                        <li><img src="https://www.myspacegens.com/images/online_now/131.gif" alt="myspace online now gif"></img></li>
+                        <li><img src="https://www.myspacegens.com/images/online_now/57.gif" alt="myspace online now gif"></img></li>
                     </ul> 
                 </div>
                 <div className="myspace-social">
-                    View My:
+                    <b>View My:</b>
                     <a href="https://github.com/RudyCruisin" target="_blank" rel="noreferrer">Github</a> 
                     |
                     <a href="https://www.linkedin.com/in/rudysa2/" target="_blank" rel="noreferrer">LinkedIn</a>
                 </div>
-                <div className="myspace-song">
-                    <h5>My Song of the Week</h5>
-                    
+                <div className="myspace-portfolio">
+                    <div><b>Portfolio URL:</b></div>
+                    <a href="https://rudycruisin.github.io/RudyPortfolio/" target="_blank" rel="noreferrer">rudycruisin.com</a>
+                </div>
+                <div className="myspace-interests">
+                    <h5 className="table-header">Caitlin's Interests</h5>
+                    <div className="interests-table">
+                        <div className="row">
+                            <div className="title-column">
+                                General
+                            </div>
+                            <div className="answer-column">
+                                TBD
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="title-column">
+                                Music
+                            </div>
+                            <div className="answer-column">
+                                TBD
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="title-column">
+                                Movies
+                            </div>
+                            <div className="answer-column">
+                                TBD
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="title-column">
+                                Television
+                            </div>
+                            <div className="answer-column">
+                                TBD
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="title-column">
+                                Books
+                            </div>
+                            <div className="answer-column">
+                                TBD
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="title-column">
+                                Heroes
+                            </div>
+                            <div className="answer-column">
+                                Myself
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="myspace-details">
                 <h5 className="table-header">Rudy's Details</h5>
@@ -122,19 +228,71 @@ function AboutUs() {
                         <li>Female (she/her)</li>
                         <li>CHATTANOOGA, TN</li>
                         <li>United States</li>
-                        <li><img src="https://www.myspacegens.com/images/online_now/131.gif" alt="myspace online now gif"></img></li>
+                        <li><img src="https://www.myspacegens.com/images/online_now/64.gif" alt="myspace online now gif"></img></li>
                     </ul>
                 </div>
                 <div className="myspace-social">
-                    View My:
+                    <b>View My:</b>
                     <a href="https://github.com/caitlincraw" target="_blank" rel="noreferrer">Github</a> 
                     |
                     <a href="https://www.linkedin.com/in/caitlin-crawford-aicp-6716778a/" target="_blank" rel="noreferrer">LinkedIn</a>
                 </div>
-                <div className="myspace-song">
-                    <h5>My Song of the Week</h5>
-
-                    
+                <div className="myspace-portfolio">
+                    <div><b>Portfolio URL:</b></div>
+                    <a href="https://caitlin-crawford.com" target="_blank" rel="noreferrer">caitlin-crawford.com</a>
+                </div>
+                <div className="myspace-interests">
+                    <h5 className="table-header">Caitlin's Interests</h5>
+                    <div className="interests-table">
+                        <div className="row">
+                            <div className="title-column">
+                                General
+                            </div>
+                            <div className="answer-column">
+                                TBD
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="title-column">
+                                Music
+                            </div>
+                            <div className="answer-column">
+                                TBD
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="title-column">
+                                Movies
+                            </div>
+                            <div className="answer-column">
+                                TBD
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="title-column">
+                                Television
+                            </div>
+                            <div className="answer-column">
+                                TBD
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="title-column">
+                                Books
+                            </div>
+                            <div className="answer-column">
+                                TBD
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="title-column">
+                                Heroes
+                            </div>
+                            <div className="answer-column">
+                                My soul mate, Jim
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="myspace-details">
                     <h5 className="table-header">Caitlin's Details</h5>
