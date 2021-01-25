@@ -12,26 +12,30 @@ class MessageParser {
         this.actionProvider.blank();
       }
 
-      if (lowercase.includes("hello") || lowercase.includes("hi")) {
+      else if (lowercase.includes("hello") || lowercase.includes("hi")) {
         this.actionProvider.greet();
       }
 
-      if (lowercase.includes("michael")) {
+      else if (lowercase.includes("michael")) {
         this.actionProvider.theboss2();
       }
 
-      if (lowercase.includes("paper")) {
+      else if (lowercase.includes("paper")) {
         this.actionProvider.paper();
       }
 
-      if (lowercase.includes("pam")) {
+      else if (lowercase.includes("pam")) {
         this.actionProvider.pam();
       }
 
-      if (lowercase.includes("who")) {
-        this.actionProvider.myCreators();
-      }
+      // else if (lowercase.includes("who")) {
+      //   this.actionProvider.myCreators();
+      // }
       
+      else {
+        this.actionProvider.dwightQuotes();
+      }
+
     }
   }
   
