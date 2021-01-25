@@ -13,9 +13,41 @@ export const fetchProducts = () => dispatch => {
     })      
 }
 
+export const addProductDatabase = () => dispatch => {
+    axios({
+        method: 'POST',
+        withCredentials: true,
+        url: `${getBackendUrl()}/cart/addItem/:userId/:prodId`,
+    })
+    .then((res) => {
+        dispatch(addProductDatabaseSuccess(res.data))
+    })
+}
+
+export const removeProductDatabase = () => dispatch => {
+    axios({
+        method: 'DELETE',
+        withCredentials: true,
+        url: `${getBackendUrl()}/cart/deleteItem/:cartId`,
+    })
+    .then((res) => {
+        dispatch(removeProductDatabaseSuccess(res.data))
+    })
+}
+
 const fetchProductsSuccess = (products) => ({   
     type: FETCH_PRODUCTS,
     products
+})
+
+const addProductDatabaseSuccess = (cartItem) => ({
+    type: ADD_PRODUCT_TO_CART,
+    cartItem
+})
+
+const removeProductDatabaseSuccess = (cartItem) => ({
+    type: REMOVE_PRODUCT_FROM_CART,
+    cartItem
 })
 
 export const addProduct = product => ({
@@ -23,7 +55,15 @@ export const addProduct = product => ({
     product
 })
 
-export const removeProduct = product => ({
-    type: REMOVE_PRODUCT_FROM_CART,
-    product
-})
+export const removeProduct = (items, product) => (dispatch) => {
+    const cartItems = items.slice().filter(
+        x => x.id !== product.id
+    );
+
+    dispatch({
+        type: REMOVE_PRODUCT_FROM_CART,
+        payload: { cartItems }
+    });
+    
+    localStorage.setItem(JSON.stringify(cartItems));
+}
