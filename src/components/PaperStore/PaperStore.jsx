@@ -66,6 +66,7 @@ class PaperStore extends React.Component {
             this.setState((state) => ({
                 loggedIn: true,
             }))
+
             this.props.addProduct(product)
             
         } else {
@@ -116,7 +117,7 @@ class PaperStore extends React.Component {
                 <div className="store__sidebar">
                     {this.props.cartItems && this.props.cartItems.length > 0 && this.state.loggedIn && (
                         <Cart 
-                            removeFromCart={this.props.removeProductFromCart}
+                            removeFromCart={this.removeProductFromCart}
                             // handleOpenModal={this.props.handleOpenModal}
                             // handleCloseModal={this.props.handleCloseModal}
                         />

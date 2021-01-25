@@ -85,12 +85,12 @@ class Cart extends Component {
                         <div>
                             <div className="cart">
                                 <div className="total">
-                                    <div>
+                                    {cartItems && (<div>
                                         Total: {" "}
                                         {formatCurrency(
                                             cartItems.reduce((a, c) => a + c.price * c.count, 0)
                                         )}
-                                    </div>
+                                    </div>)}
                                     <button 
                                         onClick={() => {this.setState({isModalOpen: true})}}
                                         className="button-primary">

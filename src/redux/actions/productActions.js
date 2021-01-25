@@ -50,20 +50,21 @@ const removeProductDatabaseSuccess = (cartItem) => ({
     cartItem
 })
 
-export const addProduct = product => ({
-    type: ADD_PRODUCT_TO_CART,
-    product
-})
+export const addProduct = (product) => {
+    const newId = `${product.id}_${Math.random().toString(16).slice(2)}`;
 
-export const removeProduct = (items, product) => (dispatch) => {
-    const cartItems = items.slice().filter(
-        x => x.id !== product.id
-    );
-
-    dispatch({
-        type: REMOVE_PRODUCT_FROM_CART,
-        payload: { cartItems }
-    });
-    
-    localStorage.setItem(JSON.stringify(cartItems));
+    return {
+        type: ADD_PRODUCT_TO_CART,
+        product: {
+            ...product,
+            id: newId
+        }
+    }
 }
+
+export const removeProduct = (productId) => ({
+ 
+        type: REMOVE_PRODUCT_FROM_CART,
+        productId
+    
+})

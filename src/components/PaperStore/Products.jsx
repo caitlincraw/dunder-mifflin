@@ -51,9 +51,7 @@ export default class Products extends Component {
                                     <p>{product.title}</p>
                                     </a>
                                     <div className="product-price">
-                                        <div>
-                                            {formatCurrency(product.price)}
-                                        </div>
+                                        {product && product.price && (<div>{formatCurrency(product.price)}</div>)}
                                         <button onClick={() => this.props.addToCart(product)} className="button-primary">
                                             Add To Cart
                                         </button>
@@ -79,7 +77,7 @@ export default class Products extends Component {
                                 <p><strong>{product.title}</strong></p>
                                 <p>{product.description}</p>
                                 <div className="product-price">
-                                    <div>{formatCurrency(product.price)}</div>
+                                    {product && product.price && (<div>{formatCurrency(product.price)}</div>)}
                                     <button className="button-primary" onClick={() => {
                                         this.props.addToCart(product);
                                         this.closeModal();
