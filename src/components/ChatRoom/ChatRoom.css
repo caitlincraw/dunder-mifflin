@@ -245,7 +245,7 @@ hr {
     bottom: auto;
 }
 
-.lcr-container, .so-container {
+.lcr-container, .so-container, .es-container {
     position: absolute;
     bottom: auto;
 }
