@@ -12,8 +12,10 @@ const LeaveChatRoom = ({ onClick }) => {
             </div>
             <div className="board lcr-board">
                 <div>Are you sure you want to leave the chatroom?</div>
-                <Link to="/">Yes, paper sucks.</Link>
-                <button onClick={onClick}>No, I love paper.</button>
+                <div>
+                    <Link to="/">Yes, paper sucks.</Link>
+                    <button onClick={onClick}>No, I love paper.</button>
+                </div>
             </div>
         </div>
     )
