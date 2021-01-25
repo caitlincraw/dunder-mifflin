@@ -36,6 +36,9 @@ function ChatRoom(props) {
 
   // connect to socket here so that only connects once at the beginning. like componentDidMount().
   useEffect(() => {
+    if(!props.auth.username) {
+      return 
+    }
 
     socket = io(ENDPOINT);
     // client sends to server that a user has connected. put in useEffect() because only want once on load of component. 
@@ -44,9 +47,12 @@ function ChatRoom(props) {
     });
 
     // client receives user info back from server
-    socket.on('user', (data) => {
-      setUser(data.username);
-      setTotalUsers(data.numUsers);
+    socket.on('user', (username) => {
+      setUser(username);
+    })
+
+    socket.on('numUsers', (numUsers) => {
+      setTotalUsers(numUsers);
     })
 
     // show message when user joins 
@@ -93,7 +99,7 @@ function ChatRoom(props) {
 
     // clean up the effect. closes the connection when the component unmounts. like componentWillUnmount
     return () => socket.disconnect();
-  }, []);
+  }, [props.auth.username]);
 
   const sendSound = (srcOfSound) => {
     socket.emit('sendSound', srcOfSound)
