@@ -121,7 +121,6 @@ hr {
 .messages { 
     list-style-type: none; 
     width: 56vw; 
-    height: 100%;
     margin: 0; 
     padding: 0; 
     background: white;
@@ -129,6 +128,7 @@ hr {
 
 .messages li { 
     padding: 3px 5px; 
+    text-align: left;
 }
   
 .cr-form { 
@@ -142,8 +142,6 @@ hr {
     display: flex;
     justify-content: space-between;
     width: 56vw;
-    margin: 0;
-    padding: 0;
 }
 
 .text-edit-btns span {

@@ -11,7 +11,9 @@ function Sources() {
                     <ul>
                         <li>The original Dundler Mifflin Infinity website was pitched in episodes 3 and 4 of the fourth season of the Office.</li>
                         <br />
-                        <li>Step One Gif from @soulpancake on giphy.</li>
+                        <li>Step One gif from @soulpancake on giphy.</li>
+                        <br />
+                        <li>Myspace "Online Now" gifs from <a href="https://www.myspacegens.com/handler.php?gen=onlinenow1" target="_blank" rel="noreferrer">myspacegens.com</a>.</li> 
                         <br />
                         <li>All sounds used in the chatroom were sourced from freesound.org
                             <ul>

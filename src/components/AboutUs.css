@@ -43,7 +43,7 @@
     list-style-type: none;
 }
 
-.myspace-details {
+.myspace-details, .myspace-interests {
     background-color:white;
     border: 1px solid darkgray;
     font-size: 0.8rem;
@@ -57,7 +57,7 @@
     color: white;
 }
 
-.details-table {
+.details-table, .interests-table {
     margin: 5px 1px;
     border: 1px solid darkgray;
 }
