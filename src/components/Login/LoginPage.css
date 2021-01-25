@@ -74,7 +74,8 @@ form input {
 form button {
     border: 3px inset darkgray;
     margin: 5px;
-    width: 10vw;
+    width: auto;
+    padding: 2px 20px;
     align-self: center;
 }
 
