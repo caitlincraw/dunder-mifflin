@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART } from "../types";
+import { FETCH_PRODUCTS, ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART, SORT_PRODUCTS } from "../types";
 import axios from 'axios';
 import { getBackendUrl } from '../../api';
 
@@ -68,3 +68,11 @@ export const removeProduct = (productId) => ({
         productId
     
 })
+
+export const sortProducts = (sortOrder) => ({
+
+    type: SORT_PRODUCTS,
+    sortOrder
+
+})   
+

@@ -3,7 +3,7 @@ import Filter from './Filter';
 import Products from './Products';
 import Cart from './Cart';
 import './PaperStore.css';
-import { fetchProducts, addProduct, removeProduct } from '../../redux/actions/productActions';
+import { fetchProducts, addProduct, removeProduct, sortProducts } from '../../redux/actions/productActions';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router-dom';
 
@@ -20,6 +20,7 @@ class PaperStore extends React.Component {
         this.removeProductFromCart = this.removeProductFromCart.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.sortItemsInStore = this.sortItemsInStore.bind(this);
     }
 
     componentDidMount() {
@@ -81,19 +82,9 @@ class PaperStore extends React.Component {
         this.props.removeProduct(product)
     }
 
-    // sortProducts = (event) => {
-    //     const sort = event.target.value;
-    //     this.setState((state) => ({
-    //         sort: sort,
-    //         products: this.props.products.slice().sort((a, b) => (
-    //             sort === "lowest"?
-    //             ((a.price > b.price)? 1:-1):
-    //             sort === "highest"?
-    //             ((a.price < b.price)? 1:-1):
-    //             ((a._id > b._id)? 1:-1)
-    //         ))
-    //     }))
-    // }
+    sortItemsInStore = (e) => {
+        this.props.sortProducts(e.target.value)
+    }
 
     render() {
 
@@ -104,7 +95,7 @@ class PaperStore extends React.Component {
                     <Filter 
                         count={this.props.products.length}
                         sort={this.state.sort}
-                        sortProducts={this.sortProducts}
+                        sortProducts={this.sortItemsInStore}
                     />
                     {this.props.products && this.props.products.length > 0 && (
                         <Products
@@ -144,6 +135,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchProducts: () => dispatch(fetchProducts()),
         addProduct: (product) => dispatch(addProduct(product)),
         removeProduct: (product) => dispatch(removeProduct(product)),
+        sortProducts: (sortOrder) => dispatch(sortProducts(sortOrder))
     };
 };
 
