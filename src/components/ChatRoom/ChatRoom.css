@@ -22,7 +22,7 @@ main {
 
 .cr-container {
     width: 60vw;
-    height: 90%;
+    max-height: 85vh;
 }
 
 .se-container {
@@ -45,6 +45,7 @@ main {
     background: linear-gradient(90deg, rgba(9,9,121,1) 22%, rgba(146,215,250,1) 100%);
     display: flex;
     justify-content: space-between;
+    text-align: left;
 }
 
 .cr-title {
