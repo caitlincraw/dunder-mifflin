@@ -1,0 +1,39 @@
+import React from 'react';
+import { createChatBotMessage } from "react-chatbot-kit";
+
+import TheBoss from './widgets/TheBoss/TheBoss'
+
+import RecyclopsAvatar from '../ChatBot/RecyclopsAvatar'
+
+const config = {
+  botName: "Dwight Schrute",
+  customStyles: {
+    botMessageBox: {
+      backgroundColor: "#090979",
+    },
+    chatButton: {
+      backgroundColor: "#090979"
+    },
+    header: {
+      backgroundColor: "#ffff",
+    },
+  },
+  initialMessages: [createChatBotMessage(`Welcome to Dunder Mifflin, where I, Dwight Schrute, the #1 salesman and 
+  assistant manager to the regional manager, will tell you what paper you need to buy.`)
+  ],
+  customComponents: {
+    botAvatar: (props) => <RecyclopsAvatar {...props} />,
+    header: () => <div className="dwight-bot-header">Dwight Schrute</div>
+
+  },
+  widgets: [
+    {
+      widgetName: "theBoss",
+      widgetFunc: (props) => <TheBoss {...props} />,
+      mapStateToProps: ['scottQuote']
+    }
+  ]
+
+}
+
+export default config
