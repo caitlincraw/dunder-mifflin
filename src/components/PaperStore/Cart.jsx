@@ -53,7 +53,7 @@ class Cart extends Component {
                 
                 {cartItems && (
                     <div className="cart cart-header">
-                        You have {cartItems.length} in the cart{" "}
+                        {`You have ${cartItems.length} ${cartItems.length > 1 ? 'items' : 'item'} in the cart`}
                     </div>
                 )}
                 
