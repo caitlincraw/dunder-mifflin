@@ -22,6 +22,7 @@ main {
 
 .cr-container {
     width: 60vw;
+    min-height: 80vh;
     max-height: 85vh;
 }
 
