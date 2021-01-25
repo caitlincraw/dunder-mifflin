@@ -16,7 +16,7 @@ const Register = ({onClick, username, password, userOnChange, passOnChange, regi
                     <input type="text" placeholder='Enter a password' autoComplete="off" value={password} onChange={passOnChange} />
                     <button type="submit" onClick={register}>Submit</button>
                 </form> 
-                {registerMsg ? <p>{registerMsg}</p> : null}              
+                {registerMsg ? <div>{registerMsg}</div> : null}              
             </div>
         </div>
     )

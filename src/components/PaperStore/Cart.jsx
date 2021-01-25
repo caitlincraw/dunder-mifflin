@@ -2,33 +2,47 @@ import React, { Component } from 'react';
 import formatCurrency from './util';
 import Fade from 'react-reveal/Fade';
 import { connect } from "react-redux";
+import Modal from 'react-modal';
+import Zoom from 'react-reveal/Zoom';
+import michael from '../images/michael_scott.jpg';
 
+const customStyles = {
+    content : {
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)'
+    }
+  };
 
 class Cart extends Component {
     constructor(props){
         super(props);
         this.state = { 
-            name: "",
-            email: "",
-            address: "",
-            showCheckout: false 
-        };
-    }
+            showCheckout: false,
+			isModalOpen: false,
+		};
 
-    handleInput = (e) => {
-        this.setState({[ e.target.name]: e.target.value });
-    }
+		// bind functions
+		this.closeModal = this.closeModal.bind(this);
+		this.openModal = this.openModal.bind(this);
+	}
 
-    createOrder = (e) => {
-        e.preventDefault();
-        const order = {
-            name: this.state.name,
-            email: this.state.email,
-            address: this.state.address,
-            cartItems: this.props.cartItems
-        };
-        this.props.createOrder(order);
-    }
+    // open modal (set isModalOpen, false)
+	openModal() {
+		this.setState({
+			isModalOpen: true
+		});
+	}
+
+    // close modal (set isModalOpen, true)
+	closeModal() {
+		this.setState({
+			isModalOpen: false
+		});
+	}
 
     render() {
 
@@ -39,7 +53,7 @@ class Cart extends Component {
                 
                 {cartItems && (
                     <div className="cart cart-header">
-                        You have {cartItems.length} in the cart{" "}
+                        {`You have ${cartItems.length} ${cartItems.length > 1 ? 'items' : 'item'} in the cart`}
                     </div>
                 )}
                 
@@ -55,7 +69,7 @@ class Cart extends Component {
                                         <div>
                                             <div>{item.title}</div>
                                             <div className="right">
-                                                {formatCurrency(item.price)} x {item.count}{" "}
+                                                {formatCurrency(item.price)} 
                                                 <button className="button" onClick={() => this.props.removeFromCart(item.id)}>
                                                     Remove
                                                 </button> 
@@ -71,66 +85,38 @@ class Cart extends Component {
                         <div>
                             <div className="cart">
                                 <div className="total">
-                                    <div>
+                                    {cartItems && (<div>
                                         Total: {" "}
                                         {formatCurrency(
-                                            cartItems.reduce((a, c) => a + c.price * c.count, 0)
+                                            cartItems.reduce((a, c) => a + c.price, 0)
                                         )}
-                                    </div>
+                                    </div>)}
                                     <button 
-                                        onClick={() => {this.setState({showCheckout: true})}} 
+                                        onClick={() => {this.setState({isModalOpen: true})}}
                                         className="button-primary">
-                                            Proceed
+                                            Checkout
                                     </button>
                                 </div>
                             </div>
-                            {this.state.showCheckout && (
-                                <Fade right cascade>
-                                    <div className="cart">
-                                        <form onSubmit={this.createOrder}>
-                                            <ul className="form-container">
-                                                <li>
-                                                    <label>Email</label>
-                                                    <input 
-                                                        name="email"
-                                                        type="email" 
-                                                        required 
-                                                        onChange={this.handleInput}
-                                                    ></input>
-                                                </li>
-                                                <li>
-                                                    <label>Name</label>
-                                                    <input 
-                                                        name="name"
-                                                        type="text" 
-                                                        required 
-                                                        onChange={this.handleInput}
-                                                    ></input>
-                                                </li>
-                                                <li>
-                                                    <label>Address</label>
-                                                    <input 
-                                                        name="address"
-                                                        type="text" 
-                                                        required 
-                                                        onChange={this.handleInput}
-                                                    ></input>
-                                                </li>
-                                                <li>
-                                                    <button 
-                                                        className="button-primary" 
-                                                        type="submit">
-                                                            Checkout
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </form>
-                                    </div>
-                                </Fade>
-                            )}
                         </div>
                     )}
+
                 </div>
+
+                <Modal 
+                    isOpen={this.state.isModalOpen} 
+                    onRequestClose={this.closeModal}
+                    style={customStyles}
+                >
+                    <Zoom>
+                        <button onClick={this.closeModal} className="close-modal">
+                            x
+                        </button>
+                        <h3>Thanks for trying to buy paper, but this is not a real website!</h3>
+                        <img className="michael" src={ michael } alt="picture of Michael Scott in front of a white board" />
+                    </Zoom>
+                </Modal>
+
             </div>
         )
     }

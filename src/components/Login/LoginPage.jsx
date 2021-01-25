@@ -41,8 +41,8 @@ function LoginPage(props) {
                     <h4 className="title-name">Login</h4>
                 </div>
                 <form>
-                    {props.auth.isLoggedIn ? <input placeholder="you are already logged in" disabled={true} />: <input placeholder="enter your username" onChange={e => setLoginUsername(e.target.value)} /> }
-                    {props.auth.isLoggedIn ? <input placeholder="you are already logged in" disabled={true} />: <input placeholder="enter your password" onChange={e => setLoginPassword(e.target.value)} /> }
+                    {props.auth.isLoggedIn ? <input placeholder="you are already logged in" disabled={true} />: <input placeholder="Enter your username" onChange={e => setLoginUsername(e.target.value)} /> }
+                    {props.auth.isLoggedIn ? <input placeholder="you are already logged in" disabled={true} />: <input placeholder="Enter your password" onChange={e => setLoginPassword(e.target.value)} /> }
                     <button type="submit" onClick={login}>Submit</button>
                 </form>
                 {showAuthFailure() && <p className="auth-failure-msg">User does not exist.</p>}
@@ -50,6 +50,7 @@ function LoginPage(props) {
 
 
                 <div>Don't have an account yet? <button className="register-btn" onClick={()=>setShowRegister(true)}>Register Here!</button></div>
+                <img className="paper-gif" src="https://media.giphy.com/media/109fP7pua6Osgw/giphy.gif" alt="paper gif- step one"></img>
             </div>
                 {showRegister ? <Register onClick={() => setShowRegister(false)} register={register} registerMsg={registerMsg} username={registerUsername} password={registerPassword} userOnChange={e => setRegisterUsername(e.target.value)} passOnChange={e => setRegisterPassword(e.target.value)}/> : null}
         </div>
