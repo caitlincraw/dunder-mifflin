@@ -22,11 +22,11 @@ main {
 
 .cr-container {
     width: 60vw;
-    min-height: 80vh;
+    min-height: 85vh;
     max-height: 85vh;
 }
 
-.se-container {
+.se-container, .es-container {
     width: 30rem;
     height: 15rem;
 }
@@ -53,7 +53,7 @@ main {
     width: 60vw;
 }
 
-.se-title, .lcr-title {
+.se-title, .lcr-title, .es-title {
     width: 30rem;
 }
 
@@ -101,6 +101,22 @@ main {
     display: flex;
     text-align: center;
     flex-direction: column;
+}
+
+.es-board {
+    width: 26rem;
+    margin-bottom: 5px;
+}
+
+.es-board input {
+    background: none;
+    outline: none;
+    padding: 2px;
+    border: none;
+}
+
+.es-board input:hover {
+    cursor: pointer;
 }
 
 .so-board {
@@ -229,7 +245,7 @@ hr {
     bottom: auto;
 }
 
-.lcr-container, .so-container {
+.lcr-container, .so-container, .es-container {
     position: absolute;
     bottom: auto;
 }
