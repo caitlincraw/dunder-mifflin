@@ -20,11 +20,15 @@ TBD.
 * HTML
 * CSS
 
+## In Conjuction With
+
+Back-end source code can be found [here](https://github.com/caitlincraw/dm-server)
+
 ## Developers
 
-[Rudy Saavedra](http://github.com/RudyCruisin)\
-[Ali Kasper](http://github.com/alikasper)\
-[Caitlin Crawford](http://github.com/caitlincraw)
+[Rudy Saavedra](https://github.com/RudyCruisin)\
+[Ali Kasper](https://github.com/alikasper)\
+[Caitlin Crawford](https://github.com/caitlincraw)
 
 ## License
 
