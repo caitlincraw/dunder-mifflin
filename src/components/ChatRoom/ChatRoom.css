@@ -155,13 +155,13 @@ hr {
 .text-edit-btns, .footer-btns {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
 }
 
 .text-edit-btns span {
     padding: 0 3.5px;
     font-size: 1.4rem;
-    margin-bottom: 0;
 }
 
 .size-btns {
@@ -170,7 +170,6 @@ hr {
 
 .text-edit-btns input, .footer-btns input {
     padding: 0 5px;
-    margin-bottom: 0px;
     border: none;
     outline: none;
     background: none;
