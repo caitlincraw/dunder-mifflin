@@ -3,7 +3,7 @@ import './ChatRoom.css';
 
 const EmojiSelector = ({ onClick, addEmoji }) => {
     
-    const emojis = ["😃", "🤣", "🤪", "🤗", "😷", "🤮", "😎", "💩" ];
+    const emojis = ["😃", "🤣", "🤪", "🤗", "😷", "🤮", "😎", "🤐", "😴", "🥳", "💩", "🧻", "♾️", "📝", "🖨️", "📎", "💼"];
     return (
         <div className="container es-container">
             <div className="title es-title">
