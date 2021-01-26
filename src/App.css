@@ -29,7 +29,7 @@
 .app-chatbot-button-icon {
   width: 5vh;
   height: 5vh;
-  margin-left: -6px;
+  margin-left: -0.8rem;
 }
 
 @media (max-width: 600px) {

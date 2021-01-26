@@ -19,7 +19,7 @@ function ChatRoom(props) {
   const [totalUsers, setTotalUsers] = useState();
   const [messages, setMessages] = useState([]);
   const [playSound, setPlaySound] = useState(true);
-  const [soundEnabler, setSoundEnabler] = useState(true);
+  const [soundEnabler, setSoundEnabler] = useState(false);
   const [leaveChat, setLeaveChat] = useState(false);
   const [showSoundSelector, setShowSoundSelector] = useState(false);
   const [selectedSound, setSelectedSound] = useState("none");
@@ -164,12 +164,12 @@ function ChatRoom(props) {
   }
 
   const addEmoji = (emoji) => {
-    setMessage(message.concat(` ${emoji} `));
+    setMessage(message.concat(`${emoji}`));
   }
 
   return (
     <div className="view cr-view">
-      <Chat message={message} messages={messages} totalUsers={totalUsers} selectEmoji={() => setShowEmoji(true)} selectSound={() => setShowSoundSelector(true)} leaveChat={() => setLeaveChat(true)} onChange={(e) => setMessage(e.target.value)} messageOnClick={(e) => sendMessage(e)}  />
+      <Chat message={message} messages={messages} selectedSound={selectedSound} totalUsers={totalUsers} selectEmoji={() => setShowEmoji(true)} selectSound={() => setShowSoundSelector(true)} leaveChat={() => setLeaveChat(true)} onChange={(e) => setMessage(e.target.value)} messageOnClick={(e) => sendMessage(e)}  />
       {leaveChat ? <LeaveChatRoom onClick={() => setLeaveChat(false)} /> : null}
       {showEmoji ? <EmojiSelector addEmoji={(e) => addEmoji(e.target.value)} onClick={() => setShowEmoji(false)} /> : null}
       {showSoundSelector ? <SoundSelector onClick={() => setShowSoundSelector(false)} selectNone={() => settingSoundState("none")} selectCat={() => settingSoundState("cat")} selectCow={() => settingSoundState("cow")} selectPhone={() => settingSoundState("phone")} previewCat={previewCat} previewCow={previewCow} previewPhone={previewPhone} /> : null}
