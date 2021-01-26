@@ -10,6 +10,11 @@ class ActionProvider {
     this.addMessageToState(message);
   }
 
+  chatroom = () => {
+    const message = this.createChatBotMessage("This is the world's best chatroom. I am the assistant manager to the regional manager. My opinion is fact.");
+    this.addMessageToState(message);
+  }
+
   blank = () => {
     const message = this.createChatBotMessage(`I can't help you if you don't say anything, DOES ANYONE HAVE HALF A BRAIN AROUND HERE???.`);
     this.addMessageToState(message);
