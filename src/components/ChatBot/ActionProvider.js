@@ -46,7 +46,7 @@ class ActionProvider {
       return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
     }
 
-    const ranNum = getRandomIntInclusive(0, 128);
+    const ranNum = getRandomIntInclusive(0, 117);
 
     const quotearray = [
       "Before I do anything I ask myself, ‘Would an idiot do that?’ And if the answer is yes, I do not do that thing.",
