@@ -37,7 +37,6 @@ export default class Products extends Component {
         
         const { product } = this.state;
         const { productos } = this.props;
-        console.log("Y", productos);
 
         return(
             <div>
