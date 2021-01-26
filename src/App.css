@@ -1,17 +1,4 @@
 .app-chatbot-container {
-<<<<<<< HEAD
-    margin: 40px 0;
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    left: 2vh;
-    bottom: 7vh;
-    z-index: 9999;
-    border-radius: 5px;
-    background: lightgray;
-    border: 5px outset darkgray;
-  }
-=======
   margin: 40px 0;
   display: flex;
   justify-content: center;
@@ -24,7 +11,6 @@
   border: 5px outset darkgray;
 
 }
->>>>>>> development
 
 .app-chatbot-button {
   width: 8vh;
@@ -67,32 +53,6 @@
   outline: none;
 }
 
-<<<<<<< HEAD
-  .dwight-bot-header {
-    margin-top: -2px;
-    padding:1px;
-    background: rgb(9,9,121);
-    background: linear-gradient(90deg, rgba(9,9,121,1) 22%, rgba(146,215,250,1) 100%);
-    justify-content: space-between;
-    color: white;
-    font-size: 1.2rem;
-    margin-left: -2px;
-    font-family: 'Times New Roman', Times, serif;
-    height: 25px;
-    align-self: center;
-    font-size: large;
-    text-align: center;
-    border: 4px outset darkgray;
-    margin-right: -2px;
-    outline: none;
-  }
-
-.react-chatbot-kit-chat-bot-message{
-  font-size: 1em;
-}
-
-=======
 .react-chatbot-kit-chat-bot-message{
   font-size: 1rem;
 }
->>>>>>> development
