@@ -18,7 +18,7 @@ import { getUser } from './api';
 import './App.css'
 
 function App(props) {
-  const [showDwight, toggleDwight] = useState(true);
+  const [showDwight, toggleDwight] = useState(false);
 
 
   useEffect(() => {
