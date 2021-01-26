@@ -13,7 +13,6 @@ class PaperStore extends React.Component {
         super(props);
         this.state = {
             loggedIn: true,
-            cartItems: localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")): [],
             sort: "",
         };
         this.addProductToCart = this.addProductToCart.bind(this);
@@ -35,33 +34,6 @@ class PaperStore extends React.Component {
         this.setState({ showModal: false });
     }
 
-    // removeFromCart = (product) => {
-    //     const cartItems = this.state.cartItems.slice();
-    //     this.setState({ cartItems: cartItems.filter((x) => x.id !== product.id)
-    //     });
-
-    //     localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((x) => x.id !== product.id)));
-    // }
-
-    // addToCart = (product) => {
-    //     const cartItems = this.state.cartItems.slice();
-    //     let alreadyInCart = false;
-
-    //     cartItems.forEach(item => {
-    //         if(item.id === product.id){
-    //             item.count++;
-    //             alreadyInCart = true;
-    //         }
-    //     });
-
-    // //     if(!alreadyInCart){
-    //         cartItems.push({...product, count: 1});
-    //     }
-    //     this.setState({cartItems});
-
-    //     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    // };
-
     addProductToCart = product => {
         if (this.props.auth.isLoggedIn) {
             this.setState((state) => ({
@@ -69,6 +41,8 @@ class PaperStore extends React.Component {
             }))
 
             this.props.addProduct(product)
+            const cartItems = this.props.cartItems.slice();
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
             
         } else {
             // alert("You are not logged in.");
@@ -79,7 +53,9 @@ class PaperStore extends React.Component {
     }
 
     removeProductFromCart = product => {
-        this.props.removeProduct(product)
+        this.props.removeProduct(product);
+        const cartItems = this.props.cartItems.slice();
+        localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((x) => x.id !== product.id)));
     }
 
     sortItemsInStore = (e) => {
