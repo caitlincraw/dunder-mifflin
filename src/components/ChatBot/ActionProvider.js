@@ -11,7 +11,7 @@ class ActionProvider {
   }
 
   chatroom = () => {
-    const message = this.createChatBotMessage("This is the world's best chatroom. I am the assistant manager to the regional manager. My opinion is fact.");
+    const message = this.createChatBotMessage("The We Love Paper Chatroom is the world's best chatroom. I am the assistant manager to the regional manager. My opinion is fact.");
     this.addMessageToState(message);
   }
 
