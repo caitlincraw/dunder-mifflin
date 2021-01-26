@@ -81,6 +81,10 @@ form button {
     outline: none;
 }
 
+form input:focus {
+    outline: none;
+}
+
 .title {
     margin: 5px;
     background: rgb(9,9,121);
