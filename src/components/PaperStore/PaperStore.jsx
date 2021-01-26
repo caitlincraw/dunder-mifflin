@@ -41,8 +41,8 @@ class PaperStore extends React.Component {
             }))
 
             this.props.addProduct(product)
-            const cartItems = this.props.cartItems.slice();
-            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+            // const cartItems = this.props.cartItems.slice();
+            // localStorage.setItem("cartItems", JSON.stringify(cartItems));
             
         } else {
             // alert("You are not logged in.");
@@ -54,8 +54,8 @@ class PaperStore extends React.Component {
 
     removeProductFromCart = product => {
         this.props.removeProduct(product);
-        const cartItems = this.props.cartItems.slice();
-        localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((x) => x.id !== product.id)));
+        // const cartItems = this.props.cartItems.slice();
+        // localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((x) => x.id !== product.id)));
     }
 
     sortItemsInStore = (e) => {
