@@ -1,4 +1,5 @@
 .app-chatbot-container {
+<<<<<<< HEAD
     margin: 40px 0;
     display: flex;
     justify-content: center;
@@ -10,30 +11,63 @@
     background: lightgray;
     border: 5px outset darkgray;
   }
+=======
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 2vh;
+  bottom: 7vh;
+  z-index: 9999;
+  border-radius: 5px;
+  background: lightgray;
+  border: 5px outset darkgray;
 
-  .app-chatbot-button {
-    width: 8vh;
-    height: 8vh;
-    border-radius: 50px;
-    border: solid;
-    position: fixed;
-    bottom: 3vh;
-    z-index: 9999;
-    left: 1vh;
+}
+>>>>>>> development
+
+.app-chatbot-button {
+  width: 8vh;
+  height: 8vh;
+  border-radius: 50px;
+  border: solid;
+  position: fixed;
+  bottom: 3vh;
+  z-index: 9999;
+  left: 1vh;
+}
+
+.app-chatbot-button-icon {
+  width: 5vh;
+  height: 5vh;
+}
+
+@media (max-width: 600px) {
+  .app-chatbot-container {
+    transform: scale(0.9) translateY(26px);
   }
+}
 
-  .app-chatbot-button-icon {
-    width: 5vh;
-    height: 5vh;
-    /* fill: #fff; */
-  }
+.dwight-bot-header {
+  margin-top: -2px;
+  padding:1px;
+  background: rgb(9,9,121);
+  background: linear-gradient(90deg, rgba(9,9,121,1) 22%, rgba(146,215,250,1) 100%);
+  justify-content: space-between;
+  color: white;
+  font-size: 1.2rem;
+  margin-left: -2px;
+  font-family: 'Times New Roman', Times, serif;
+  height: 25px;
+  align-self: center;
+  font-size: large;
+  text-align: center;
+  border: 4px outset darkgray;
+  margin-right: -2px;
+  outline: none;
+}
 
-  @media (max-width: 600px) {
-    .app-chatbot-container {
-      transform: scale(0.9) translateY(26px);
-    }
-  }
-
+<<<<<<< HEAD
   .dwight-bot-header {
     margin-top: -2px;
     padding:1px;
@@ -57,3 +91,8 @@
   font-size: 1em;
 }
 
+=======
+.react-chatbot-kit-chat-bot-message{
+  font-size: 1rem;
+}
+>>>>>>> development
