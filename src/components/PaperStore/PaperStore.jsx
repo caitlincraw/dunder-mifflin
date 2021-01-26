@@ -109,8 +109,6 @@ class PaperStore extends React.Component {
                     {this.props.cartItems && this.props.cartItems.length > 0 && this.state.loggedIn && (
                         <Cart 
                             removeFromCart={this.removeProductFromCart}
-                            // handleOpenModal={this.props.handleOpenModal}
-                            // handleCloseModal={this.props.handleCloseModal}
                         />
                     )}
                     {!this.state.loggedIn && <Redirect to="/login" push={true} />}

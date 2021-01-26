@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Modal from 'react-modal';
 import Zoom from 'react-reveal/Zoom';
 import michael from '../images/michael_scott.jpg';
+const { REACT_APP_ORIGIN } = process.env;
 
 const customStyles = {
     content : {
@@ -42,7 +43,13 @@ class Cart extends Component {
 		this.setState({
 			isModalOpen: false
 		});
-	}
+    }
+    
+    // checkoutOnClick() {
+    //     this.setState({isModalOpen: true})
+    //     // clear cart here
+
+    // }
 
     render() {
 
@@ -64,7 +71,7 @@ class Cart extends Component {
                                 {cartItems.map(item =>(
                                     <li key={item.id}>
                                         <div>
-                                            <img src={`http://localhost:3000/images/${item.image}`} alt={item.title}></img>
+                                            <img src={`${REACT_APP_ORIGIN}/images/${item.image}`} alt={item.title}></img>
                                         </div>
                                         <div>
                                             <div>{item.title}</div>
