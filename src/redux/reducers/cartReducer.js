@@ -1,5 +1,6 @@
 import { ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART } from '../types';
 
+// const initialState = localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")): [];
 const initialState = [];
   
 export const cartReducer = (state = initialState, action) => {
