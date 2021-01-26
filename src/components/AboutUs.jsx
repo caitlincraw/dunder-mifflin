@@ -9,7 +9,6 @@ function AboutUs() {
         <div className="view au-view">
             <div className="myspace-card">
                 <h3 className="name">Ali Kasper</h3>
-                <p className="motto">"Whenever I'm about to do something, I think 'Would an idiot do that?'"</p>
                 <div className="myspace-header">
                     <img className="headshot" src={Ali} alt="Ali"></img>
                     <ul>
@@ -19,6 +18,7 @@ function AboutUs() {
                         <li><img src="https://www.myspacegens.com/images/online_now/onlinenow.gif" alt="myspace online now gif"></img></li>
                     </ul> 
                 </div>
+                <p className="motto">"Whenever I'm about to do something, I think 'Would an idiot do that?'"</p>
                 <div className="myspace-social">
                     <b>View My:</b>
                     <a href="https://github.com/alikasper" target="_blank" rel="noreferrer">Github</a> 
@@ -29,8 +29,8 @@ function AboutUs() {
                     <div><b>Portfolio URL:</b></div>
                     <a href="https://www.alikasperdesign.com/" target="_blank" rel="noreferrer">alikasperdesign.com</a>
                 </div>
-                <div className="myspace-interests">
-                    <h5 className="table-header">Caitlin's Interests</h5>
+                {/* <div className="myspace-interests">
+                    <h5 className="table-header">Ali's Interests</h5>
                     <div className="interests-table">
                         <div className="row">
                             <div className="title-column">
@@ -81,7 +81,7 @@ function AboutUs() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="myspace-details">
                 <h5 className="table-header">Ali's Details</h5>
                     <div className="details-table">
@@ -115,7 +115,6 @@ function AboutUs() {
             </div>
             <div className="myspace-card">
                 <h3 className="name">Rudy Saavedra</h3>
-                <p className="motto">"Would I rather be feared or loved? Easy. Both. I want people to be afraid of how much they love me."</p>
                 <div className="myspace-header">
                     <img className="headshot" src={Rudy} alt="Rudy"></img>
                     <ul>
@@ -125,6 +124,7 @@ function AboutUs() {
                         <li><img src="https://www.myspacegens.com/images/online_now/57.gif" alt="myspace online now gif"></img></li>
                     </ul> 
                 </div>
+                <p className="motto">"Would I rather be feared or loved? Easy. Both. I want people to be afraid of how much they love me."</p>
                 <div className="myspace-social">
                     <b>View My:</b>
                     <a href="https://github.com/RudyCruisin" target="_blank" rel="noreferrer">Github</a> 
@@ -135,7 +135,7 @@ function AboutUs() {
                     <div><b>Portfolio URL:</b></div>
                     <a href="https://rudycruisin.github.io/RudyPortfolio/" target="_blank" rel="noreferrer">rudycruisin.com</a>
                 </div>
-                <div className="myspace-interests">
+                {/* <div className="myspace-interests">
                     <h5 className="table-header">Caitlin's Interests</h5>
                     <div className="interests-table">
                         <div className="row">
@@ -187,7 +187,7 @@ function AboutUs() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="myspace-details">
                 <h5 className="table-header">Rudy's Details</h5>
                     <div className="details-table">
@@ -221,7 +221,6 @@ function AboutUs() {
             </div>
             <div className="myspace-card">
                 <h3 className="name">Caitlin Crawford</h3>
-                <p className="motto">"I don't care what they say about me. I just want to eat."</p>
                 <div className="myspace-header">
                     <img className="headshot" src={Caitlin} alt="Caitlin"></img>
                     <ul>
@@ -231,6 +230,7 @@ function AboutUs() {
                         <li><img src="https://www.myspacegens.com/images/online_now/64.gif" alt="myspace online now gif"></img></li>
                     </ul>
                 </div>
+                <p className="motto">"I don't care what they say about me. I just want to eat."</p>
                 <div className="myspace-social">
                     <b>View My:</b>
                     <a href="https://github.com/caitlincraw" target="_blank" rel="noreferrer">Github</a> 
@@ -241,7 +241,7 @@ function AboutUs() {
                     <div><b>Portfolio URL:</b></div>
                     <a href="https://caitlin-crawford.com" target="_blank" rel="noreferrer">caitlin-crawford.com</a>
                 </div>
-                <div className="myspace-interests">
+                {/* <div className="myspace-interests">
                     <h5 className="table-header">Caitlin's Interests</h5>
                     <div className="interests-table">
                         <div className="row">
@@ -293,7 +293,7 @@ function AboutUs() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="myspace-details">
                     <h5 className="table-header">Caitlin's Details</h5>
                     <div className="details-table">

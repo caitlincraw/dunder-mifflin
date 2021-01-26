@@ -41,7 +41,7 @@ class Cart extends Component {
 	closeModal() {
 		this.setState({
 			isModalOpen: false
-		});
+        });
 	}
 
     render() {
