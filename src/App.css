@@ -9,7 +9,6 @@
     border-radius: 5px;
     background: lightgray;
     border: 5px outset darkgray;
-
   }
 
   .app-chatbot-button {
@@ -53,3 +52,8 @@
     margin-right: -2px;
     outline: none;
   }
+
+.react-chatbot-kit-chat-bot-message{
+  font-size: 1em;
+}
+
