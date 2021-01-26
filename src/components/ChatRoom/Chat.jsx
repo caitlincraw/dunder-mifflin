@@ -2,7 +2,7 @@ import React from "react";
 import Messages from "./Messages";
 import './ChatRoom.css';
 
-function Chat({ leaveChat, messages, totalUsers, selectSound, selectEmoji, message, onChange, messageOnClick }) {
+function Chat({ leaveChat, messages, selectedSound, totalUsers, selectSound, selectEmoji, message, onChange, messageOnClick }) {
 
   return (
     <div className="container cr-container">
@@ -54,6 +54,7 @@ function Chat({ leaveChat, messages, totalUsers, selectSound, selectEmoji, messa
             value="aDd A sOuNd 🔈" 
             onClick={selectSound}
           />
+          {selectedSound !== "none" ? <div className="sound-msg">You selected a {selectedSound} sound</div> : null}
           <button onClick={messageOnClick}> 
           Send
           </button>
