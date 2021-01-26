@@ -30,6 +30,14 @@ class ActionProvider {
     this.addMessageToState(message);
   }
 
+  // theboss = async () => {
+  //   const response = await fetch("https://michael-scott-quotes-api.herokuapp.com/randomQuote")
+  //   const data = await response.json()
+
+  //   const message = this.createChatBotMessage(data);
+  //   this.addMessageToState(message);
+  // }
+
   dwightQuotes = () => {
 
     function getRandomIntInclusive(min, max) {
@@ -173,24 +181,6 @@ class ActionProvider {
 
     const message = this.createChatBotMessage(quotearray[ranNum])
     this.addMessageToState(message);
-  }
-
-  // theboss = () => {
-  //   const message = this.createChatBotMessage(
-  //     "In word's of the worlds best boss: ",
-  //     {
-  //       widget: "theBoss",
-  //       loading:true,
-  //       terminateLoading: true,
-  //       withAvatar: true,
-  //     }
-  //   );
-  //   this.addMessageToState(message);
-  // };
-
-  //theboss, pam, paper
-  who = () => {
-
   }
 
   addMessageToState = (message) => {

@@ -1,8 +1,6 @@
 import React from 'react';
 import { createChatBotMessage } from "react-chatbot-kit";
 
-import TheBoss from './widgets/TheBoss/TheBoss'
-
 import RecyclopsAvatar from '../ChatBot/RecyclopsAvatar'
 
 const config = {
@@ -26,13 +24,6 @@ const config = {
     header: () => <div className="dwight-bot-header">Dwight Schrute</div>
 
   },
-  widgets: [
-    {
-      widgetName: "theBoss",
-      widgetFunc: (props) => <TheBoss {...props} />,
-      mapStateToProps: ['scottQuote']
-    }
-  ]
 
 }
 
