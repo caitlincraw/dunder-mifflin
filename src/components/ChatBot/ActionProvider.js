@@ -46,7 +46,7 @@ class ActionProvider {
       return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
     }
 
-    const ranNum = getRandomIntInclusive(0, 117);
+    const ranNum = getRandomIntInclusive(0, 115);
 
     const quotearray = [
       "Before I do anything I ask myself, ‘Would an idiot do that?’ And if the answer is yes, I do not do that thing.",
@@ -152,7 +152,6 @@ class ActionProvider {
       "I wonder if king-sized sheets are called presidential-sized in England?",
       "I am fast. To give you a reference point I am somewhere between a snake and a mongoose… And a panther.",
       "Security in this office park is a joke. Last year I came to work with my spud-gun in a duffel bag. I sat at my desk all day with a rifle that shoots potatoes at 60 pounds per square inch. Can you imagine if I was deranged?",
-      "I grew up on a farm. I have seen animals having sex in every position imaginable. Goat on chicken. Chicken on goat. Couple of chickens doing a goat, couple of pigs watching.",
       "Through concentration, I can raise and lower my cholesterol at will.",
       "As a farmer, I know that when an animal is sick sometimes the right thing to do is put it out of its misery. With the electricity we are using to keep Meredith alive, we could power a small fan for two days. You tell me what’s unethical.",
       "Jim: My condolences.",
@@ -162,7 +161,6 @@ class ActionProvider {
       "Love is all you need? False, you need water and rations.",
       "The principle is sound. To avoid illness, expose yourself to germs, enabling your immune system to develop antibodies. I don’t know why everyone doesn’t do this…Maybe they have something against living forever.",
       "Ok. When the baby emerges, mark it secretly in a kind of a mark that only you could recognize and no baby snatcher could ever copy.",
-      "Babies are one of my many areas of expertise. Growing up, I performed my own circumcision. ",
       "Twelve hundred dollars is what I spent on my whole bomb shelter. For that kind of money, this stroller, should be indestructible.",
       "Hold me! Cradle my hand!",
       "I’m screaming! I’m screaming! I’m screaming! Aah! Numb me up! I want anesthesia!",
