@@ -12,6 +12,10 @@ class MessageParser {
         this.actionProvider.blank();
       }
 
+      else if (lowercase.includes("chatroom")) {
+        this.actionProvider.chatroom();
+      }
+
       else if (lowercase.includes("hello") || lowercase.includes("hi")) {
         this.actionProvider.greet();
       }

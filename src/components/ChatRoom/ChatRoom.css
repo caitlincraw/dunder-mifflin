@@ -22,8 +22,8 @@ main {
 
 .cr-container {
     width: 60vw;
-    min-height: 85vh;
-    max-height: 85vh;
+    min-height: 80vh;
+    max-height: 80vh;
 }
 
 .se-container, .es-container {
@@ -155,12 +155,17 @@ hr {
 .text-edit-btns, .footer-btns {
     display: flex;
     justify-content: space-between;
-    width: 56vw;
+    align-items: center;
+    width: 100%;
 }
 
 .text-edit-btns span {
-    padding: 0 5px;
+    padding: 0 3.5px;
     font-size: 1.4rem;
+}
+
+.size-btns {
+    height: auto;
 }
 
 .text-edit-btns input, .footer-btns input {
@@ -170,6 +175,11 @@ hr {
     background: none;
     cursor: pointer;
     font-size: 1.4rem;
+}
+
+.sound-msg {
+    align-self: center;
+    color: #3b5482;
 }
 
 #bold-btn {
