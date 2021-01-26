@@ -11,10 +11,7 @@ const config = {
     },
     chatButton: {
       backgroundColor: "#090979"
-    },
-    header: {
-      backgroundColor: "#ffff",
-    },
+    }
   },
   initialMessages: [createChatBotMessage(`Welcome to Dunder Mifflin, where I, Dwight Schrute, the #1 salesman and 
   assistant manager to the regional manager, will tell you what paper you need to buy.`)
