@@ -133,7 +133,6 @@
     background: rgb(9,9,121);
     background: linear-gradient(90deg, rgba(9,9,121,1) 22%, rgba(146,215,250,1) 100%);
     color: white;
-    font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
     padding: 1.5rem;
     text-shadow: 0 0 2px rgba(0,0,0,.3);
@@ -190,6 +189,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     max-height: 75vh;
+    max-width: 55rem;
   }
   
   .product-details img {
